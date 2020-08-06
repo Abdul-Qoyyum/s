@@ -15,9 +15,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <!-- Glyphicons -->
+    <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    @notifyCss
 </head>
 <body>
     <div id="app">
@@ -76,5 +79,9 @@
             @yield('content')
         </main>
     </div>
+
+    @include('notify::messages')
+    @notifyJs
+    @yield('scripts')
 </body>
 </html>

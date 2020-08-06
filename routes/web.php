@@ -18,8 +18,6 @@ Route::view('/', 'home.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::view('features','home.features')->name('home.features');
 
 Route::view('pricing','home.pricing')->name('home.pricing');
@@ -27,6 +25,3 @@ Route::view('pricing','home.pricing')->name('home.pricing');
 Route::view('about', 'home.about')->name('home.about');
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
