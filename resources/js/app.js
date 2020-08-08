@@ -14,6 +14,8 @@ import VueRouter from 'vue-router';
 
 import Dashboard from './components/DashboardComponent';
 
+import Post from './components/PostComponent';
+
 import Settings from './components/SettingsComponent';
 
 Vue.use(VueRouter);
@@ -41,6 +43,7 @@ Vue.component('admin-component', require('./components/AdminComponent.vue').defa
 
 const routes = [
     {path: "/", component: Dashboard},
+    {path: "/posts", component: Post},
     {path: "/settings", component: Settings},
 ]; 
 

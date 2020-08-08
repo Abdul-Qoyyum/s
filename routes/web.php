@@ -25,3 +25,7 @@ Route::view('pricing','home.pricing')->name('home.pricing');
 Route::view('about', 'home.about')->name('home.about');
 
 Route::get('dashboard','DashboardController@index')->name('dashboard.index');
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+ });

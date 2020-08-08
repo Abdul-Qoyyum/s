@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Eloquent One to One poymorphic relationship
+     * with the photo resource
+     */
+    public function photo(){
+        return $this->morphOne('App\Photo', 'imageable');
+    }
+    
 }

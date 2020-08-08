@@ -14,9 +14,28 @@
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
         <v-list-item link to="/settings">
           <v-list-item-action>
-            <v-icon>mdi-cog</v-icon>
+            <v-icon>mdi-podcast</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Podcast</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item link to="/posts">
+          <v-list-item-action>
+            <v-icon>mdi-clipboard</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Posts</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item link to="/settings">
+          <v-list-item-action>
+            <v-icon>mdi-cogs</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Settings</v-list-item-title>
@@ -36,10 +55,12 @@
     <v-main>
       <v-container
         class="fill-height"
+        justify-center
         fluid
       >
-<!-- use router view here -->
+    <!-- use router view here -->
        <router-view></router-view>
+
       </v-container>
     </v-main>
 
