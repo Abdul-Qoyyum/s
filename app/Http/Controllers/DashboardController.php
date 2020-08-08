@@ -4,8 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Dashboard extends Controller
+class DashboardController extends Controller
 {
+
+    /**
+     * Add the auth middleware
+     * @return void 
+     */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +23,7 @@ class Dashboard extends Controller
     public function index()
     {
         //
+        return view('dashboard.index');
     }
 
     /**

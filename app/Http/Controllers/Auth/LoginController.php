@@ -22,18 +22,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        
-    }
-
-    /**
      * Where to redirect users after login.
      *
      * @var string
