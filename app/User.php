@@ -38,8 +38,14 @@ class User extends Authenticatable
     ];
 
     /**
-     * Eloquent One to One poymorphic relationship
-     * with the photo resource
+     * Get user's posts
+     */
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
+
+    /**
+     * Get user's photo
      */
     public function photo(){
         return $this->morphOne('App\Photo', 'imageable');

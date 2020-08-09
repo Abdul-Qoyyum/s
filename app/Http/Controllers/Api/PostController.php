@@ -3,7 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+
+use App\Http\Resources\PostResource;
+
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+
+// use App\User;
+
+use App\Post;
 
 class PostController extends Controller
 {
@@ -12,9 +21,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // return $user ? PostResource::collection($user->posts) : response()->json(['message' => 'Unauthorized Request'],401);
+        return PostResource::collection(Post::all());        
     }
 
     /**

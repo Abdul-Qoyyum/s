@@ -29,3 +29,5 @@ Route::get('dashboard','DashboardController@index')->name('dashboard.index');
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
  });
+
+ 

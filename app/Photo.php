@@ -9,7 +9,7 @@ class Photo extends Model
     /**
      * properties that are mass assignable
      */
-    protected $fillable = ['path', 'post_id'];
+    protected $fillable = ['url', 'post_id'];
     
     /**
      * polymorphic relationship
