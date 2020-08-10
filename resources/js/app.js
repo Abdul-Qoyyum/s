@@ -43,7 +43,7 @@ Vue.component('admin-component', require('./components/AdminComponent.vue').defa
 
 const routes = [
     {path: "/", component: Dashboard},
-    {path: "/posts", component: Post},
+    { path: "/:slug/posts", component: Post, props : true},
     {path: "/settings", component: Settings},
 ]; 
 

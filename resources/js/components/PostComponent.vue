@@ -26,7 +26,7 @@
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="850px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary"
@@ -42,19 +42,39 @@
             </v-card-title>
 
             <v-card-text>
-              <v-container>
+              <v-container fluid>
                 <v-row>
                   <v-col cols="12">
                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-file-input show-size counter multiple label="File input"></v-file-input>
+                    <v-file-input show-size counter multiple v-model="editedItem.photo_url" label="Thumbnail"></v-file-input>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field v-model="editedItem.body" label="Body"></v-text-field>
+                    <editor
+                      api-key='no-api-key'
+                      :init="{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic backcolor | \
+                           alignleft aligncenter alignright alignjustify | \
+                           bullist numlist outdent indent | removeformat | help | \
+                           insertfile | styleselect | \
+                           link image media'
+                      }"
+                      :initial-value="editedItem.body"
+                    />
                   </v-col>
                 </v-row>
+                
               </v-container>
+              
             </v-card-text>
 
             <v-card-actions>
@@ -91,10 +111,15 @@
 
 <script>
 import axios from 'axios';
+
+import Editor from '@tinymce/tinymce-vue';
+
+
   export default {
     data: () => ({
       dialog: false,
       search:'',
+      user : {},
       headers: [
         {
           text: 'Title',
@@ -130,6 +155,12 @@ import axios from 'axios';
       },
     }),
 
+    props: ['slug'],
+
+    components: {
+     'editor': Editor
+    },
+
     computed: {
       formTitle () {
         return this.editedIndex === -1 ? 'New Post' : 'Edit Post'
@@ -143,12 +174,13 @@ import axios from 'axios';
     },
 
     created () {
-      this.initialize()
+      this.initialize();
     },
 
     methods: {
       async initialize () {
-        let res = await axios.get('api/posts');
+        let res = await axios.get(`/api/${this.slug}/posts`);
+     // let res = await axios.get('api/posts');
         this.posts = res.data.data;
       },
 
@@ -173,8 +205,13 @@ import axios from 'axios';
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.posts[this.editedIndex], this.editedItem)
+          axios.post('api/posts',this.editedItem)
+          .then(res => console.log(res.data))
+          .catch(err => console.log(err));
+
+          // Object.assign(this.posts[this.editedIndex], this.editedItem)
         } else {
+          
           this.posts.push(this.editedItem)
         }
         this.close()

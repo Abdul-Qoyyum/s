@@ -18,13 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('{slug}/posts', 'Api\PostController@getUserPosts');
+
 Route::apiResources([
     'posts' => 'Api\PostController',
 ]);    
 
-
-// Route::group(['middleware' => 'web'], function () {
-//     Route::apiResources([
-//         'posts' => 'Api\PostController',
-//     ]);    
-// });

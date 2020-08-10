@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
-// use App\User;
+use App\User;
 
 use App\Post;
 
@@ -23,7 +23,6 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        // return $user ? PostResource::collection($user->posts) : response()->json(['message' => 'Unauthorized Request'],401);
         return PostResource::collection(Post::all());        
     }
 
@@ -35,7 +34,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -71,4 +70,15 @@ class PostController extends Controller
     {
         //
     }
+
+
+    /**
+     * get user's posts
+     * @param string $slug
+     */
+    public function getUserPosts($slug){
+        $user = User::findBySlugOrFail($slug);
+        return $user ? PostResource::collection($user->posts()->get()) : response()->json(['message' => 'Unauthorized Request'],401);
+    }
+
 }

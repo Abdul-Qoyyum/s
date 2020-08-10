@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 class DashboardController extends Controller
 {
 
@@ -22,8 +24,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // track user id here...
-        return view('dashboard.index');
+        $slug = Auth::user()->slug;
+        
+        return view('dashboard.index',compact('slug'));
     }
 
     /**

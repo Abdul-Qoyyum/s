@@ -5,10 +5,14 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Sluggable;
+    use SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +41,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
+
     /**
      * Get user's posts
      */
@@ -50,5 +70,7 @@ class User extends Authenticatable
     public function photo(){
         return $this->morphOne('App\Photo', 'imageable');
     }
+
+
     
 }

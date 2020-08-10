@@ -24,7 +24,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/posts">
+        <v-list-item link :to="`/${slug}/posts`">
           <v-list-item-action>
             <v-icon>mdi-clipboard</v-icon>
           </v-list-item-action>
@@ -58,7 +58,7 @@
         justify-center
         fluid
       >
-    <!-- use router view here -->
+       <!-- use router view here -->
        <router-view></router-view>
 
       </v-container>
@@ -73,7 +73,10 @@
 <script>
   export default {
     props: {
-      source: String,
+      slug : {
+      type : String,
+      required : true
+      }
     },
     data: () => ({
       drawer: null,
