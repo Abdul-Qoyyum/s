@@ -26,7 +26,7 @@
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="850px">
+        <v-dialog v-model="dialog" max-width="950px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary"
@@ -48,28 +48,10 @@
                     <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-file-input show-size counter multiple v-model="editedItem.photo_url" label="Thumbnail"></v-file-input>
+                    <v-file-input show-size counter :v-model="editedItem.photo_url" label="Thumbnail"></v-file-input>
                   </v-col>
-                  <v-col cols="12">
-                    <editor
-                      api-key='no-api-key'
-                      :init="{
-                        height: 500,
-                        menubar: false,
-                        plugins: [
-                          'advlist autolink lists link image charmap print preview anchor',
-                          'searchreplace visualblocks code fullscreen',
-                          'insertdatetime media table paste code help wordcount'
-                        ],
-                        toolbar:
-                          'undo redo | formatselect | bold italic backcolor | \
-                           alignleft aligncenter alignright alignjustify | \
-                           bullist numlist outdent indent | removeformat | help | \
-                           insertfile | styleselect | \
-                           link image media'
-                      }"
-                      :initial-value="editedItem.body"
-                    />
+                  <v-col cols="12" v-if="!loading">
+                      <editor-component></editor-component>
                   </v-col>
                 </v-row>
                 
@@ -111,14 +93,14 @@
 
 <script>
 import axios from 'axios';
-
-import Editor from '@tinymce/tinymce-vue';
-
+import EditorComponent from './EditorComponent.vue';
 
   export default {
+
     data: () => ({
       dialog: false,
       search:'',
+      loading: false,
       user : {},
       headers: [
         {
@@ -154,11 +136,11 @@ import Editor from '@tinymce/tinymce-vue';
         updated_at : null
       },
     }),
-
+    
     props: ['slug'],
 
     components: {
-     'editor': Editor
+       EditorComponent
     },
 
     computed: {
@@ -178,10 +160,15 @@ import Editor from '@tinymce/tinymce-vue';
     },
 
     methods: {
-      async initialize () {
-        let res = await axios.get(`/api/${this.slug}/posts`);
-     // let res = await axios.get('api/posts');
-        this.posts = res.data.data;
+      initialize () {
+    //     let res = await axios.get(`/api/${this.slug}/posts`);
+    //  // let res = await axios.get('api/posts');
+    //     this.posts = res.data.data;
+        this.loading = true;
+        axios.get(`/api/${this.slug}/posts`).then( res => {
+           this.posts = res.data.data;
+           this.loading = false;
+        });
       },
 
       editItem (item) {

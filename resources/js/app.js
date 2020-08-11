@@ -18,7 +18,11 @@ import Post from './components/PostComponent';
 
 import Settings from './components/SettingsComponent';
 
+// import CKEditor from '@ckeditor/ckeditor5-vue';
+
 Vue.use(VueRouter);
+
+// Vue.use(CKEditor);
 
 /**
  * The following block of code may be used to automatically register your

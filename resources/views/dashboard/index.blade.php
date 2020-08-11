@@ -11,11 +11,12 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-   
+
 </head>
 <body>
     <div id="app">
        <admin-component slug="{{ $slug }}"></admin-component>
     </div>
+
 </body>
 </html>

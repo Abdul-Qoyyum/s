@@ -24,9 +24,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $slug = Auth::user()->slug;
+        // vuetify admin dashboard
+        // $slug = Auth::user()->slug;        
+        // return view('dashboard.index',compact('slug'));
+
         
-        return view('dashboard.index',compact('slug'));
     }
 
     /**
