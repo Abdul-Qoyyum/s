@@ -28,7 +28,9 @@ class DashboardController extends Controller
         // $slug = Auth::user()->slug;        
         // return view('dashboard.index',compact('slug'));
 
-        
+        // sb admin 2 dashboard
+        return view('dashboard.home');
+
     }
 
     /**

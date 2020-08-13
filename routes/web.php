@@ -26,6 +26,8 @@ Route::view('about', 'home.about')->name('home.about');
 
 Route::get('dashboard','DashboardController@index')->name('dashboard.index');
 
+Route::resource('user/posts', 'Admin\PostController');
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
  });
