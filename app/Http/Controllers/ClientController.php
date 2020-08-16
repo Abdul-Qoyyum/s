@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class ClientController extends Controller
 {
 
-    /**
-     * Add the auth middleware
-     * @return void 
-     */
     public function __construct(){
         $this->middleware('auth');
     }
 
+    
     /**
      * Display a listing of the resource.
      *
@@ -24,18 +23,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // vuetify admin dashboard
-        // $slug = Auth::user()->slug;        
-        // return view('dashboard.index',compact('slug'));
-
-        // sb admin 2 dashboard
-        return view('dashboard.home');
-
-    }
-
-
-    public function user(){
-        return view('users.index');
+        $user = Auth::user();
+        $clients = $user->clients;
+        return view('users.clients.index',compact('clients'));
     }
 
     /**
@@ -56,7 +46,22 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // get currently authenticated in user
+        $user = Auth::user();
+        // validates incoming request
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required',
+            'email' => 'email:rfc,dns'
+        ]);
+        //redirect back if validation fails 
+        if ($validator->fails()) {            
+            notify()->warning('Oops something went wrong :)');
+            return redirect()->back();
+        }
+        // store user's client's data 
+        $user->clients()->create($request->all());
+        notify()->success('Saved successfully');
+        return redirect()->back();
     }
 
     /**
