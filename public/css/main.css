@@ -3,3 +3,9 @@
       width: 100%;
     }
  
+/* vertical menu icons */
+.test:after {
+  content: '\2807';
+  font-size: 3rem;
+  margin-left: 1rem;
+  }

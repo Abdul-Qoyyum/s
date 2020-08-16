@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Lead extends Model
 {
     /**
-     * Properties that are mass assignable
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
-    protected $fillable = [
+        protected $fillable = [
         'name',
         'start_date',
         'end_date',
@@ -22,4 +24,23 @@ class Lead extends Model
         'workflow_id',
         'job_id',
     ];
+
+    /**
+     * Get lead's Job Type
+     */
+    public function job(){
+       return $this->belongsTo('App\Job');
+    }
+
+
+    /**
+     * Get lead's Workflow
+     */
+    public function workflow()
+    {
+        return $this->belongsTo('App\Workflow');
+    }
+
+
+
 }

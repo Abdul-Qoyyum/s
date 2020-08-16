@@ -15,8 +15,7 @@ class LeadController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $leads = $user->leads;
+        $leads = Auth::user()->leads;
         return view('users.leads.index',compact('leads'));
     }
 
