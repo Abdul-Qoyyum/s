@@ -82,7 +82,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('client.index') }}">
+        <a class="nav-link" href="{{ route('lead.index') }}">
           <i class="fa fa-bullhorn" aria-hidden="true"></i>
           <span>Leads</span>
         </a>

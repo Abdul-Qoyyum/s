@@ -71,6 +71,20 @@ class User extends Authenticatable
         return $this->morphOne('App\Photo', 'imageable');
     }
 
+    /**
+     * Get user's clients
+     */
+    public function clients(){
+       return $this->hasMany('App\Client');
+    }
+
+    /**
+     * Get user's leads
+     */
+    public function leads(){
+        return $this->hasMany('App\Lead');
+    }
+
 
     
 }

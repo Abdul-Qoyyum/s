@@ -30,6 +30,8 @@ Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user')
 
 Route::resource('client', 'ClientController');
 
+Route::resource('lead','LeadController');
+
 Route::resource('user/posts', 'Admin\PostController');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
