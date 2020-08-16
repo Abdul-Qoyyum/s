@@ -26,7 +26,7 @@ Route::view('about', 'home.about')->name('home.about');
 
 Route::get('dashboard','DashboardController@index')->name('dashboard.index');
 
-Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user')->middleware('auth');
+Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user');
 
 Route::resource('client', 'ClientController');
 
