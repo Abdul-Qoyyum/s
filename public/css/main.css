@@ -2,10 +2,26 @@
       background-size: contain;
       width: 100%;
     }
- 
+/* helper methods */
+.hidden{
+  display: none;
+}
 /* vertical menu icons */
 .test:after {
   content: '\2807';
   font-size: 3rem;
   margin-left: 1rem;
   }
+
+.test{
+  cursor: pointer;
+}
+
+.test:hover{
+  color: #22baa1;
+}
+
+.modal-header{
+  background-color: #22baa1;
+  color: #ffffff;
+}

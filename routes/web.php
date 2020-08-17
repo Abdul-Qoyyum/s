@@ -30,6 +30,8 @@ Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user')
 
 Route::resource('client', 'ClientController');
 
+Route::post('lead/client','LeadController@client')->name('lead.client');
+
 Route::resource('lead','LeadController');
 
 Route::resource('user/posts', 'Admin\PostController');
@@ -37,5 +39,3 @@ Route::resource('user/posts', 'Admin\PostController');
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
  });
-
- 

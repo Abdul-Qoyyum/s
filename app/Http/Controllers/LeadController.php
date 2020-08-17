@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Validator;
+
+use App\Job;
+
+use App\Workflow;
+
 class LeadController extends Controller
 {
     /**
@@ -16,7 +22,24 @@ class LeadController extends Controller
     public function index()
     {
         $leads = Auth::user()->leads;
-        return view('users.leads.index',compact('leads'));
+        //Get all job's collection
+        $jobsCollection = Job::all();
+        //Get all workflow's collection
+        $workflowCollection = Workflow::all();
+        //job's container
+        $jobs = [];
+        //workflow's container
+        $workflows = [];
+
+        foreach($jobsCollection as $job){
+          $jobs[$job->id] = $job->name;
+        }
+
+        foreach($workflowCollection as $workflow){
+           $workflows[$workflow->id] = $workflow->name;
+        }
+
+        return view('users.leads.index',compact('leads','jobs','workflows'));
     }
 
     /**
@@ -37,7 +60,7 @@ class LeadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -84,4 +107,38 @@ class LeadController extends Controller
     {
         //
     }
+
+    /**
+     * Store a newly created client's resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function client(Request $request){
+      // get currently authenticated in user
+      $user = Auth::user();
+      // validates incoming request
+      $validator = Validator::make($request->all(), [
+          'firstname' => 'required',
+          'email' => 'email:rfc,dns'
+      ]);
+      //redirect back if validation fails
+      if ($validator->fails()) {
+          notify()->warning('Oops something went wrong :)');
+          return response()->json([
+            'error' => [
+              'message' => 'Oops something went wrong :)',422 ],
+          ]);
+      }
+      // store user's client's data
+      $client = $user->clients()->create($request->all());
+      notify()->success('Saved successfully');
+
+      return response()->json([
+        'id' => $client->id,
+        'email' => $client->email,
+      ],200);
+      // return redirect()->back();
+    }
+
 }
