@@ -90,6 +90,13 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('lead.index') }}">
+          <i class="fa fa-tasks" aria-hidden="true"></i>
+          <span>Jobs</span>
+        </a>
+      </li>
+
       <!-- Nav Item - Utilities Collapse Menu -->
       {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -320,7 +327,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

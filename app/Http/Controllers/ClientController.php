@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Client;
+
 class ClientController extends Controller
 {
 
@@ -15,7 +17,7 @@ class ClientController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -53,12 +55,12 @@ class ClientController extends Controller
             'firstname' => 'required',
             'email' => 'email:rfc,dns'
         ]);
-        //redirect back if validation fails 
-        if ($validator->fails()) {            
+        //redirect back if validation fails
+        if ($validator->fails()) {
             notify()->warning('Oops something went wrong :)');
             return redirect()->back();
         }
-        // store user's client's data 
+        // store user's client's data
         $user->clients()->create($request->all());
         notify()->success('Saved successfully');
         return redirect()->back();
@@ -83,7 +85,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('users.clients.edit',compact('client'));
     }
 
     /**
@@ -95,7 +98,9 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::findOrFail($id)->update($request->all());
+        notify()->success('Updated Successfully');
+        return redirect()->route('client.index');
     }
 
     /**

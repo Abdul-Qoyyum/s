@@ -34,6 +34,16 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Leads Overview</h6>
+              <div class="row">
+                  <div class="col-md-4">
+                  </div>
+                  <div class="col-md-3">
+                  </div>
+                  <div class="col-md-5 d-flex flex-row-reverse bd-highlight">
+                    <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addClient">Add new Lead</button>
+                    <button type="button" class="btn btn-info mb-1 mr-1">Export Leads</button>
+                  </div>
+              </div>
             </div>
             <div class="card-body">
               <div class="table-responsive" width="100%" cellspacing="0">
@@ -77,8 +87,9 @@
                                 </div>
                             </td>
                         </tr>
+
                         <!-- Modal -->
-                        <div class="modal fade" id="edit{{$lead->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal fade modal_1" id="edit{{$lead->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -91,16 +102,16 @@
 
                                 {!! Form::model($lead, ['route'=>['lead.update',$lead->id]]) !!}
 
-                              <div class="row">
-                                  <div class="font-weight-bold col">Choose Client</div>
-                                  <div class="col-5 form-group">
-                                    {!! Form::text('email', null, ['class'=>'form-control','placeholder'=>'Email']) !!}
+                              <div class="row h-100">
+                                  <div class="font-weight-bold col-md align-middle">Choose Client</div>
+                                  <div class="col-md-4 form-group">
+                                    {!! Form::text('email', null, ['class'=>'form-control clientEmail','placeholder'=>'Email']) !!}
                                   </div>
-                                  <span><strong>OR</strong></span>
-                                  <div class="col">
+                                  <span class="align-middle"><strong>OR</strong></span>
+                                  <div class="col-md">
                                     <!-- Button trigger addClient modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClient">
-                                      <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>Add new client</span>
+                                      <i class="fa fa-plus mr-1" aria-hidden="true"></i><span>Add new client</span>
                                     </button>
                                   </div>
                               </div>
@@ -157,7 +168,6 @@
                 </table>
 
             <!-- modal section -->
-
             <!-- Modal -->
             <div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog modal-lg modal-dialog-align" role="document">
@@ -255,34 +265,31 @@
            //initialize data table
             $('#table_id').DataTable();
 
-        } );
+            // show company input form
+            $('#display').click(function(){
+               $('.company').toggleClass('hidden');
+            });
 
-        // show company input form
-        $('#display').click(function(){
-           $('.company').toggleClass('hidden');
-        });
-
-        //Make ajax post request
-        $("#client").submit(function(e) {
-          e.preventDefault();
-          var form_data = $(this).serialize(); //Encode form elements for submission
-           $.ajax({
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               },
-               type: "POST",
-               dataType:'json',
-               data : form_data,
-               url : "{{route('lead.client')}}",
-               success : function (data) {
-                   console.log(JSON.stringify(data));
-                   $('#addClient').modal('toggle');
-               }
+            //Make ajax post request
+              $('#client').submit(function(e) {
+              e.preventDefault();
+              var form_data = $(this).serialize(); //Encode form elements for submission
+               $.ajax({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   },
+                   type: "POST",
+                   dataType:'json',
+                   data : form_data,
+                   url : "{{route('lead.client')}}",
+                   success : function (data) {
+                       $('#addClient').modal('toggle');
+                       $('.clientEmail').val(data.email);
+                   }
+               });
            });
-       });
 
-
-
+        } );
 
     </script>
 @stop

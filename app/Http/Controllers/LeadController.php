@@ -124,7 +124,6 @@ class LeadController extends Controller
       ]);
       //redirect back if validation fails
       if ($validator->fails()) {
-          notify()->warning('Oops something went wrong :)');
           return response()->json([
             'error' => [
               'message' => 'Oops something went wrong :)',422 ],
@@ -132,7 +131,6 @@ class LeadController extends Controller
       }
       // store user's client's data
       $client = $user->clients()->create($request->all());
-      notify()->success('Saved successfully');
 
       return response()->json([
         'id' => $client->id,
@@ -140,5 +138,8 @@ class LeadController extends Controller
       ],200);
       // return redirect()->back();
     }
+
+
+    
 
 }
