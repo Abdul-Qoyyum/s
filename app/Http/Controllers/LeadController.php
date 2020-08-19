@@ -24,7 +24,10 @@ class LeadController extends Controller
     public function index()
     {
         $leads = Auth::user()->leads;
-        return view('users.leads.index',compact('leads'));
+        $jobs = $this->getJobs();
+        $workflows = $this->getWorkflows();
+        $clients = $this->getUserClients();
+        return view('users.leads.index',compact('leads','jobs','workflows','clients'));
     }
 
     /**
@@ -45,7 +48,17 @@ class LeadController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $validator = Validator::make($request->all(),[
+            'name' => 'required'
+        ]);
+        //abort if validation fails
+        if ($validator->fails()) {
+                return;
+        }
+
+        Auth::user()->leads()->create($request->all());
+        notify()->success("Saved Successfully");
+        return redirect()->route('lead.index');
     }
 
     /**
@@ -56,7 +69,7 @@ class LeadController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        //
     }
 
     /**
@@ -84,8 +97,16 @@ class LeadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user()->leads()->create($request->all());
-        notify()->success('Saved successfully');
+        $validator = Validator::make($request->all(),[
+            'name' => 'required'
+        ]);
+        //abort if validation fails
+        if ($validator->fails()) {
+                return;
+        }
+
+        $user = Auth::user()->leads()->update($request->except(['_method','_token']));
+        notify()->success('Updated Successfully');
         return redirect()->route('lead.index');
     }
 
@@ -116,11 +137,7 @@ class LeadController extends Controller
       ]);
       //redirect back if validation fails
       if ($validator->fails()) {
-        //   return response()->json([
-        //     'error' => [
-        //       'message' => 'Oops something went wrong :)',422 ],
-        //   ]);
-        return;
+            return;
       }
       // store user's client's data
       $client = $user->clients()->create($request->all());
@@ -134,6 +151,9 @@ class LeadController extends Controller
     }
 
 
+    /**
+     * Organise jobs for leads
+     */
     public function getJobs(){
         //Get all job's collection
         $jobsCollection = Job::all();
@@ -145,6 +165,9 @@ class LeadController extends Controller
         return $jobs;
     }
 
+    /**
+     * Organize workflows for lead
+     */
     public function getWorkflows(){
         //Get all workflow's collection
         $workflowCollection = Workflow::all();
@@ -156,6 +179,9 @@ class LeadController extends Controller
         return $workflows;
     }
 
+    /**
+     * Organize user's clients for leads
+     */
     public function getUserClients(){
         // get user's clients
         $clientCollection = Auth::user()->clients;

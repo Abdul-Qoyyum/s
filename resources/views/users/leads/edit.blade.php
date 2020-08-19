@@ -97,7 +97,7 @@
 
                   <!-- collective form -->
 
-                        {!! Form::model($lead, ['action'=>['LeadController@update',$lead->id],'method'=>'PATCH']) !!}
+                        {!! Form::model($lead, ['action'=>['LeadController@update',$lead->id],'method'=>'PATCH','id'=>'lead']) !!}
 
                               <div class="row h-100">
                                   <div class="font-weight-bold col-md align-middle">Choose Client</div>
@@ -119,7 +119,6 @@
                                    <div class="form-group">
                                        {!! Form::label('name', 'Lead name:') !!}
                                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                                       {{-- <input type="hidden" name="client_id" value=""> --}}
                                    </div>
                                    <div class="form-group">
                                      {!! Form::label('job_id', 'Job type:') !!}
@@ -188,6 +187,19 @@
                $('.company').toggleClass('hidden');
             });
 
+            //validate lead input 
+            $('#lead').validate({
+              rules : {
+                name : "required"
+              },
+              messages : {
+                name : "Please Specify Lead Name"
+              },
+              submitHandler : function(form){
+                form.submit();
+              }
+            });
+
 
 
             // validate input client form input
@@ -210,7 +222,7 @@
                 // Add spinner to the profile button
                  profile.html(`<div class="spinner-border text-black" role="status">
                   <span class="sr-only">Loading...</span>
-                </div>`);
+                </div><span>Loading...</span>`);
                  profile.prop("disabled", true);
                     $.ajax({
                         headers: {
