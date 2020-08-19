@@ -98,7 +98,18 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::findOrFail($id)->update($request->all());
+        // validates incoming request
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required',
+            'email' => 'email:rfc,dns'
+        ]);
+        //redirect back if validation fails
+        if ($validator->fails()) {
+            notify()->warning('Oops something went wrong :)');
+            return redirect()->back();
+        }
+
+        Client::findOrFail($id)->update($request->all());
         notify()->success('Updated Successfully');
         return redirect()->route('client.index');
     }

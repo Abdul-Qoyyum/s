@@ -104,8 +104,7 @@ class LeadController extends Controller
         if ($validator->fails()) {
                 return;
         }
-
-        $user = Auth::user()->leads()->update($request->except(['_method','_token']));
+        Lead::findOrFail($id)->update($request->except(['_method','_token']));
         notify()->success('Updated Successfully');
         return redirect()->route('lead.index');
     }
