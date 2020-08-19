@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Job;
 
+use App\Lead;
+
 use App\Workflow;
 
 class LeadController extends Controller
@@ -22,24 +24,7 @@ class LeadController extends Controller
     public function index()
     {
         $leads = Auth::user()->leads;
-        //Get all job's collection
-        $jobsCollection = Job::all();
-        //Get all workflow's collection
-        $workflowCollection = Workflow::all();
-        //job's container
-        $jobs = [];
-        //workflow's container
-        $workflows = [];
-
-        foreach($jobsCollection as $job){
-          $jobs[$job->id] = $job->name;
-        }
-
-        foreach($workflowCollection as $workflow){
-           $workflows[$workflow->id] = $workflow->name;
-        }
-
-        return view('users.leads.index',compact('leads','jobs','workflows'));
+        return view('users.leads.index',compact('leads'));
     }
 
     /**
@@ -71,7 +56,7 @@ class LeadController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -82,8 +67,13 @@ class LeadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lead = Lead::findOrFail($id);
+        $jobs = $this->getJobs();
+        $workflows = $this->getWorkflows();
+        $clients = $this->getUserClients();
+        return view('users.leads.edit',compact('lead','jobs','workflows','clients'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -94,7 +84,9 @@ class LeadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::user()->leads()->create($request->all());
+        notify()->success('Saved successfully');
+        return redirect()->route('lead.index');
     }
 
     /**
@@ -124,22 +116,55 @@ class LeadController extends Controller
       ]);
       //redirect back if validation fails
       if ($validator->fails()) {
-          return response()->json([
-            'error' => [
-              'message' => 'Oops something went wrong :)',422 ],
-          ]);
+        //   return response()->json([
+        //     'error' => [
+        //       'message' => 'Oops something went wrong :)',422 ],
+        //   ]);
+        return;
       }
       // store user's client's data
       $client = $user->clients()->create($request->all());
-
+      
       return response()->json([
         'id' => $client->id,
+        'firstname' => $client->firstname,
         'email' => $client->email,
       ],200);
-      // return redirect()->back();
+
     }
 
 
-    
+    public function getJobs(){
+        //Get all job's collection
+        $jobsCollection = Job::all();
+        //job's container
+        $jobs = [];
+        foreach($jobsCollection as $job){
+          $jobs[$job->id] = $job->name;
+        }
+        return $jobs;
+    }
+
+    public function getWorkflows(){
+        //Get all workflow's collection
+        $workflowCollection = Workflow::all();
+        //workflow's container
+        $workflows = [];
+        foreach($workflowCollection as $workflow){
+           $workflows[$workflow->id] = $workflow->name;
+        }
+        return $workflows;
+    }
+
+    public function getUserClients(){
+        // get user's clients
+        $clientCollection = Auth::user()->clients;
+        $clients = [];
+        foreach($clientCollection as $client){
+           $clients[$client->id] = "($client->firstname) &nbsp; $client->email";
+        }
+        return $clients;
+    }
+
 
 }

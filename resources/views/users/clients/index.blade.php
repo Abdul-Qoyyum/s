@@ -52,7 +52,6 @@
                                             <div  href="#exampleModalLong" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
                                         </li>
                                         <li class="nav-item" style="cursor: pointer;">
-                                            <!-- <div  data-target="#edit{{$client->id}}" data-toggle="modal"><i class="fas fa-edit"></i> Edit Client</div> -->
                                             <a href="{{route('client.edit',$client->id)}}"><i class="fas fa-edit"></i> Edit Client</a>
                                         </li>
                                     </ul>
