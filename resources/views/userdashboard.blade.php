@@ -97,6 +97,29 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('calendar.index') }}">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <span>Calendar</span>
+        </a>
+      </li>
+
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('jobs.index') }}">
+          <i class="fas fa-file-invoice"></i>
+          <span>Payments</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('jobs.index') }}">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <span>Settings</span>
+        </a>
+      </li>
+
+
       <!-- Nav Item - Utilities Collapse Menu -->
       {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

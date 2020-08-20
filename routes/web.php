@@ -40,6 +40,8 @@ Route::post('jobs/client','TaskController@client')->name('jobs.client');
 
 Route::resource('user/posts', 'Admin\PostController');
 
+Route::get('calendar','CalendarController@index')->name('calendar.index');
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
  });
