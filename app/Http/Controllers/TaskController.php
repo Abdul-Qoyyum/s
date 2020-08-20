@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Validator;
 
+use App\Http\Controllers\Traits\HelperTraits;
+
 use App\Job;
 
 use App\Task;
@@ -18,6 +20,8 @@ use App\Workflow;
 class TaskController extends Controller
 {
     
+    //Custom traits
+    use HelperTraits;
     
     public function __construct(){
        $this->middleware('auth');
@@ -157,50 +161,5 @@ class TaskController extends Controller
       ],200);
 
     }
-
-
-    /**
-     * Organise jobs for leads
-     */
-    public function getJobs(){
-        //Get all job's collection
-        $jobsCollection = Job::all();
-        //job's container
-        $jobs = [];
-        foreach($jobsCollection as $job){
-          $jobs[$job->id] = $job->name;
-        }
-        return $jobs;
-    }
-
-    /**
-     * Organize workflows for lead
-     */
-    public function getWorkflows(){
-        //Get all workflow's collection
-        $workflowCollection = Workflow::all();
-        //workflow's container
-        $workflows = [];
-        foreach($workflowCollection as $workflow){
-           $workflows[$workflow->id] = $workflow->name;
-        }
-        return $workflows;
-    }
-
-    /**
-     * Organize user's clients for leads
-     */
-    public function getUserClients(){
-        // get user's clients
-        $clientCollection = Auth::user()->clients;
-        $clients = [];
-        foreach($clientCollection as $client){
-           $clients[$client->id] = "($client->firstname) &nbsp; $client->email";
-        }
-        return $clients;
-    }
-
-
-
 
 }
