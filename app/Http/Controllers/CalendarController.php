@@ -17,11 +17,14 @@ class CalendarController extends Controller
      * Renders the calendar index page
      */
     public function index(){
+        
         $tasks = Task::all();
         $clients = $this->getUserClients();    
         $jobs = $this->getJobs();
         $workflows = $this->getWorkflows();    
         $calendar = \Calendar::addEvents($tasks);
+
+
         return view('users.calendar.index',compact('calendar','clients','jobs','workflows'));
     }
 }

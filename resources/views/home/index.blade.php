@@ -35692,12 +35692,12 @@ by photographers.  GET STARTED
                                 </li>
                                 <li id="menu-item-6418"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6418"
-                                    data-item-id="6418"><a href="https://www.studioninja.co/podcast/"
+                                    data-item-id="6418"><a href="#"
                                                            class="fusion-bar-highlight"><span class="menu-text">PODCAST</span></a>
                                 </li>
                                 <li id="menu-item-1813"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1813"
-                                    data-item-id="1813"><a href="https://www.studioninja.co/blog/"
+                                    data-item-id="1813"><a href="/"
                                                            class="fusion-bar-highlight"><span class="menu-text">BLOG</span></a>
                                 </li>
                                 <li id="menu-item-1172"
@@ -35713,7 +35713,7 @@ by photographers.  GET STARTED
                                             class="menu-text">LOGIN</span></a></li>
                                 <li id="menu-item-1175"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1175 fusion-menu-item-button"
-                                    data-item-id="1175"><a href="https://app.studioninja.co/signup"
+                                    data-item-id="1175"><a href="/"
                                                            class="fusion-bar-highlight"><span
                                             class="menu-text fusion-button button-default button-medium">TRY
                                                     STUDIO NINJA FOR FREE</span></a></li>
