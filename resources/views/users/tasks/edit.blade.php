@@ -90,14 +90,14 @@
               <!-- Plain Form -->
                 <div class="card shadow mb-4">
                       <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Edit Lead</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Edit Job</h6>
                       </div>
                 <div class="card-body">  
 
 
                   <!-- collective form -->
 
-                        {!! Form::model($lead, ['action'=>['LeadController@update',$lead->id],'method'=>'PATCH','id'=>'lead']) !!}
+                        {!! Form::model($task, ['action'=>['TaskController@update',$task->id],'method'=>'PATCH','id'=>'task']) !!}
 
                               <div class="row h-100">
                                   <div class="font-weight-bold col-md align-middle">Choose Client</div>
@@ -115,9 +115,9 @@
                               </div>
 
                                 <hr>
-                                <p style="font-weight: bold;">Lead Details</p>
+                                <p style="font-weight: bold;">task Details</p>
                                    <div class="form-group">
-                                       {!! Form::label('name', 'Lead name:') !!}
+                                       {!! Form::label('name', 'task name:') !!}
                                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
                                    </div>
                                    <div class="form-group">
@@ -148,7 +148,7 @@
                                    </div>
                                     <hr>
                                     <div class="form-group">
-                                      {!! Form::label('notes', 'Lead Notes:', ['class'=>'font-weight-bold']) !!}
+                                      {!! Form::label('notes', 'task Notes:', ['class'=>'font-weight-bold']) !!}
                                       {!! Form::textarea('notes', null, ['class'=>'form-control notes']) !!}
                                     </div>
                                 <div class="modal-footer">
@@ -187,13 +187,13 @@
                $('.company').toggleClass('hidden');
             });
 
-            //validate lead input 
-            $('#lead').validate({
+            //validate task input 
+            $('#task').validate({
               rules : {
                 name : "required"
               },
               messages : {
-                name : "Please Specify Lead Name"
+                name : "Please Specify Job Name"
               },
               submitHandler : function(form){
                 form.submit();
@@ -222,7 +222,7 @@
                 // Add spinner to the profile button
                  profile.html(`<div class="spinner-border text-black" role="status">
                   <span class="sr-only">Loading...</span>
-                </div><span>Loading...</span>`);
+                </div><span class="w-50 h-80 ml-2 align-middle">Loading...</span>`);
                  profile.prop("disabled", true);
                     $.ajax({
                         headers: {
@@ -231,7 +231,7 @@
                         type: "POST",
                         dataType:'json',
                         data : $(form).serialize(),
-                        url : "{{route('lead.client')}}",
+                        url : "{{route('jobs.client')}}",
                         success : function (data) {
                           console.log(data);
                           // reset the button
@@ -249,7 +249,7 @@
                             // set the return value as selected
                             $(`option[value="${data.id}"]`).attr('selected','selected');
 
-                            // put the response email in the lead eamil field
+                            // put the response email in the task eamil field
                             $('.clientEmail').val(data.email);
                             // disable the email field
                             // $('.clientEmail').prop('disabled',true);
