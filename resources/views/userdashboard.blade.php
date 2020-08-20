@@ -91,7 +91,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('lead.index') }}">
+        <a class="nav-link" href="{{ route('jobs.index') }}">
           <i class="fa fa-tasks" aria-hidden="true"></i>
           <span>Jobs</span>
         </a>

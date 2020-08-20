@@ -10,18 +10,20 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Job;
 
-use App\Lead;
+use App\Task;
 
 use App\Workflow;
 
-class LeadController extends Controller
+
+class TaskController extends Controller
 {
-
-
+    
+    
     public function __construct(){
        $this->middleware('auth');
     }
-
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -29,11 +31,12 @@ class LeadController extends Controller
      */
     public function index()
     {
-        $leads = Auth::user()->leads;
+        $tasks = Auth::user()->tasks;
+        // return $tasks;
         $jobs = $this->getJobs();
         $workflows = $this->getWorkflows();
         $clients = $this->getUserClients();
-        return view('users.leads.index',compact('leads','jobs','workflows','clients'));
+        return view('users.tasks.index',compact('tasks','jobs','workflows','clients'));
     }
 
     /**
@@ -62,9 +65,9 @@ class LeadController extends Controller
                 return;
         }
 
-        Auth::user()->leads()->create($request->all());
+        Auth::user()->tasks()->create($request->all());
         notify()->success("Saved Successfully");
-        return redirect()->route('lead.index');
+        return redirect()->route('jobs.index');
     }
 
     /**
@@ -86,11 +89,11 @@ class LeadController extends Controller
      */
     public function edit($id)
     {
-        $lead = Lead::findOrFail($id);
+        $task = Task::findOrFail($id);
         $jobs = $this->getJobs();
         $workflows = $this->getWorkflows();
         $clients = $this->getUserClients();
-        return view('users.leads.edit',compact('lead','jobs','workflows','clients'));
+        return view('users.tasks.edit',compact('task','jobs','workflows','clients'));
     }
 
 
@@ -110,9 +113,9 @@ class LeadController extends Controller
         if ($validator->fails()) {
                 return;
         }
-        Lead::findOrFail($id)->update($request->except(['_method','_token']));
+        Task::findOrFail($id)->update($request->except(['_method','_token']));
         notify()->success('Updated Successfully');
-        return redirect()->route('lead.index');
+        return redirect()->route('jobs.index');
     }
 
     /**
@@ -196,6 +199,8 @@ class LeadController extends Controller
         }
         return $clients;
     }
+
+
 
 
 }

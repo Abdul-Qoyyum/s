@@ -34,6 +34,10 @@ Route::resource('lead','LeadController');
 
 Route::post('lead/client','LeadController@client')->name('lead.client');
 
+Route::resource('jobs','TaskController');
+
+Route::post('jobs/client','TaskController@client')->name('jobs.client');
+
 Route::resource('user/posts', 'Admin\PostController');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

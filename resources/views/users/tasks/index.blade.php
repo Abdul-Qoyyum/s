@@ -5,15 +5,15 @@
 <!-- DataTables Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Leads Overview</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Jobs Overview</h6>
               <div class="row">
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-3">
                   </div>
                   <div class="col-md-5 d-flex flex-row-reverse bd-highlight">
-                    <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addLead">Add new Lead</button>
-                    <button type="button" class="btn btn-info mb-1 mr-1">Export Leads</button>
+                    <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addTask">Add new Job</button>
+                    <button type="button" class="btn btn-info mb-1 mr-1">Export Jobs</button>
                   </div>
               </div>
             </div>
@@ -22,24 +22,22 @@
                 <table id="table_id" class="table table-bordered display">
                     <thead>
                         <tr>
-                            <th>Lead created </th>
-                            <th>Lead</th>
-                            <th>Type</th>
                             <th>Main shoot date</th>
-                            <th>Mail status</th>
+                            <th>Job</th>
+                            <th>Job Type</th>
+                            <th>Workflow progress</th>
                             <th>Next task</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                     @foreach ($leads as $lead)
+                     @foreach ($tasks as $task)
                         <tr>
-                            <td>{{$lead->created_at->diffForHumans()}}</td>
-                            <td>{{$lead->name}}</td>
-                            <td>{{$lead->job->name}}</td>
-                            <td>{{$lead->start_time ? $lead->start_date : ''}}</td>
-                            <td>Pending</td>
+                            <td>{{$task->start_date}}</td>
+                            <td>{{$task->name}}</td>
+                            <td>{{$task->job->name}}</td>
                             <td></td>
+                            <td>Pending</td>
                             <td>
                                 <!-- Default dropright button -->
                                 <div class="dropright">
@@ -52,7 +50,7 @@
                                             <div  href="#exampleModalLong" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
                                         </li>
                                         <li class="nav-item" style="cursor: pointer;">
-                                            <a href="{{route('lead.edit',$lead->id)}}"><i class="fas fa-edit"></i> Edit Lead</a>
+                                            <a href="{{route('jobs.edit',$task->id)}}"><i class="fas fa-edit"></i> Edit Job</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -89,19 +87,22 @@
 
 
 
+
+
+
 <!-- Modal -->
- <div class="modal fade modal_1" id="addLead" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+ <div class="modal fade modal_1" id="addTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">New Lead</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Add a New Job</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-                        {!! Form::open(['action'=>'LeadController@store','id'=>'lead']) !!}
+                        {!! Form::open(['action'=>'TaskController@store','id'=>'task']) !!}
 
                               <div class="row h-100">
                                   <div class="font-weight-bold col-md align-middle">Choose Client</div>
@@ -118,9 +119,9 @@
                               </div>
 
                                 <hr>
-                                <p style="font-weight: bold;">Lead Details</p>
+                                <p style="font-weight: bold;">Job Details</p>
                                    <div class="form-group">
-                                       {!! Form::label('name', 'Lead name:') !!}
+                                       {!! Form::label('name', 'Job name:') !!}
                                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
                                    </div>
                                    <div class="form-group">
@@ -151,7 +152,7 @@
                                    </div>
                                     <hr>
                                     <div class="form-group">
-                                      {!! Form::label('notes', 'Lead Notes:', ['class'=>'font-weight-bold']) !!}
+                                      {!! Form::label('notes', 'Job Notes:', ['class'=>'font-weight-bold']) !!}
                                       {!! Form::textarea('notes', null, ['class'=>'form-control notes']) !!}
                                     </div>
                                 <div class="modal-footer">
@@ -256,6 +257,12 @@
 
 
 
+
+
+
+
+
+
 @endsection
 @section('scripts')
 @include('includes.userTinymce')
@@ -269,13 +276,13 @@
                $('.company').toggleClass('hidden');
             });
 
-            //validate lead input 
-            $('#lead').validate({
+            //validate Tasks input 
+            $('#task').validate({
               rules : {
                 name : "required"
               },
               messages : {
-                name : "Please Specify Lead Name"
+                name : "Please Specify Jobs Name"
               },
               submitHandler : function(form){
                 form.submit();
@@ -311,7 +318,7 @@
                         type: "POST",
                         dataType:'json',
                         data : $(form).serialize(),
-                        url : "{{route('lead.client')}}",
+                        url : "{{route('jobs.client')}}",
                         success : function (data) {
                           console.log(data);
                           // reset the button
@@ -329,7 +336,7 @@
                             // set the return value as selected
                             $(`option[value="${data.id}"]`).attr('selected','selected');
 
-                            // put the response email in the lead eamil field
+                            // put the response email in the Tasks eamil field
                             $('.clientEmail').val(data.email);
                             // disable the email field
                             // $('.clientEmail').prop('disabled',true);

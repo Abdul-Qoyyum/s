@@ -85,6 +85,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Lead');
     }
 
+    /**
+     * Get user's tasks (Jobs)
+     */
+    public function tasks(){
+        return $this->hasMany('App\Task');
+    }
 
     
 }
