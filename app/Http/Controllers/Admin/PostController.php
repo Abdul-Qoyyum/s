@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -49,7 +49,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Auth::user()->posts()->create($request->all());
+        notify()->success('Added successfully');
+        return redirect()->route('posts.index');
     }
 
     /**

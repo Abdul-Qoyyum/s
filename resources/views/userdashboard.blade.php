@@ -64,6 +64,21 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
+        Admin
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('posts.index') }}">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Posts</span>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
         Interface
       </div>
 

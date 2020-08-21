@@ -14,15 +14,15 @@
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="https://www.studioninja.co/" />
+    <link rel="canonical" href="/" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Studio Ninja | The World&#039;s #1 Photography Business Software" />
     <meta property="og:description"
           content="Welcome to Studio Ninja, the world’s most user-friendly photography business software designed for photographers, by photographers! Try it for FREE today!" />
-    <meta property="og:url" content="https://www.studioninja.co/" />
+    <meta property="og:url" content="/" />
     <meta property="og:site_name" content="Studio Ninja" />
-    <meta property="article:publisher" content="https://www.facebook.com/studioninjacrm/" />
+    <meta property="article:publisher" content="/" />
     <meta property="article:modified_time" content="2020-07-03T02:21:43+00:00" />
     <meta property="og:image"
           content="https://www.studioninja.co/wp-content/uploads/2014/12/2017_Homepage_Hero1_r1.jpg" />
@@ -66,37 +66,9 @@ by photographers.  GET STARTED
         /*! This file is auto-generated */
         !function (e, a, t) { var r, n, o, i, p = a.createElement("canvas"), s = p.getContext && p.getContext("2d"); function c(e, t) { var a = String.fromCharCode; s.clearRect(0, 0, p.width, p.height), s.fillText(a.apply(this, e), 0, 0); var r = p.toDataURL(); return s.clearRect(0, 0, p.width, p.height), s.fillText(a.apply(this, t), 0, 0), r === p.toDataURL() } function l(e) { if (!s || !s.fillText) return !1; switch (s.textBaseline = "top", s.font = "600 32px Arial", e) { case "flag": return !c([127987, 65039, 8205, 9895, 65039], [127987, 65039, 8203, 9895, 65039]) && (!c([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819]) && !c([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447])); case "emoji": return !c([55357, 56424, 55356, 57342, 8205, 55358, 56605, 8205, 55357, 56424, 55356, 57340], [55357, 56424, 55356, 57342, 8203, 55358, 56605, 8203, 55357, 56424, 55356, 57340]) }return !1 } function d(e) { var t = a.createElement("script"); t.src = e, t.defer = t.type = "text/javascript", a.getElementsByTagName("head")[0].appendChild(t) } for (i = Array("flag", "emoji"), t.supports = { everything: !0, everythingExceptFlag: !0 }, o = 0; o < i.length; o++)t.supports[i[o]] = l(i[o]), t.supports.everything = t.supports.everything && t.supports[i[o]], "flag" !== i[o] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[i[o]]); t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () { t.DOMReady = !0 }, t.supports.everything || (n = function () { t.readyCallback() }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function () { "complete" === a.readyState && t.readyCallback() })), (r = t.source || {}).concatemoji ? d(r.concatemoji) : r.wpemoji && r.twemoji && (d(r.twemoji), d(r.wpemoji))) }(window, document, window._wpemojiSettings);
     </script>
-    <style type="text/css">
-        img.wp-smiley,
-        img.emoji {
-            display: inline !important;
-            border: none !important;
-            box-shadow: none !important;
-            height: 1em !important;
-            width: 1em !important;
-            margin: 0 .07em !important;
-            vertical-align: -0.1em !important;
-            background: none !important;
-            padding: 0 !important;
-        }
-    </style>
     <link rel='stylesheet' id='rs-plugin-settings-css'
           href='https://www.studioninja.co/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.2.15'
           type='text/css' media='all' />
-    <style id='rs-plugin-settings-inline-css' type='text/css'>
-        .tp-caption a {
-            color: #ff7302;
-            text-shadow: none;
-            -webkit-transition: all 0.2s ease-out;
-            -moz-transition: all 0.2s ease-out;
-            -o-transition: all 0.2s ease-out;
-            -ms-transition: all 0.2s ease-out
-        }
-
-        .tp-caption a:hover {
-            color: #ffa902
-        }
-    </style>
     <link rel='stylesheet' id='avada-stylesheet-css'
           href='https://www.studioninja.co/wp-content/themes/Avada/assets/css/style.min.css?ver=6.2.3' type='text/css'
           media='all' />
@@ -135,16 +107,16 @@ by photographers.  GET STARTED
     <link rel="alternate" type="text/xml+oembed"
           href="https://www.studioninja.co/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.studioninja.co%2F&#038;format=xml" />
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    {{-- <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
             }); var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-MBLSQ6J');</script>
+        })(window, document, 'script', 'dataLayer', 'GTM-MBLSQ6J');</script> --}}
     <!-- End Google Tag Manager -->
-    <style type="text/css" id="css-fb-visibility">
+    {{-- <style type="text/css" id="css-fb-visibility">
         @media screen and (max-width: 640px) {
             body:not(.fusion-builder-ui-wireframe) .fusion-no-small-visibility {
                 display: none !important;
@@ -162,7 +134,7 @@ by photographers.  GET STARTED
                 display: none !important;
             }
         }
-    </style>
+    </style> --}}
     <meta name="generator"
           content="Powered by Slider Revolution 6.2.15 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
     <script type="text/javascript">function setREVStartSize(e) {
@@ -35632,6 +35604,8 @@ by photographers.  GET STARTED
     <noscript><img height="1" width="1" style="display:none"
                    src="https://www.facebook.com/tr?id=341301523388135&ev=PageView&noscript=1" /></noscript>
     <!-- End Facebook Pixel Code -->
+    <link href="{{asset('css/home.css')}}" rel="stylesheet" type="text/css" media="all"/>
+
 </head>
 
 <body data-rsssl=1
