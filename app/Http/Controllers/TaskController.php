@@ -82,7 +82,11 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $client = $task->client;
+        $job = $task->job;
+        $workflow = $task->workflow;
+        return view('users.tasks.show',compact('task','job','workflow','client'));
     }
 
     /**
@@ -161,5 +165,15 @@ class TaskController extends Controller
       ],200);
 
     }
+
+    
+    /**
+     * Get the invoice page for the job
+     */
+    public function invoice($id){
+        $task_id = $id;
+        return view('users.invoice.show',compact('task_id'));
+    }
+
 
 }

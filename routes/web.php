@@ -38,7 +38,11 @@ Route::resource('jobs','TaskController');
 
 Route::post('jobs/client','TaskController@client')->name('jobs.client');
 
+Route::get('job/invoice/{id}','TaskController@invoice')->name('task.invoice');
+
 Route::resource('user/posts', 'Admin\PostController');
+
+Route::resource('invoice', 'InvoiceController');
 
 Route::get('calendar','CalendarController@index')->name('calendar.index');
 

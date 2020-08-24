@@ -47,7 +47,7 @@
 
                                     <ul class="navbar-nav mx-4 w-60">
                                         <li class="nav-item active mb-2" style="cursor: pointer;">
-                                            <div  href="#exampleModalLong" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
+                                            <a  href="{{route('jobs.show',$task->id)}}"><i class="fa fa-eye" aria-hidden="true"></i> View Job</a>
                                         </li>
                                         <li class="nav-item" style="cursor: pointer;">
                                             <a href="{{route('jobs.edit',$task->id)}}"><i class="fas fa-edit"></i> Edit Job</a>

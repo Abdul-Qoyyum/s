@@ -115,9 +115,9 @@
                               </div>
 
                                 <hr>
-                                <p style="font-weight: bold;">task Details</p>
+                                <p style="font-weight: bold;">Job Details</p>
                                    <div class="form-group">
-                                       {!! Form::label('name', 'task name:') !!}
+                                       {!! Form::label('name', 'Job name:') !!}
                                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
                                    </div>
                                    <div class="form-group">
@@ -148,11 +148,11 @@
                                    </div>
                                     <hr>
                                     <div class="form-group">
-                                      {!! Form::label('notes', 'task Notes:', ['class'=>'font-weight-bold']) !!}
+                                      {!! Form::label('notes', 'Job Notes:', ['class'=>'font-weight-bold']) !!}
                                       {!! Form::textarea('notes', null, ['class'=>'form-control notes']) !!}
                                     </div>
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a  href="{{route('jobs.index')}}" class="btn btn-danger" >Cancel</a>
                                 <input type="submit" class="btn btn-primary" value="Save changes">
                             </div>
                                 {!! Form::close() !!}                                

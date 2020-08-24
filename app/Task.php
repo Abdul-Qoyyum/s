@@ -103,6 +103,12 @@ class Task extends Model implements \Asdfx\LaravelFullcalendar\Event
 
 
     
+    /**
+     * Get Task's client
+     */
+    public function client(){
+        return $this->belongsTo('App\Client');
+    }
 
     /**
      * Get lead's Job Type
