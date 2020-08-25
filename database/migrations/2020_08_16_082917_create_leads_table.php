@@ -26,10 +26,10 @@ class CreateLeadsTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('workflow_id');
             $table->unsignedBigInteger('job_id');
-            $table->foreign('workflow_id')->references('id')->on('workflows');
-            $table->foreign('job_id')->references('id')->on('jobs');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('workflow_id')->references('id')->on('workflows')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

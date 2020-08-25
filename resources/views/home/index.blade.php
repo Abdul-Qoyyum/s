@@ -223,7 +223,7 @@ by photographers.  GET STARTED
                                             class="menu-text">LOGIN</span></a></li>
                                 <li id="menu-item-1175"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1175 fusion-menu-item-button"
-                                    data-item-id="1175"><a href="/"
+                                    data-item-id="1175"><a href="{{route('register')}}"
                                                            class="fusion-bar-highlight"><span
                                             class="menu-text fusion-button button-default button-medium">TRY
                                                     STUDIO NINJA FOR FREE</span></a></li>
@@ -294,7 +294,7 @@ by photographers.  GET STARTED
                                                          style="border-color:#e0dede;border-top-width:0px;border-bottom-width:0px;margin-left: auto;margin-right: auto;margin-top:40px;">
                                                     </div>
                                                     <div class="fusion-button-wrapper fusion-aligncenter">
-                                                        
+
                                                         <a
                                                             class="fusion-button button-flat button-xlarge button-custom button-1 fusion-button-default-span fusion-button-default-type"
                                                             target="_self"

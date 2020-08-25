@@ -1,4 +1,4 @@
-@extends('userdashboard')
+@extends('dashboard')
 @section('content')
   <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -28,13 +28,13 @@
 
                   <div class="form-group">
                     {!! Form::label('body', 'Body') !!}
-                    {!! Form::text('body',null,['class'=>'form-control my-editor','placeholder'=>'Title']) !!}                    
-                  </div> 
+                    {!! Form::text('body',null,['class'=>'form-control my-editor','placeholder'=>'Title']) !!}
+                  </div>
 
                   <div class="form-group">
                     <div class="d-flex justify-content-end">
-                      <a href="{{ route('posts.index') }}" class="btn btn-danger mr-1">Cancel</a> 
-                      <button type="submit" class="btn btn-primary">Update</button>          
+                      <a href="{{ route('posts.index') }}" class="btn btn-danger mr-1">Cancel</a>
+                      <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                   </div>
                   {!! Form::close() !!}

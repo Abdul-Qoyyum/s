@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	
+
 	<!-- This site is optimized with the Yoast SEO plugin v14.4.1 - https://yoast.com/wordpress/plugins/seo/ -->
 	<title>About Us | Studio Ninja</title>
 	<meta name="description" content="Studio Ninja is created by Melbournians Chris Garbacz, an accomplished wedding photographer and Yuan Wang, a multi-award-winning designer! Read more..." />
@@ -33,18 +33,18 @@
 <link rel="alternate" type="application/rss+xml" title="Studio Ninja &raquo; Feed" href="https://www.studioninja.co/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Studio Ninja &raquo; Comments Feed" href="https://www.studioninja.co/comments/feed/" />
 					<link rel="shortcut icon" href="https://www.studioninja.co/wp-content/uploads/2016/08/icon.png" type="image/x-icon" />
-		
-		
-		
-		
-				
+
+
+
+
+
 		<meta property="og:title" content="About Us"/>
 		<meta property="og:type" content="article"/>
 		<meta property="og:url" content="https://www.studioninja.co/about-us/"/>
 		<meta property="og:site_name" content="Studio Ninja"/>
 		<meta property="og:description" content="OUR STORY
 
-More time, more freedom.    
+More time, more freedom.
 We&#039;ve changed the lives of over 10,000 photographers and videographers by freeing up all the boring hours spent on administrative tasks. Now, they have more time for more of what they love."/>
 
 									<meta property="og:image" content="https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Normal.png"/>
@@ -89,7 +89,7 @@ img.emoji {
 <script type='text/javascript' src='https://www.studioninja.co/wp-content/plugins/dk-pricr-responsive-pricing-table/inc/js/rpt.min.js?ver=5.4.2'></script>
 <link rel='https://api.w.org/' href='https://www.studioninja.co/wp-json/' />
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.studioninja.co/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.studioninja.co/wp-includes/wlwmanifest.xml" /> 
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.studioninja.co/wp-includes/wlwmanifest.xml" />
 <meta name="generator" content="WordPress 5.4.2" />
 <link rel='shortlink' href='https://www.studioninja.co/?p=2994' />
 <link rel="alternate" type="application/json+oembed" href="https://www.studioninja.co/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.studioninja.co%2Fabout-us%2F" />
@@ -103,10 +103,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 		<style type="text/css" id="css-fb-visibility">@media screen and (max-width: 640px){body:not(.fusion-builder-ui-wireframe) .fusion-no-small-visibility{display:none !important;}}@media screen and (min-width: 641px) and (max-width: 1024px){body:not(.fusion-builder-ui-wireframe) .fusion-no-medium-visibility{display:none !important;}}@media screen and (min-width: 1025px){body:not(.fusion-builder-ui-wireframe) .fusion-no-large-visibility{display:none !important;}}</style><meta name="generator" content="Powered by Slider Revolution 6.2.15 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
 <script type="text/javascript">function setREVStartSize(e){
-			//window.requestAnimationFrame(function() {				 
-				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;	
-				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;	
-				try {								
+			//window.requestAnimationFrame(function() {
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;
+				try {
 					var pw = document.getElementById(e.c).parentNode.offsetWidth,
 						newh;
 					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
@@ -116,35 +116,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
 					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
 					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
-					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);		
-					if(e.layout==="fullscreen" || e.l==="fullscreen") 						
-						newh = Math.max(e.mh,window.RSIH);					
-					else{					
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);
+					if(e.layout==="fullscreen" || e.l==="fullscreen")
+						newh = Math.max(e.mh,window.RSIH);
+					else{
 						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
-						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];					
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];
 						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
 						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
 						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
-											
+
 						var nl = new Array(e.rl.length),
-							ix = 0,						
-							sl;					
+							ix = 0,
+							sl;
 						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
 						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
 						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
-						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;					
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;
 						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
-						sl = nl[0];									
-						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}															
-						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);					
+						sl = nl[0];
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);
 						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
-					}				
-					if(window.rs_init_css===undefined) window.rs_init_css = document.head.appendChild(document.createElement("style"));					
+					}
+					if(window.rs_init_css===undefined) window.rs_init_css = document.head.appendChild(document.createElement("style"));
 					document.getElementById(e.c).height = newh+"px";
-					window.rs_init_css.innerHTML += "#"+e.c+"_wrapper { height: "+newh+"px }";				
+					window.rs_init_css.innerHTML += "#"+e.c+"_wrapper { height: "+newh+"px }";
 				} catch(e){
 					console.log("Failure at Presize of Slider:" + e)
-				}					   
+				}
 			//});
 		  };</script>
 <style id="fusion-stylesheet-inline-css" type="text/css">/********* Compiled CSS - Do not edit *********/ :root{--button_padding:11px 23px;--button_font_size:13px;--button_line_height:16px;}/* latin-ext */
@@ -650,7 +650,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="fusion-sides-frame"></div>
 		<div id="wrapper" class="fusion-wrapper">
 			<div id="home" style="position:relative;top:-1px;"></div>
-			
+
 			<header class="fusion-header-wrapper fusion-header-shadow">
 				<div class="fusion-header-v1 fusion-logo-alignment fusion-logo-left fusion-sticky-menu- fusion-sticky-logo-1 fusion-mobile-logo-  fusion-mobile-menu-design-modern">
 					<div class="fusion-header-sticky-height"></div>
@@ -662,11 +662,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<!-- standard logo -->
 			<img src="https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Normal.png" srcset="https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Normal.png 1x, https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Retina.png 2x" width="200" height="43" style="max-height:43px;height:auto;" alt="Studio Ninja Logo" data-retina_logo_url="https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Retina.png" class="fusion-standard-logo" />
 
-			
+
 											<!-- sticky header logo -->
 				<img src="https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Normal.png" srcset="https://www.studioninja.co/wp-content/uploads/2016/06/Studio-Ninja-CRM-Logo-Normal.png 1x" width="200" height="43" alt="Studio Ninja Logo" data-retina_logo_url="" class="fusion-sticky-logo" />
 					</a>
-    </div>	
+    </div>
                               <nav class="fusion-main-menu" aria-label="Main Menu">
                             <ul id="menu-main-menu" class="fusion-menu">
                                 <li id="menu-item-3060"
@@ -707,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             class="menu-text">LOGIN</span></a></li>
                                 <li id="menu-item-1175"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1175 fusion-menu-item-button"
-                                    data-item-id="1175"><a href="/"
+                                    data-item-id="1175"><a href="{{route('register')}}"
                                                            class="fusion-bar-highlight"><span
                                             class="menu-text fusion-button button-default button-medium">TRY
                                                     STUDIO NINJA FOR FREE</span></a></li>
@@ -715,9 +715,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </nav>
 <div class="fusion-mobile-menu-icons">
 							<a href="#" class="fusion-icon fusion-icon-bars" aria-label="Toggle mobile menu" aria-expanded="false"></a>
-		
-		
-		
+
+
+
 			</div>
 
 <nav class="fusion-mobile-nav-holder fusion-mobile-menu-text-align-left" aria-label="Main Menu Mobile"></nav>
@@ -727,12 +727,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 				<div class="fusion-clearfix"></div>
 			</header>
-						
-			
+
+
 		<div id="sliders-container">
 					</div>
-				
-			
+
+
 			<div class="avada-page-titlebar-wrapper">
 							</div>
 
@@ -795,16 +795,16 @@ with the user in the center.</span></span></p>
 							</div>
 												</div>
 	</section>
-						
+
 					</div>  <!-- fusion-row -->
 				</main>  <!-- #main -->
-				
-				
-								
-					
+
+
+
+
 		<div class="fusion-footer">
-				
-	
+
+
 	<footer id="footer" class="fusion-footer-copyright-area fusion-footer-copyright-center">
 		<div class="fusion-row">
 			<div class="fusion-copyright-content">
@@ -821,7 +821,7 @@ with the user in the center.</span></span></p>
 	</footer> <!-- #footer -->
 		</div> <!-- fusion-footer -->
 
-		
+
 					<div class="fusion-sliding-bar-wrapper">
 											</div>
 

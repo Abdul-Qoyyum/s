@@ -1,4 +1,4 @@
-@extends('userdashboard')
+@extends('dashboard')
 @section('content')
 <!-- Post DataTable  -->
           <div class="card shadow mb-4">
@@ -37,12 +37,12 @@
                 <td>
                   <a href="{{ route('posts.edit',$post->slug) }}" class="btn btn-info btn-circle">
                     <i class="fas fa-edit"></i>
-                  </a> 
+                  </a>
                   <a href="{{ route('posts.destroy',$post->slug) }}" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                   </a>
                 </td>
-            </tr>            
+            </tr>
         @endforeach
     </tbody>
 </table>
@@ -86,13 +86,13 @@
 
                   <div class="form-group">
                     {!! Form::label('body', 'Body') !!}
-                    {!! Form::text('body',null,['class'=>'form-control my-editor','placeholder'=>'Title']) !!}                    
-                  </div> 
+                    {!! Form::text('body',null,['class'=>'form-control my-editor','placeholder'=>'Title']) !!}
+                  </div>
 
                   <div class="form-group">
                     <div class="d-flex justify-content-end">
                       <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save</button>          
+                      <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                   </div>
                   {!! Form::close() !!}

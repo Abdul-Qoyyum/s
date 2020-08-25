@@ -24,7 +24,7 @@ Route::view('pricing','home.pricing')->name('home.pricing');
 
 Route::view('about', 'home.about')->name('home.about');
 
-Route::get('dashboard','DashboardController@index')->name('dashboard.index');
+Route::get('/backend','DashboardController@index')->name('dashboard.index');
 
 Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user');
 
@@ -40,7 +40,14 @@ Route::post('jobs/client','TaskController@client')->name('jobs.client');
 
 Route::get('job/invoice/{id}','TaskController@invoice')->name('task.invoice');
 
+// Admin routes
 Route::resource('user/posts', 'Admin\PostController');
+
+Route::resource('admin/clients','Admin\ClientController');
+
+Route::resource('admin/leads', 'Admin\LeadController');
+
+Route::resource('admin/users','Admin\UserController');
 
 Route::resource('invoice', 'InvoiceController');
 

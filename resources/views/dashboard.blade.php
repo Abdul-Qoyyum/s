@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Admin panel</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -17,12 +17,19 @@
 
   <!-- Datatable's  css for this template -->
   {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css"> --}}
-  
+
   <!-- Custom styles for this page -->
   <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+  <!-- notify css -->
+  @notifyCss
+
+  <!-- main css -->
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  @yield('styles')
 
 </head>
 
@@ -35,11 +42,8 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+      <a class="sidebar-brand" href="index.html">
+        <div class="sidebar-brand-text mx-3">{{auth()->user()->name}}</div>
       </a>
 
       <!-- Divider -->
@@ -57,27 +61,71 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Admin
       </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('users.index') }}">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <span>Users</span>
+        </a>
+      </li>
+
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="{{ route('posts.index') }}">
           <i class="fas fa-fw fa-cog"></i>
           <span>Posts</span>
+      </a>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('clients.index') }}">
+         <i class="fa fa-users" aria-hidden="true"></i>
+          <span>Clients</span>
         </a>
-        {{-- data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" --}}
-        {{-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div> --}}
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('leads.index') }}">
+          <i class="fa fa-bullhorn" aria-hidden="true"></i>
+          <span>Leads</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-tasks" aria-hidden="true"></i>
+          <span>Jobs</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('calendar.index') }}">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <span>Calendar</span>
+        </a>
+      </li>
+
+<!--
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('jobs.index') }}">
+          <i class="fas fa-file-invoice"></i>
+          <span>Payments</span>
+        </a>
+      </li> -->
+
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="{{ route('jobs.index') }}">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <span>Settings</span>
+        </a>
+      </li>
+ -->
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
@@ -91,18 +139,18 @@
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      {{-- <hr class="sidebar-divider"> --}}
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      {{-- <div class="sidebar-heading">
         Addons
-      </div>
+      </div> --}}
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
+      {{-- <li class="nav-item active">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -119,24 +167,24 @@
             <a class="collapse-item active" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> --}}
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
-      </li>
+      </li> --}}
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -337,7 +385,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        
+
           <!-- Page Content -->
           @yield('content')
 
@@ -394,8 +442,6 @@
   <!-- Core plugin JavaScript-->
   <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-  <!-- Datatable js for this template -->  
-  {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script> --}}
 
   <!-- Page level plugins -->
   <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
@@ -404,9 +450,13 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+  <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+
   @yield('scripts')
 
+  @include('notify::messages')
+  @notifyJs
 </body>
 
 </html>

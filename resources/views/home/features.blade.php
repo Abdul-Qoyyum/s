@@ -702,14 +702,14 @@ Created just for you, Studio Ninja boasts a beautifully designed user interface 
                                             class="menu-text">LOGIN</span></a></li>
                                 <li id="menu-item-1175"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1175 fusion-menu-item-button"
-                                    data-item-id="1175"><a href="/"
+                                    data-item-id="1175"><a href="{{route('register')}}"
                                                            class="fusion-bar-highlight"><span
                                             class="menu-text fusion-button button-default button-medium">TRY
                                                     STUDIO NINJA FOR FREE</span></a></li>
                             </ul>
                         </nav>
 
-                        </nav>	
+                        </nav>
                         <div class="fusion-mobile-menu-icons">
                             <a href="#" class="fusion-icon fusion-icon-bars" aria-label="Toggle mobile menu" aria-expanded="false"></a>
 
