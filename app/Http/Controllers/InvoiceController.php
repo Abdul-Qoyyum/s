@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Traits\HelperTraits;
+
 class InvoiceController extends Controller
 {
+
+    use HelperTraits;
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +28,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('users.invoice.create');
+        $packages = $this->getAllPackages();
+        $taxes = $this->getTaxOptions();
+         return view('users.invoice.create',compact('packages','taxes'));
     }
 
     /**

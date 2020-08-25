@@ -15,8 +15,14 @@ class CreateOptionsTable extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
+        DB::table('options')->insert([
+            ['name'=>'includes tax', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name'=>'excludes tax', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name'=>'No tax', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+        ]);
     }
 
     /**

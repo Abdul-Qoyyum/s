@@ -26,7 +26,7 @@ class CreatePackagesTable extends Migration
 
         DB::table('packages')->insert([
           ['name'=>'Bronze Family Portrait Package',
-          'description'=>'<p>The perfect starter package for families with high-resolution images.</p>\r\n<ul>\r\n<li>1 Hour photography session</li>\r\n<li>10 High resolution digital files, retouched and ready to print</li>\r\n</ul>',
+          'description'=>"<p>The perfect starter package for families with high-resolution images.</p>\r\n<ul>\r\n<li>1 Hour photography session</li>\r\n<li>10 High resolution digital files, retouched and ready to print</li>\r\n</ul>",
           'price'=>995.00,
           'quantity'=>1,
           'discount'=>0.00,

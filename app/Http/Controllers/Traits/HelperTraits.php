@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Traits;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Job;
 
 use App\Workflow;
 
-use Illuminate\Support\Facades\Auth;
+use App\Package;
+
+use App\Option;
 
 trait HelperTraits{
 
@@ -51,5 +55,29 @@ trait HelperTraits{
         return $clients;
     }
 
-    
+
+    /**
+     * Organise all packages for invoice
+     */
+    public function getAllPackages(){
+       $packageCollection = Package::all();
+       $packages = [];
+       foreach($packageCollection as $package){
+          $packages[$package->id] = $package->name;
+       }
+       return $packages;
+    }
+
+    /**
+     * Organise all tax options for invoice view
+     */
+    public function getTaxOptions(){
+        $optionCollection = Option::all();
+        $options = [];
+        foreach($optionCollection as $option){
+           $options[$option->id] = $option->name;
+        }
+        return $options;
+    }
+
 }

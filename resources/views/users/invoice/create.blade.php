@@ -75,18 +75,28 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>{!! Form::textarea('description', null, ['class'=>'form-control notes']) !!}</td>
+                        <th scope="row">{!! Form::select('packages', $packages, null, ['placeholder' => 'Choose Product/Package','class'=>'form-control packages']) !!}</th>
+                        <td>{!! Form::textarea('description', null, ['class'=>'form-control notes','class'=>'description']) !!}</td>
                         <td>{!! Form::number('price',null,['class'=>'form-control','step'=>'0.01']) !!}</td>
                         <td>{!! Form::number('quantity',null,['class'=>'form-control','step'=>'1']) !!}</td>
-                        <td>{!! Form::number('amount',null,['class'=>'form-control','step'=>'0.01']) !!}</td>
-                        <td>{!! Form::select('size', ['L' => 'Large', 'S' => 'Small'],null,['class'=>'form-control-sm']) !!}</td>
-                        <td>scvds</td>
-                        <td>dcd</td>
+                        <td>{!! Form::number('discount',null,['class'=>'form-control','step'=>'0.01']) !!}</td>
+                        <td>{!! Form::select('tax_options', $taxes,null,['class'=>'form-control-sm tax_options','placeholder'=>'Choose Tax Options']) !!}</td>
+                        <td><span class="amount">$ 0</span></td>
+                        <td class="text-center"><i class="fa fa-trash" aria-hidden="true"></i></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
+
+<hr>
+                  <div class="d-flex justify-content-end">
+                    <ul>
+                      <li class="list-group-item">Subtotal: $<span class="subtotal">0</span></li>
+                      <li class="list-group-item">GST: $<span class="gst">0</span></li>
+                      <li class="list-group-item">Discount: <span class="discount">None</span></li>
+                      <li class="list-group-item"><strong>Total Due</strong> $<span class="total">0</span></li>
+                    </ul>
+                  </div>
 
 
 
@@ -100,5 +110,104 @@
 {!! Form::close() !!}
 @stop
 @section('scripts')
-@include('includes.userTinymce')
+<script>
+  $(document).ready(function(){
+  //  initialise tinymce
+    tinymce.init({
+    selector: '.description',
+    });
+
+    let res = [];
+
+    // Get all packages
+    $.get("{{route('package.all')}}",function(data, status){
+        res = data.data;        
+        // handle packages click events
+        $('select.packages').change(function(){
+          var selectedId = $(this).children("option:selected").val();
+          var selectedOption =  res.filter(package => package.id == selectedId )[0];
+
+          // set the fields values
+          tinymce.get("description").setContent(selectedOption.description);
+          $('input[name="price"]').val(selectedOption.price);
+          $('input[name="quantity"]').val(selectedOption.quantity);
+          $('input[name="discount"]').val(selectedOption.discount);
+          $('.amount').text(`$ ${selectedOption.price}`);
+        });
+
+        $('select.tax_options').change(function(){
+           var id = $(this).children("option:selected").val();
+           var gst = 0;
+           var number = 0;
+           var subtotal = 0;
+           var totalDiscount = 0;
+           var total = 0;
+
+           var prices = $('input[name="price"]');
+           var quantities = $('input[name="quantity"]');
+           var discounts = $('input[name="discount"]');
+           var subtotalText = $('.subtotal');
+           var gstText = $('.gst');
+           var totalDiscountText = $('.discount');
+           var totalText = $('.total');
+
+          //validate function
+          function validate(value){
+            if(value == 0 || value < 0){
+              throw new Error("Invalid Input.");
+            }
+          } 
+
+          //  variable for each discount
+          var discount;
+
+           switch (id) {
+             case "1": //Includes tax
+               prices.each(function(index){
+                  validate($(this).val());
+                //  each discount
+                  discount = discounts[index].value;
+                  validate(discount);
+                // increase total discount
+                  totalDiscount += discount;
+                  validate(totalDiscount);
+                // increase number
+                  number += quantities[index].value;
+                  validate(number);
+                // increase subTotal
+                subtotal += $(this).val();
+                validate(subtotal);
+                // change total
+                total = subtotal;
+                                 
+                  // calculate gst
+                  gst += $(this).val() * discount;
+
+               });
+
+               gst = gst * number;
+              //  display the values 
+               gstText.text(gst);
+               subtotalText.text(subtotal);
+               totalDiscountText.text(totalDiscount);
+               totalText.text(total)
+               break;
+             case "2": //Excludes tax
+                
+               break;
+             default: //No tax
+
+               break;
+           }
+
+
+
+        });
+
+
+    });
+
+
+  });
+</script>
 @stop
