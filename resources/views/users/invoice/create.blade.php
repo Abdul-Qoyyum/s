@@ -98,6 +98,12 @@
                     </ul>
                   </div>
 
+<hr>                  
+                  <div class="container">
+                    {!! Form::label('notes', "Notes:",['class' => 'text-bold']) !!}
+                    {!! Form::textarea('notes', null, ['class'=>'form-control','placeholder'=>'These are additional notes you wish to add to your invoice']) !!}
+                  </div>
+
 
 
 
