@@ -49,6 +49,8 @@ Route::resource('admin/leads', 'Admin\LeadController');
 
 Route::resource('admin/users','Admin\UserController');
 
+
+
 Route::resource('invoice', 'InvoiceController');
 
 Route::get('calendar','CalendarController@index')->name('calendar.index');

@@ -30,7 +30,8 @@ class InvoiceController extends Controller
     {
         $packages = $this->getAllPackages();
         $taxes = $this->getTaxOptions();
-         return view('users.invoice.create',compact('packages','taxes'));
+        $contracts = $this->getContracts();
+         return view('users.invoice.create',compact('packages','taxes','contracts'));
     }
 
     /**

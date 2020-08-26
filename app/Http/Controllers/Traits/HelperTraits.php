@@ -12,6 +12,8 @@ use App\Package;
 
 use App\Option;
 
+use App\Contract;
+
 trait HelperTraits{
 
     /**
@@ -78,6 +80,18 @@ trait HelperTraits{
            $options[$option->id] = $option->name;
         }
         return $options;
+    }
+
+    /**
+     * Organise all Contracts for invoice view
+     */
+    public function getContracts(){
+        $contractCollection = Contract::all();
+        $contracts =  [];
+        foreach($contractCollection as $contract){
+          $contracts[$contract->id] = $contract->name;
+        }
+        return $contracts;
     }
 
 }

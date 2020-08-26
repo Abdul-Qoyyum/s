@@ -3,7 +3,6 @@
 
 {!! Form::open(['route' => 'invoice.store']) !!}
 
- <div class="card">
           <div class="row">
 
             <!-- Content Column -->
@@ -57,7 +56,7 @@
           </div>
 
                         <!-- Approach -->
-            <div class="card shadow mb-4">
+        <div class="card shadow mb-4">
                 <div class="card-body">
                  <div class="table-responsive">
                   <table class="table">
@@ -67,7 +66,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col">Discount</th>
+                        <th scope="col">Discount (%)</th>
                         <th scope="col">Tax</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Action</th>
@@ -88,7 +87,7 @@
                   </table>
                 </div>
 
-<hr>
+     <hr>
                   <div class="d-flex justify-content-end">
                     <ul>
                       <li class="list-group-item">Subtotal: $<span class="subtotal">0</span></li>
@@ -98,19 +97,31 @@
                     </ul>
                   </div>
 
-<hr>                  
+      <hr>                  
                   <div class="container">
                     {!! Form::label('notes', "Notes:",['class' => 'text-bold']) !!}
                     {!! Form::textarea('notes', null, ['class'=>'form-control','placeholder'=>'These are additional notes you wish to add to your invoice']) !!}
                   </div>
 
+      <hr>
+                  <div class="d-flex justify-content-between" style="background-color: #ccc;padding:15px;">
+                      <div><h4><strong>Do you want to add a contract?</strong></h4></div>
+                      <div>{!! Form::select('contracts', $contracts, null, ['placeholder' => "Choose Contract",'class' => "form-control"]) !!}</div>
+                      <div><button type="button" class="btn btn-light"><i class="fas fa-edit mr-1"></i> Edit Contract</button></div>                    
+                  </div>
 
+
+      <hr>
+                  {{-- <div class="d-flex justify-content-between" style="background-color: #ccc;padding:15px;">
+                      <div><h4><strong>Do you want to add a contract?</strong></h4></div>
+                      <div>{!! Form::select('contracts', $contracts, null, ['placeholder' => "Choose Contract",'class' => "form-control"]) !!}</div>
+                      <div><button type="button" class="btn btn-light"><i class="fas fa-edit mr-1"></i> Edit Contract</button></div>                    
+                  </div> --}}
 
 
                 </div>
             </div>
 
- </div>
 
 
 {!! Form::close() !!}
