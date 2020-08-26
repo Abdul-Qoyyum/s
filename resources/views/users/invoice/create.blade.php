@@ -104,11 +104,40 @@
                   </div>
 
       <hr>
-                  <div class="d-flex justify-content-between" style="background-color: #ccc;padding:15px;">
-                      <div><h4><strong>Do you want to add a contract?</strong></h4></div>
-                      <div>{!! Form::select('contracts', $contracts, null, ['placeholder' => "Choose Contract",'class' => "form-control"]) !!}</div>
-                      <div><button type="button" class="btn btn-light"><i class="fas fa-edit mr-1"></i> Edit Contract</button></div>                    
+                  <div class="row justify-content-between" style="background-color: #ccc;padding:15px;">
+                      <div class="col-md-4 mb-2"><h5><strong>Do you want to add a contract?</strong></h5></div>
+                      <div class="col-md-4 mb-2">{!! Form::select('contracts', $contracts, null, ['placeholder' => "Choose Contract",'class' => "form-control",'id'=>'contract']) !!}</div>
+                      <div class="col-md-4 mb-2"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#editContract"><i class="fas fa-edit mr-1"></i> Edit Contract</button></div>                    
                   </div>
+
+
+                          <!-- Edit Contract Modal --> 
+        <div class="modal fade" id="editContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-align" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Contract</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="form-group">
+                        <label for="notes">Contract terms and conditions</label>
+                        <textarea name="body" rows="8" cols="80" class="form-control body"></textarea>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success" id="profile">Save Contract</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
 
 
       <hr>
@@ -131,13 +160,47 @@
   $(document).ready(function(){
   //  initialise tinymce
     tinymce.init({
+     selector: '.body',
+    });
+
+  // var contractText = '';
+
+  //   tinymce.init({
+  //       selector: 'notes',
+  //       setup: editor => {
+  //           editor.on('init', () => {
+  //               editor.setContent(contractText);
+  //           });
+  //       }
+  //   });
+
+    tinymce.init({
     selector: '.description',
     });
 
+  // all contracts collection
+  let contracts = [];
+  // contract response
+  $.get("{{route('contract.all')}}",function(data, status){
+  // continue if it is a good response
+    if(status == "success"){
+      contracts = data.data;
+      $('#contract').change(function(){
+        var contractId = $(this).children("option:selected").val();
+        var selectedContract = contracts.filter(contract => contract.id == contractId)[0];
+        // set the contract value to field
+        tinymce.get("body").setContent(selectedContract.body);
+      });
+    }
+  });
+
+// package response
     let res = [];
 
     // Get all packages
     $.get("{{route('package.all')}}",function(data, status){
+
+     if(status == "success"){
         res = data.data;        
         // handle packages click events
         $('select.packages').change(function(){
@@ -218,9 +281,9 @@
            }
 
 
-
+        
         });
-
+     }
 
     });
 
