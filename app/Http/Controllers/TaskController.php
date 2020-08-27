@@ -89,9 +89,13 @@ class TaskController extends Controller
         $workflow = $task->workflow;
         //Get all invoices for the task
         $invoices = $task->invoices;
-        // return $invoices
+//      Options
+        $clients = $this->getUserClients();
+        $jobs = $this->getJobs();
+        $workflows = $this->getWorkflows();
+
         // $product $task->product;
-        return view('users.tasks.show',compact('task','job','workflow','client','invoices'));
+        return view('users.tasks.show',compact('task','job','workflow','client','invoices','clients','jobs','workflows'));
 
     }
 
@@ -140,7 +144,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::findOrFail($id)->delete();
+        notify()->success("Deleted Successfully");
+        return redirect()->route('jobs.index');
     }
 
     /**

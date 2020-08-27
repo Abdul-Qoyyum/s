@@ -59,6 +59,8 @@ Route::resource('invoice', 'InvoiceController');
 
 Route::get('job/{id}/invoice', 'InvoiceController@task')->name('job.invoice');
 
+Route::patch('invoice/job/{id}','InvoiceController@updateTask')->name('invoice.task');
+
 
 // Calendar route
 Route::get('calendar','CalendarController@index')->name('calendar.index');

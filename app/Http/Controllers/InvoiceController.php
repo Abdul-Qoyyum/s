@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
+use Illuminate\Support\Facades\Validator;
+
 use App\Task;
 
 use App\Invoice;
@@ -61,18 +63,9 @@ class InvoiceController extends Controller
 
             $invoice = Invoice::create($invoiceDetails);
 
-            // $invoice->product()->create(
-            //     [
-            //     'description' => $request->description,
-            //     'price' => $request->price,
-            //     'quantity' => $request->quantity,
-            //     'discount' => $request->discount,
-            //     'total' => $request->total,
-            //     ]);
-
-        notify()->success('Saved Successfully');
-        //  redirect back to the task page
-        return redirect()->route('jobs.show',$task->id);
+            notify()->success('Saved Successfully');
+            //  redirect back to the task page
+            return redirect()->route('jobs.show',$task->id);
 
     }
 
@@ -141,4 +134,26 @@ class InvoiceController extends Controller
         $questionaires = $this->getQuestionaires();
          return view('users.invoice.create',compact('task','packages','taxes','contracts','client','job','workflow','questionaires'));
     }
+
+
+    /**
+     * Update Jobs
+     *  
+     * */    
+    public function updateTask(Request $request,$id){
+        $validator = Validator::make($request->all(),[
+            'name' => 'required'
+        ]);
+        //abort if validation fails
+        if ($validator->fails()) {
+                return;
+        }
+        $task = Task::findOrFail($id);
+        $task->update($request->except(['_method','_token']));
+        notify()->success('Updated Successfully');
+        return redirect()->route('jobs.show',$task->id);
+
+    }
+
+    
 }
