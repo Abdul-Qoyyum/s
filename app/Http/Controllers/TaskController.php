@@ -168,11 +168,11 @@ class TaskController extends Controller
 
     
     /**
-     * Get the invoice page for the job
+     * Get the created invoice page for the job
      */
     public function invoice($id){
-        $task_id = $id;
-        return view('users.invoice.show',compact('task_id'));
+        $task = Task::findOrFail($id);
+        return view('users.invoice.show',compact('task'));
     }
 
 

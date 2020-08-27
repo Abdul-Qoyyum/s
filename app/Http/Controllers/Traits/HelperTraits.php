@@ -14,6 +14,8 @@ use App\Option;
 
 use App\Contract;
 
+use App\Questionaire;
+
 trait HelperTraits{
 
     /**
@@ -83,7 +85,7 @@ trait HelperTraits{
     }
 
     /**
-     * Organise all Contracts for invoice view
+     * Organise Contracts options for invoice view
      */
     public function getContracts(){
         $contractCollection = Contract::all();
@@ -92,6 +94,18 @@ trait HelperTraits{
           $contracts[$contract->id] = $contract->name;
         }
         return $contracts;
+    }
+
+    /**
+     * Organise Questionaire options for invoice view
+     */
+    public function getQuestionaires(){
+        $questionaireCollection = Questionaire::all();
+        $questionaires = [];
+        foreach($questionaireCollection as $questionaire){
+           $questionaires[$questionaire->id] = $questionaire->name; 
+        }
+        return $questionaires;
     }
 
 }

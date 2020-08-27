@@ -30,10 +30,14 @@ Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user')
 
 Route::resource('client', 'ClientController');
 
+
+// lead routes
 Route::resource('lead','LeadController');
 
 Route::post('lead/client','LeadController@client')->name('lead.client');
 
+
+// Jobs route
 Route::resource('jobs','TaskController');
 
 Route::post('jobs/client','TaskController@client')->name('jobs.client');
@@ -50,11 +54,16 @@ Route::resource('admin/leads', 'Admin\LeadController');
 Route::resource('admin/users','Admin\UserController');
 
 
-
+// Invoice route
 Route::resource('invoice', 'InvoiceController');
 
+Route::get('job/{id}/invoice', 'InvoiceController@task')->name('job.invoice');
+
+
+// Calendar route
 Route::get('calendar','CalendarController@index')->name('calendar.index');
 
+// Laravel filemanager
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
  });

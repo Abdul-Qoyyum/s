@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
+use App\Task;
+
 class InvoiceController extends Controller
 {
 
@@ -28,10 +30,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $packages = $this->getAllPackages();
-        $taxes = $this->getTaxOptions();
-        $contracts = $this->getContracts();
-         return view('users.invoice.create',compact('packages','taxes','contracts'));
+
     }
 
     /**
@@ -88,5 +87,26 @@ class InvoiceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Show the invoice form for specific task
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function task($id){
+//      task resource and relationships with other resource details
+        $task = Task::findOrFail($id);
+        $client = $task->client;
+        $job = $task->job;
+        $workflow = $task->workflow;
+
+//      Options
+        $packages = $this->getAllPackages();
+        $taxes = $this->getTaxOptions();
+        $contracts = $this->getContracts();
+        $questionaires = $this->getQuestionaires();
+         return view('users.invoice.create',compact('task','packages','taxes','contracts','client','job','workflow','questionaires'));
     }
 }
