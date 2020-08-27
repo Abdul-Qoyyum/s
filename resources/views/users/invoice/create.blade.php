@@ -12,15 +12,15 @@
               <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-4 col-form-label">Invoice ID</label>
+                        <label for="invoice_id" class="col-sm-4 col-form-label">Invoice ID</label>
                         <div class="col-sm-6">
-                        <input type="text" class="form-control" name="invoice_id"  id="invoice_id" value="">
+                        <input type="text" class="form-control" name="invoice_id"  id="invoice_id" value="{{Str::replaceArray('-',['',''],\Carbon\Carbon::now()->toDateString())}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-4 col-form-label">Issue date</label>
+                        <label for="issue_date" class="col-sm-4 col-form-label">Issue date</label>
                         <div class="col-sm-6">
-                        <input type="date" class="form-control"  name="issue_date"  id="issue_date">
+                        {!! Form::date('issue_date', \Carbon\Carbon::now(), ['class'=>'form-control','id'=>'issue_date']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -117,14 +117,14 @@
                         <td>{!! Form::number('price',null,['class'=>'form-control','step'=>'0.01']) !!}</td>
                         <td>{!! Form::number('quantity',null,['class'=>'form-control','step'=>'1']) !!}</td>
                         <td>{!! Form::number('discount',null,['class'=>'form-control','step'=>'0.01']) !!}</td>
-                        <td>{!! Form::select('tax_options', $taxes,null,['class'=>'form-control-sm tax_options','placeholder'=>'Choose Tax Options']) !!}</td>
+                        <td>{!! Form::select('option_id', $taxes,null,['class'=>'form-control-sm tax_options','placeholder'=>'Choose Tax Options']) !!}</td>
                         <td><span class="amount">$ 0</span></td>
                         {{-- <td class="text-center"><i class="fa fa-trash" aria-hidden="true"></i></td> --}}
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
+                {!! Form::hidden('task_id', $task->id) !!}
      <hr>
                   <div class="d-flex justify-content-end">
                     <ul>
@@ -133,7 +133,7 @@
                       <li class="list-group-item">Discount: <span class="discount">None</span></li>
                       <li class="list-group-item"><strong>Total Due</strong> $<span class="total">0</span></li>
                     </ul>
-                    {!! Form::hidden('total', null) !!}
+                    {!! Form::hidden('total', 99.99) !!}
                   </div>
 
       <hr>                  
@@ -152,7 +152,7 @@
       <hr>
                   <div class="row justify-content-between" style="background-color: #ccc;padding:15px;">
                       <div class="col-md-4 mb-2"><h5><strong>Do you want to add a contract?</strong></h5></div>
-                      <div class="col-md-4 mb-2">{!! Form::select('contracts', $contracts, null, ['placeholder' => "Choose Contract",'class' => "form-control",'id'=>'contract']) !!}</div>
+                      <div class="col-md-4 mb-2">{!! Form::select('contract_id', $contracts, null, ['placeholder' => "Choose Contract",'class' => "form-control",'id'=>'contract']) !!}</div>
                       <div class="col-md-4 mb-2"><button type="button" class="btn btn-light editContract" data-toggle="modal" data-target="#editContract"><i class="fas fa-edit mr-1"></i> Edit Contract</button></div>                    
                   </div>
 
@@ -185,7 +185,7 @@
                   <div class="modal-body">
                       <div class="form-group">
                         <label for="notes">Contract terms and conditions</label>
-                        <textarea name="body" rows="8" cols="80" class="form-control body"></textarea>
+                        <textarea name="contracts" rows="8" cols="80" class="form-control contracts"></textarea>
                       </div>
                   </div>
                   <div class="modal-footer">
@@ -213,7 +213,7 @@
   $(document).ready(function(){
   //  initialise tinymce
     tinymce.init({
-     selector: '.body',
+     selector: '.contracts',
     });
 
     tinymce.init({
@@ -236,7 +236,7 @@
         (contractId > 0) ? $('.editContract').prop('disabled',false) : $('.editContract').prop('disabled',true);
         var selectedContract = contracts.filter(contract => contract.id == contractId)[0];
         // set the contract value to field
-        tinymce.get("body").setContent(selectedContract.body);
+        tinymce.get("contracts").setContent(selectedContract.body);
       });
     }
   });
@@ -260,7 +260,12 @@
           $('input[name="quantity"]').val(selectedOption.quantity);
           $('input[name="discount"]').val(selectedOption.discount);
           $('.amount').text(`$ ${selectedOption.price}`);
+          // set the initial price before tax
+          $('input[name="total"]').val(selectedOption.price);
+          $('.subtotal').text(selectedOption.price);
+          $('.total').text(selectedOption.price);
         });
+
 
         $('select.tax_options').change(function(){
            var id = $(this).children("option:selected").val();
@@ -279,16 +284,10 @@
            var totalText = $('.total');
            var totalInput = $('input[name="total"]');
 
-          //validate function
-          function validate(value){
-            if(value == 0 || value < 0){
-              throw new Error("Invalid Input.");
-            }
-          } 
 
           //  variable for each discount
           var discount;
-
+// Tax options switch statement
            switch (id) {
              case "1": //Includes tax
                prices.each(function(index){
@@ -339,17 +338,16 @@
                   }else{
                      number += (eachQuantity <= 0) ? 1 : eachQuantity;
                   }
-                  // validate(number);
                 // increase subTotal
                 subtotal += parseFloat($(this).val());
                 subtotal = isNaN(subtotal) ? 99.99 : subtotal;
-                  // change total
-                  total = subtotal;
+                // change total
+                total = subtotal;
                                  
-                  // calculate gst
-                  gst += parseFloat($(this).val() * discount * number);
-// validate gst
-                  gst = isNaN(gst) ? 0 : gst;
+                // calculate gst
+                gst += parseFloat($(this).val() * discount * number);
+                // validate gst
+                gst = isNaN(gst) ? 0 : gst;
 
 
                });
@@ -358,9 +356,10 @@
                gstText.text(gst);
                subtotalText.text(subtotal);
                totalDiscountText.text(totalDiscount == 1 ? "None" : totalDiscount);
-               totalText.text(total + gst);
+               var evalTotal = (discount == 1) ? total : total + gst;
+               totalText.text(evalTotal);
                 //  set total Input
-                totalInput.val(total + gst);  
+                totalInput.val(evalTotal);  
                break;
              default: //No tax
                 return;

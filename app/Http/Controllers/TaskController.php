@@ -83,10 +83,16 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
+        // $invoices = Task::findOrFail($id)->with('invoices.product')->get();
         $client = $task->client;
         $job = $task->job;
         $workflow = $task->workflow;
-        return view('users.tasks.show',compact('task','job','workflow','client'));
+        //Get all invoices for the task
+        $invoices = $task->invoices;
+        // return $invoices
+        // $product $task->product;
+        return view('users.tasks.show',compact('task','job','workflow','client','invoices'));
+
     }
 
     /**

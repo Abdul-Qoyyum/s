@@ -8,6 +8,10 @@ use App\Http\Controllers\Traits\HelperTraits;
 
 use App\Task;
 
+use App\Invoice;
+
+use App\Product;
+
 class InvoiceController extends Controller
 {
 
@@ -41,7 +45,35 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $task = Task::findOrFail($request->task_id);
+
+            $invoiceDetails = $request->only([
+                'invoice_id',
+                'issue_date',
+                'po_number',
+                'notes',
+                'contracts',
+                'description',
+                'price',
+                'quantity',
+                'discount',
+                'total',]) + ['task_id' => $task->id];
+
+            $invoice = Invoice::create($invoiceDetails);
+
+            // $invoice->product()->create(
+            //     [
+            //     'description' => $request->description,
+            //     'price' => $request->price,
+            //     'quantity' => $request->quantity,
+            //     'discount' => $request->discount,
+            //     'total' => $request->total,
+            //     ]);
+
+        notify()->success('Saved Successfully');
+        //  redirect back to the task page
+        return redirect()->route('jobs.show',$task->id);
+
     }
 
     /**

@@ -15,11 +15,17 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_id');
-            $table->date('issue_date');
-            $table->string('po_number');
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->float('price')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->float('discount')->nullable();
+            $table->float('total')->default(99.99);
+            $table->string('invoice_id')->default(Str::replaceArray('-',['',''],\Carbon\Carbon::now()->toDateString()));
+            $table->date('issue_date')->default(\Carbon\Carbon::now());
+            $table->string('po_number')->nullable();
             $table->unsignedBigInteger('task_id');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->timestamps();
         });

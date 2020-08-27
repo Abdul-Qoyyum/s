@@ -126,5 +126,12 @@ class Task extends Model implements \Asdfx\LaravelFullcalendar\Event
         return $this->belongsTo('App\Workflow');
     }
 
+    /**
+     * Get task's invoice
+     */
+    public function invoices(){
+        return $this->hasMany('App\Invoice');
+    }
+
 
 }

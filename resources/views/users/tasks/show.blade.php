@@ -67,11 +67,12 @@
                     <a href="{{route('job.invoice',$task->id)}}" class="btn btn-success">Add Invoice</a>
                 </div>
                 <div class="card-body">
+                    @foreach ($invoices as $invoice)
                       <div class="row mt-2">
                             <div class="col">
                                 <div class="d-flex justify-content-between mb-2 bg-light">
-                                    <div class="col">Invoice 20200803</div>
-                                    <div class="col">Total: $4,995.00</div>
+                                    <div class="col">Invoice {{$invoice->invoice_id}}</div>
+                                    <div class="col">Total: ${{ $invoice->total }}</div>
                                 </div>               
                                 <div class="d-flex justify-content-between mb-2 bg-light">
                                     <div class="col">Next Payment Due 10 August 2020 (12 days ago)</div>
@@ -83,9 +84,10 @@
                                     <div class="btn btn-light"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</div>
                                 </div>
 
-                            </div>
-                    
+                            </div>                                              
                       </div>       
+                      @endforeach
+
 
                 </div>
               </div>
