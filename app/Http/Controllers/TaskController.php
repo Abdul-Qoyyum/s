@@ -178,14 +178,6 @@ class TaskController extends Controller
 
     }
 
-    
-    /**
-     * Get the created invoice page for the job
-     */
-    public function invoice($id){
-        $task = Task::findOrFail($id);
-        return view('users.invoice.show',compact('task'));
-    }
 
 
 }

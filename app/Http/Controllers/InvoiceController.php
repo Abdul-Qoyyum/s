@@ -8,11 +8,27 @@ use App\Http\Controllers\Traits\HelperTraits;
 
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Auth;
+
+// use LaravelDaily\Invoices\Invoice;
+
+// use LaravelDaily\Invoices\Classes\Party;
+
+// use LaravelDaily\Invoices\Classes\Buyer;
+
+// use LaravelDaily\Invoices\Classes\InvoiceItem;
+
 use App\Task;
 
-use App\Invoice;
+use App\Invoice as InvoiceModel;
 
 use App\Product;
+
+use App\Package;
+
+use App;
+
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -49,6 +65,8 @@ class InvoiceController extends Controller
     {
         $task = Task::findOrFail($request->task_id);
 
+        $package = Package::findOrFail($request->package_id);
+
             $invoiceDetails = $request->only([
                 'invoice_id',
                 'issue_date',
@@ -59,9 +77,13 @@ class InvoiceController extends Controller
                 'price',
                 'quantity',
                 'discount',
-                'total',]) + ['task_id' => $task->id];
+                'subtotal',
+                'total',]) + [
+                    'task_id' => $task->id,
+                    'name' => $package->name,
+                ];
 
-            $invoice = Invoice::create($invoiceDetails);
+            $invoice = InvoiceModel::create($invoiceDetails);
 
             notify()->success('Saved Successfully');
             //  redirect back to the task page
@@ -77,7 +99,23 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        
+        $user = Auth::user();
+
+        // return $user;
+
+        $invoice = InvoiceModel::findOrFail($id);
+
+        // return $invoice;
+
+        $task = $invoice->task;
+
+        // return $task;
+
+        $client = $task->client;
+
+        // return $client;
+
+      return view('users.invoice.show',compact('user','invoice','task','client'));
     }
 
     /**
@@ -146,7 +184,8 @@ class InvoiceController extends Controller
         ]);
         //abort if validation fails
         if ($validator->fails()) {
-                return;
+            notify()->warning('Oops something went wrong :)');
+            return redirect()->back();
         }
         $task = Task::findOrFail($id);
         $task->update($request->except(['_method','_token']));
@@ -155,5 +194,43 @@ class InvoiceController extends Controller
 
     }
 
-    
+    /**
+     * Render invoice pdf format
+     * @param int $id
+     */
+    public function preview($id){
+
+        $user = Auth::user();
+
+        // return $user;
+
+        $invoice = InvoiceModel::findOrFail($id);
+
+        // return $invoice;
+
+        $task = $invoice->task;
+
+        // return $task;
+
+        $client = $task->client;
+
+        // return $client;
+
+        $view = view('users.invoice.invoice',compact('user','task','client','invoice'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream();
+
+        // $data = [];
+
+        // $pdf = PDF::loadView('userdashboard',compact('data'));
+
+        // return $pdf->download('invoice.pdf');
+
+        // return $pdf->stream();
+
+
+    }
+
+
 }

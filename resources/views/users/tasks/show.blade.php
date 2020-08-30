@@ -82,7 +82,7 @@
                                 </div>               
 
                                 <div class="d-flex justify-content-start">
-                                    <a  href="{{route('task.invoice',$task->id)}}" class="btn btn-light mr-2"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                                    <a  href="{{route('invoice.show',$invoice->id)}}" class="btn btn-light mr-2"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
                                     <div class="btn btn-light"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</div>
                                 </div>
 

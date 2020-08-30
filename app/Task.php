@@ -111,7 +111,7 @@ class Task extends Model implements \Asdfx\LaravelFullcalendar\Event
     }
 
     /**
-     * Get lead's Job Type
+     * Get Task's Job Type
      */
     public function job(){
        return $this->belongsTo('App\Job');
@@ -119,7 +119,7 @@ class Task extends Model implements \Asdfx\LaravelFullcalendar\Event
 
 
     /**
-     * Get lead's Workflow
+     * Get Task's Workflow
      */
     public function workflow()
     {

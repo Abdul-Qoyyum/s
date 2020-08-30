@@ -112,7 +112,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">{!! Form::select('packages', $packages, null, ['placeholder' => 'Choose Product/Package','class'=>'form-control packages']) !!}</th>
+                        <th scope="row">{!! Form::select('package_id', $packages, null, ['placeholder' => 'Choose Product/Package','class'=>'form-control packages']) !!}</th>
                         <td>{!! Form::textarea('description', null, ['class'=>'form-control notes','class'=>'description']) !!}</td>
                         <td>{!! Form::number('price',null,['class'=>'form-control','step'=>'0.01']) !!}</td>
                         <td>{!! Form::number('quantity',null,['class'=>'form-control','step'=>'1']) !!}</td>
@@ -133,6 +133,7 @@
                       <li class="list-group-item">Discount: <span class="discount">None</span></li>
                       <li class="list-group-item"><strong>Total Due</strong> $<span class="total">0</span></li>
                     </ul>
+                    {!! Form::hidden('subtotal', 99.99) !!}
                     {!! Form::hidden('total', 99.99) !!}
                   </div>
 
@@ -261,6 +262,7 @@
           $('input[name="discount"]').val(selectedOption.discount);
           $('.amount').text(`$ ${selectedOption.price}`);
           // set the initial price before tax
+          $('input[name="subtotal"]').val(selectedOption.price);
           $('input[name="total"]').val(selectedOption.price);
           $('.subtotal').text(selectedOption.price);
           $('.total').text(selectedOption.price);
@@ -283,11 +285,12 @@
            var totalDiscountText = $('.discount');
            var totalText = $('.total');
            var totalInput = $('input[name="total"]');
+           var subTotalInput = $('input[name="subtotal"]');
 
 
           //  variable for each discount
           var discount;
-// Tax options switch statement
+          // Tax options switch statement
            switch (id) {
              case "1": //Includes tax
                prices.each(function(index){
@@ -324,6 +327,8 @@
                totalText.text(total);
               //  set total Input
               totalInput.val(total);
+              // set subtotal input
+              subTotalInput.val(subtotal);
                break;
              case "2": //Excludes tax
                 prices.each(function(index){
@@ -360,6 +365,8 @@
                totalText.text(evalTotal);
                 //  set total Input
                 totalInput.val(evalTotal);  
+                // set subtotal input
+                subTotalInput.val(subtotal);
                break;
              default: //No tax
                 return;

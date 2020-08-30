@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d90272089e8ae49fac188c47f2cd61c0",
+    "content-hash": "5def7bda7ab2ff38c98c9492498c8fe8",
     "packages": [
         {
             "name": "asdfx/laravel-fullcalendar",
@@ -289,6 +289,63 @@
                 "slugify"
             ],
             "time": "2019-12-14T13:04:14+00:00"
+        },
+        {
+            "name": "consoletvs/invoices",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ConsoleTVs/Invoices.git",
+                "reference": "bee4f48a39c2115c9533020e6a92200bd27639af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ConsoleTVs/Invoices/zipball/bee4f48a39c2115c9533020e6a92200bd27639af",
+                "reference": "bee4f48a39c2115c9533020e6a92200bd27639af",
+                "shasum": ""
+            },
+            "require": {
+                "dompdf/dompdf": "^0.8",
+                "ext-bcmath": "*",
+                "illuminate/support": "^5.0|^6.0|^7.0",
+                "illuminate/view": "^5.0|^6.0|^7.0",
+                "nesbot/carbon": ">1.22"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ConsoleTVs\\Invoices\\InvoicesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ConsoleTVs\\Invoices\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erik Campobadal",
+                    "email": "ConsoleTVs@gmail.com"
+                }
+            ],
+            "description": "Generate PDF invoices for your customers in laravel",
+            "keywords": [
+                "Erik Campobadal",
+                "create",
+                "customers",
+                "generate",
+                "invoices",
+                "laravel",
+                "open source",
+                "pdf"
+            ],
+            "time": "2020-03-27T00:13:28+00:00"
         },
         {
             "name": "cviebrock/eloquent-sluggable",

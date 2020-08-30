@@ -15,11 +15,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name');
             $table->text('description')->nullable();
             $table->float('price')->nullable();
             $table->integer('quantity')->nullable();
             $table->float('discount')->nullable();
+            $table->float('subtotal')->default(99.99);
             $table->float('total')->default(99.99);
             $table->string('invoice_id')->default(Str::replaceArray('-',['',''],\Carbon\Carbon::now()->toDateString()));
             $table->date('issue_date')->default(\Carbon\Carbon::now());

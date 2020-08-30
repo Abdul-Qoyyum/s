@@ -10,6 +10,8 @@
     "require": {
         "php": "^7.2.5",
         "asdfx/laravel-fullcalendar": "^1.0",
+        "barryvdh/laravel-dompdf": "^0.8.6",
+        "consoletvs/invoices": "^1.6",
         "cviebrock/eloquent-sluggable": "^7.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",

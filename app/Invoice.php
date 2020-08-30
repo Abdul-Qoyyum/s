@@ -11,6 +11,7 @@ class Invoice extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'invoice_id',
         'issue_date',
         'po_number',
@@ -21,9 +22,15 @@ class Invoice extends Model
         'price',
         'quantity',
         'discount',
+        'subtotal',
         'total',
     ];
 
-    
+    /**
+     * Get Invoice's task (Job)
+     */
+    public function task(){
+        return $this->belongsTo('App\Task');
+    }
 
 }

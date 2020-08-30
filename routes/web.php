@@ -42,8 +42,6 @@ Route::resource('jobs','TaskController');
 
 Route::post('jobs/client','TaskController@client')->name('jobs.client');
 
-Route::get('job/invoice/{id}','TaskController@invoice')->name('task.invoice');
-
 // Admin routes
 Route::resource('user/posts', 'Admin\PostController');
 
@@ -60,6 +58,8 @@ Route::resource('invoice', 'InvoiceController');
 Route::get('job/{id}/invoice', 'InvoiceController@task')->name('job.invoice');
 
 Route::patch('invoice/job/{id}','InvoiceController@updateTask')->name('invoice.task');
+
+Route::get('invoice/{id}/show','InvoiceController@preview')->name('invoice.preview');
 
 
 // Calendar route

@@ -1,11 +1,128 @@
 @extends('userdashboard')
 @section('styles')
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">    
 @endsection
 @section('content')
 <div class="card">
    <div class="card-body">
-      <table class="table">
+   <table class="table" style="margin-bottom: 50px;">
+      <thead>
+         <tr>
+            <th scope="col">#</th>
+            <th scope="col">Status</th>
+            <th scope="col">Due</th>
+            <th scope="col">Paid on</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Actions</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td></td>
+            <td></td>
+         </tr>
+      </tbody>
+   </table>
+
+      <!-- Invoice section -->
+   <header>
+      <h2>INVOICE {{$invoice->invoice_id}}</h2>
+
+      <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="border-0 pl-0 party-header" width="48.5%" style="text-align: left;">
+                        Seller
+                    </th>
+                    <th class="border-0" width="3%"></th>
+                    <th class="border-0 pl-0 party-header" style="text-align: left;">
+                        Client
+                    </th>
+                </tr>
+            </thead>
+             <tbody>
+                 <tr>
+                     <td class="px-0" style="text-align: left;">
+                        <div>{{$user->name}}</div>
+                        <div><a href="mailto:{{$user->email}}">{{$user->email}}</a></div>
+                     </td>
+                     <td class="border-0"></td>
+                     <td class="px-0" style="text-align: left;">
+                        <div><span>Invoice for : </span> &nbsp; <strong>{{$task->name}}</strong></div>
+                        <div><span>Scheduled On :</span> &nbsp; {{\Carbon\Carbon::parse("$task->start_date")->toFormattedDateString()}}</div>
+                        <div><span>Name :</span>&nbsp; {{$client->firstname}} &nbsp; {{$client->lastname}}</div>
+                        <div><span>EMAIL :</span>&nbsp; <a href="{{$client->email}}">{{$client->email}}</a></div>
+                        <div><span>COUNTRY :</span>&nbsp; {{$client->country}}</div>
+                        <div><span>DUE DATE :</span>&nbsp; {{\Carbon\Carbon::parse("$task->end_date")->toFormattedDateString()}}</div>
+                     </td>
+                 </tr>
+            </tbody>
+              </table>
+    </header>
+    <main>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Product / Package</th>
+            <th scope="col">Description</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{$invoice->name}}</td>
+            <td>{!! $invoice->description !!}</td>
+            <td>${{$invoice->price}}</td>
+            <td>{{$invoice->quantity}}</td>
+            <td>${{$invoice->total}}</td>
+          </tr>
+          <tr>
+             <td></td>
+             <td></td>   
+             <td></td>
+            <td><strong>SUBTOTAL</strong></td>
+            <td>${{$invoice->total}}</td>
+          </tr>
+
+          <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td><strong>TOTAL</strong></td>
+             <td>${{$invoice->total}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="notices">
+        <div>NOTES:</div>
+        <div class="notice">{{$invoice->notes}}</div>
+      </div>
+    </main>
+
+   <table class="table" style="margin-top: 50px;">
       <thead>
          <tr>
             <th scope="col">#</th>
@@ -45,145 +162,34 @@
       </table>
 
 
-
-
-
-      <div class="container">
-         <div class="col-md-12">
-            <div class="invoice">
-               <!-- begin invoice-company -->
-               <div class="invoice-company text-inverse f-w-600">
-                  <span class="pull-right hidden-print">
-                  <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a>
-                  <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
-                  </span>
-                  Company Name, Inc
-               </div>
-               <!-- end invoice-company -->
-               <!-- begin invoice-header -->
-               <div class="invoice-header">
-                  <div class="invoice-from">
-                     <small>from</small>
-                     <address class="m-t-5 m-b-5">
-                        <strong class="text-inverse">Twitter, Inc.</strong><br>
-                        Street Address<br>
-                        City, Zip Code<br>
-                        Phone: (123) 456-7890<br>
-                        Fax: (123) 456-7890
-                     </address>
-                  </div>
-                  <div class="invoice-to">
-                     <small>to</small>
-                     <address class="m-t-5 m-b-5">
-                        <strong class="text-inverse">Company Name</strong><br>
-                        Street Address<br>
-                        City, Zip Code<br>
-                        Phone: (123) 456-7890<br>
-                        Fax: (123) 456-7890
-                     </address>
-                  </div>
-                  <div class="invoice-date">
-                     <small>Invoice / July period</small>
-                     <div class="date text-inverse m-t-5">August 3,2012</div>
-                     <div class="invoice-detail">
-                        #0000123DSS<br>
-                        Services Product
-                     </div>
-                  </div>
-               </div>
-               <!-- end invoice-header -->
-               <!-- begin invoice-content -->
-               <div class="invoice-content">
-                  <!-- begin table-responsive -->
-                  <div class="table-responsive">
-                     <table class="table table-invoice">
-                        <thead>
-                           <tr>
-                              <th>TASK DESCRIPTION</th>
-                              <th class="text-center" width="10%">RATE</th>
-                              <th class="text-center" width="10%">HOURS</th>
-                              <th class="text-right" width="20%">LINE TOTAL</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>
-                                 <span class="text-inverse">Website design &amp; development</span><br>
-                                 <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
-                              </td>
-                              <td class="text-center">$50.00</td>
-                              <td class="text-center">50</td>
-                              <td class="text-right">$2,500.00</td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <span class="text-inverse">Branding</span><br>
-                                 <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
-                              </td>
-                              <td class="text-center">$50.00</td>
-                              <td class="text-center">40</td>
-                              <td class="text-right">$2,000.00</td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <span class="text-inverse">Redesign Service</span><br>
-                                 <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
-                              </td>
-                              <td class="text-center">$50.00</td>
-                              <td class="text-center">50</td>
-                              <td class="text-right">$2,500.00</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <!-- end table-responsive -->
-                  <!-- begin invoice-price -->
-                  <div class="invoice-price">
-                     <div class="invoice-price-left">
-                        <div class="invoice-price-row">
-                           <div class="sub-price">
-                              <small>SUBTOTAL</small>
-                              <span class="text-inverse">$4,500.00</span>
-                           </div>
-                           <div class="sub-price">
-                              <i class="fa fa-plus text-muted"></i>
-                           </div>
-                           <div class="sub-price">
-                              <small>PAYPAL FEE (5.4%)</small>
-                              <span class="text-inverse">$108.00</span>
-                           </div>
+<hr>
+                  <div class="row justify-content-between" style="background-color: #ccc;padding:15px;">
+                      <div class="col-md-4 mb-2"><h5><strong>Payment Schedule</strong></h5></div>
+                      <div class="col-md-4 mb-2">
+                         {!! Form::text('payment_schedule', null, ['placeholder' => "25% Deposit + 75% due 14 days before Main Shoot Date",'class' => "form-control","disabled"=>true]) !!}
                         </div>
-                     </div>
-                     <div class="invoice-price-right">
-                        <small>TOTAL</small> <span class="f-w-600">$4508.00</span>
-                     </div>
+                      <div class="col-md-4 mb-2"></div>                    
                   </div>
-                  <!-- end invoice-price -->
-               </div>
-               <!-- end invoice-content -->
-               <!-- begin invoice-note -->
-               <div class="invoice-note">
-                  * Make all cheques payable to [Your Company Name]<br>
-                  * Payment is due within 30 days<br>
-                  * If you have any questions concerning this invoice, contact  [Name, Phone Number, Email]
-               </div>
-               <!-- end invoice-note -->
-               <!-- begin invoice-footer -->
-               <div class="invoice-footer">
-                  <p class="text-center m-b-5 f-w-600">
-                     THANK YOU FOR YOUR BUSINESS
-                  </p>
-                  <p class="text-center">
-                     <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> matiasgallipoli.com</span>
-                     <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:016-18192302</span>
-                     <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> rtiemps@gmail.com</span>
-                  </p>
-               </div>
-               <!-- end invoice-footer -->
-            </div>
-         </div>
-      </div>
-</div>
+
+<hr>
+                  <div class="row justify-content-between" style="background-color: #ccc;padding:15px;">
+                      <div class="col-md-4 mb-2"><h5><strong>Contract</strong></h5></div>
+                      <div class="col-md-4 mb-2">{!! Form::text('contract_id', null, ['placeholder' => "Sample Wedding Contract",'class' => "form-control",'id'=>'contract','disabled'=>true]) !!}</div>
+                      <div class="col-md-4 mb-2"></div>                    
+                  </div>
+
+
+<hr>
+                  <div class="row" style="background-color: #ccc;padding:15px;">
+                      <div class="col-md-4"><h4><strong>Questionnaire</strong></h4></div>
+                      <div class="col-md-4">{!! Form::text('questionaire_id', null, ['placeholder' => "None",'class' => "form-control",'disabled'=>true]) !!}</div>
+                      <div class="col-md-4"></div>                    
+                  </div>
+
+
+
+
+   </div>
 </div>
 
 @endsection
