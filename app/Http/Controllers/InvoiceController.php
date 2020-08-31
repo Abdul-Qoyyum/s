@@ -122,7 +122,7 @@ class InvoiceController extends Controller
         $taxes = $this->getTaxOptions();
         $contracts = $this->getContracts();
         $questionaires = $this->getQuestionaires();
-        return view('users.invoice.create',compact('task','packages','taxes','contracts','client','job','workflow','questionaires'));
+        return view('users.invoice.edit',compact('task','packages','taxes','contracts','client','job','workflow','questionaires','invoice'));
 
     }
 
@@ -135,7 +135,36 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($request->task_id);
+        // make package name update optional
+        $package = ($request->has('package_id') && !empty($request->input('package_id'))) ? Package::findOrFail($request->package_id) : null;
+
+        $name = []; 
+
+        if($package){
+           $name =  ['name' => $package->name,]; //change package name if only it exists
+        }
+        
+            $invoiceDetails = $request->only([
+                'invoice_id',
+                'issue_date',
+                'po_number',
+                'notes',
+                'contracts',
+                'description',
+                'price',
+                'quantity',
+                'discount',
+                'subtotal',
+                'total',]) + [
+                    'task_id' => $task->id,] + $name;
+            // update the invoice resource
+            $invoice = InvoiceModel::where('id',$id)->update($invoiceDetails);
+
+            notify()->success('Updated Successfully');
+            //  redirect back to the task page
+            return redirect()->route('jobs.show',$task->id);
+
     }
 
     /**
@@ -146,9 +175,13 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        InvoiceModel::findOrFail($id)->delete();
+        $invoice = InvoiceModel::findOrFail($id);
+        // Grab corresponding task id
+        $task_id = $invoice->task->id;
+        // Delete invoice
+        $invoice->delete();
         notify()->success("Deleted Successfully");
-        return redirect()->route('jobs.index');
+        return redirect()->route('jobs.show',$task_id);
     }
 
     /**
