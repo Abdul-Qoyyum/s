@@ -16,6 +16,8 @@ use App\Contract;
 
 use App\Questionaire;
 
+use App\PaymentSchedule;
+
 trait HelperTraits{
 
     /**
@@ -106,6 +108,18 @@ trait HelperTraits{
            $questionaires[$questionaire->id] = $questionaire->name; 
         }
         return $questionaires;
+    }
+
+    /**
+     * Get payment schedule for invoice view
+     */
+    public function getPaymentSchedules(){
+        $paymentScheduleCollection = PaymentSchedule::all();
+        $paymentSchedules = [];
+        foreach($paymentScheduleCollection as $paymentSchedule){
+          $paymentSchedules[$paymentSchedule->id] = $paymentSchedule->name;
+        }
+        return $paymentSchedules;
     }
 
 }

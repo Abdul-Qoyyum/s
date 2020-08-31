@@ -143,10 +143,11 @@
                     {!! Form::textarea('notes', null, ['class'=>'form-control','placeholder'=>'These are additional notes you wish to add to your invoice']) !!}
                   </div>
 
+
 <hr>
                   <div class="row justify-content-between" style="background-color: #ccc;padding:15px;">
                       <div class="col-md-4 mb-2"><h5><strong>Do you want to assign a payment schedule to this invoice?</strong></h5></div>
-                      <div class="col-md-4 mb-2">{!! Form::select('payment_schedule', [], null, ['placeholder' => "None",'class' => "form-control","disabled"=>true]) !!}</div>
+                      <div class="col-md-4 mb-2">{!! Form::select('payment_schedule_id', $paymentSchedules, null, ['placeholder' => "None",'class' => "form-control"]) !!}</div>
                       <div class="col-md-4 mb-2"></div>                    
                   </div>
 

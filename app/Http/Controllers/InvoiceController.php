@@ -122,7 +122,8 @@ class InvoiceController extends Controller
         $taxes = $this->getTaxOptions();
         $contracts = $this->getContracts();
         $questionaires = $this->getQuestionaires();
-        return view('users.invoice.edit',compact('task','packages','taxes','contracts','client','job','workflow','questionaires','invoice'));
+        $paymentSchedules = $this->getPaymentSchedules();
+        return view('users.invoice.edit',compact('task','packages','taxes','contracts','client','job','workflow','questionaires','invoice','paymentSchedules'));
 
     }
 
