@@ -19,34 +19,27 @@
       </thead>
       <tbody>
          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row"></th>
             <td></td>
             <td></td>
-         </tr>
-         <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
             <td></td>
-            <td></td>
-         </tr>
-         <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
             <td></td>
             <td></td>
          </tr>
       </tbody>
    </table>
 
+<div class="mb-3 w-100">
+   <button type="button" class="btn btn-light"><i class="fa fa-send-o mr-2"></i>Send Invoice</button>
+   <a href="{{route('invoice.preview',$invoice->id)}}" target="_blank" class="btn btn-light"><i class="fa fa-eye mr-2" aria-hidden="true"></i> Preview</a>
+   <a href="{{route('invoice.edit',$invoice->id)}}" class="btn btn-light"><i class="fas fa-edit mr-2"></i>Edit</a>
+   <a href="{{route('invoice.download',$invoice->id)}}" class="btn btn-light"><i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>Save As PDF</a>
+   {!! Form::open(['route'=>['invoice.destroy',$invoice->id],'method'=>'DELETE','class'=>"form-inline"]) !!}
+   <button type="submit" class="btn btn-light mt-2"><i class="fa fa-trash mr-2" aria-hidden="true"></i> Delete</button> 
+   {!! Form::close() !!}
+</div>
+
       <!-- Invoice section -->
-   <header>
       <h2>INVOICE {{$invoice->invoice_id}}</h2>
 
       <table class="table table-striped">
@@ -79,7 +72,6 @@
                  </tr>
             </tbody>
               </table>
-    </header>
     <main>
       <table class="table table-striped">
         <thead>
@@ -95,7 +87,7 @@
           <tr>
             <td>{{$invoice->name}}</td>
             <td>{!! $invoice->description !!}</td>
-            <td>${{$invoice->price}}</td>
+            <td>${{$invoice->total}}</td>
             <td>{{$invoice->quantity}}</td>
             <td>${{$invoice->total}}</td>
           </tr>
@@ -135,26 +127,10 @@
       </thead>
       <tbody>
          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row"></th>
             <td></td>
             <td></td>
-         </tr>
-         <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
             <td></td>
-            <td></td>
-         </tr>
-         <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
             <td></td>
             <td></td>
          </tr>

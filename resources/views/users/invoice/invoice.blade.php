@@ -192,7 +192,7 @@
           <tr>
             <td class="service">{{$invoice->name}}</td>
             <td class="desc">{!! $invoice->description !!}</td>
-            <td class="unit">${{$invoice->price}}</td>
+            <td class="unit">${{$invoice->total}}</td>
             <td class="qty">{{$invoice->quantity}}</td>
             <td class="total">${{$invoice->total}}</td>
           </tr>
@@ -202,7 +202,7 @@
           </tr>
 
           <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
+            <td colspan="4" class="grand total">TOTAL</td>
             <td class="grand total">${{$invoice->total}}</td>
           </tr>
         </tbody>
@@ -212,7 +212,7 @@
         <div class="notice">{{$invoice->notes}}</div>
       </div>
     </main>
-    <footer>
+    <footer style="text-align: center;">
       Invoice was created on a computer and is valid without the signature and seal.
     </footer>
   </body>

@@ -10,14 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Auth;
 
-// use LaravelDaily\Invoices\Invoice;
-
-// use LaravelDaily\Invoices\Classes\Party;
-
-// use LaravelDaily\Invoices\Classes\Buyer;
-
-// use LaravelDaily\Invoices\Classes\InvoiceItem;
-
 use App\Task;
 
 use App\Invoice as InvoiceModel;
@@ -34,6 +26,11 @@ class InvoiceController extends Controller
 {
 
     use HelperTraits;
+
+    public function __construct(){
+       $this->middleware('auth');
+    }
+    
 
     /**
      * Display a listing of the resource.
@@ -100,22 +97,10 @@ class InvoiceController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-
-        // return $user;
-
         $invoice = InvoiceModel::findOrFail($id);
-
-        // return $invoice;
-
         $task = $invoice->task;
-
-        // return $task;
-
         $client = $task->client;
-
-        // return $client;
-
-      return view('users.invoice.show',compact('user','invoice','task','client'));
+        return view('users.invoice.show',compact('user','invoice','task','client'));
     }
 
     /**
@@ -126,7 +111,19 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoice = InvoiceModel::findOrFail($id);
+        $task = $invoice->task;
+        $client = $task->client;
+        $job = $task->job;
+        $workflow = $task->workflow;
+
+//      Options
+        $packages = $this->getAllPackages();
+        $taxes = $this->getTaxOptions();
+        $contracts = $this->getContracts();
+        $questionaires = $this->getQuestionaires();
+        return view('users.invoice.create',compact('task','packages','taxes','contracts','client','job','workflow','questionaires'));
+
     }
 
     /**
@@ -149,7 +146,9 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        InvoiceModel::findOrFail($id)->delete();
+        notify()->success("Deleted Successfully");
+        return redirect()->route('jobs.index');
     }
 
     /**
@@ -170,7 +169,7 @@ class InvoiceController extends Controller
         $taxes = $this->getTaxOptions();
         $contracts = $this->getContracts();
         $questionaires = $this->getQuestionaires();
-         return view('users.invoice.create',compact('task','packages','taxes','contracts','client','job','workflow','questionaires'));
+        return view('users.invoice.create',compact('task','packages','taxes','contracts','client','job','workflow','questionaires'));
     }
 
 
@@ -195,42 +194,35 @@ class InvoiceController extends Controller
     }
 
     /**
-     * Render invoice pdf format
+     * Renders invoice pdf format
      * @param int $id
      */
     public function preview($id){
-
         $user = Auth::user();
-
-        // return $user;
-
         $invoice = InvoiceModel::findOrFail($id);
-
-        // return $invoice;
-
         $task = $invoice->task;
-
-        // return $task;
-
         $client = $task->client;
-
-        // return $client;
-
         $view = view('users.invoice.invoice',compact('user','task','client','invoice'))->render();
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream();
-
-        // $data = [];
-
-        // $pdf = PDF::loadView('userdashboard',compact('data'));
-
-        // return $pdf->download('invoice.pdf');
-
-        // return $pdf->stream();
-
-
     }
+
+    /**
+     * Download the pdf for the invoice
+     * @param int $id 
+     */
+    public function downloadPDF($id){
+        $user = Auth::user();
+        $invoice = InvoiceModel::findOrFail($id);
+        $task = $invoice->task;
+        $client = $task->client;
+        $view = view('users.invoice.invoice',compact('user','task','client','invoice'))->render();
+        $pdf = PDF::loadHtml($view);
+        $time = \Carbon\Carbon::now();
+        return $pdf->download("invoice-$time.pdf");
+    }
+
 
 
 }

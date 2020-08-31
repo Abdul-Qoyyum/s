@@ -61,6 +61,7 @@ Route::patch('invoice/job/{id}','InvoiceController@updateTask')->name('invoice.t
 
 Route::get('invoice/{id}/show','InvoiceController@preview')->name('invoice.preview');
 
+Route::get('invoice/{id}/download','InvoiceController@downloadPDF')->name('invoice.download');
 
 // Calendar route
 Route::get('calendar','CalendarController@index')->name('calendar.index');
