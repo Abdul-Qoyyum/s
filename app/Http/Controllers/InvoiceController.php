@@ -60,6 +60,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+                
         $task = Task::findOrFail($request->task_id);
 
         $package = Package::findOrFail($request->package_id);
@@ -257,6 +258,8 @@ class InvoiceController extends Controller
         return $pdf->download("invoice-$time.pdf");
     }
 
-
+    public function updateNote(){
+        
+    }
 
 }

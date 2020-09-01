@@ -88,12 +88,28 @@
 
                             </div>                                              
                       </div>       
+                      <hr>  
                       @endforeach
-
-
                 </div>
               </div>
               <!-- End invoice section -->
+                    <!-- notes section -->
+                    <div class="card shadow mb-4 w-100">
+                        <div class="card-header py-3 d-flex justify-content-between">
+                            <h2 class="text-left"><i class="fas fa-sticky-note mr-2"></i><span class="job">Notes:</span></h2> 
+                        </div>
+                      <div class="card-body">
+                        <div class="row mt-2">
+                            <div class="col">
+                                <p class="text-center">Make your notes a work of art</p>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a  href="#" class="btn btn-light mr-2"><i class="fa fa-plus mr-2" aria-hidden="true"></i> Add Notes</a>
+                                </div>
+                           </div>                
+                       </div>       
+                      </div>
+                    </div>
+
           </div>
     </div>
   </div>

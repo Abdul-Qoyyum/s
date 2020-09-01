@@ -27,3 +27,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/package','Api\PackageController@getAllPackage')->name('package.all');
 
 Route::get('/contract','Api\ContractController@getAllContract')->name('contract.all');
+
+Route::get('/email/templates','Api\EmailTemplateController@index')->name('template.all');
