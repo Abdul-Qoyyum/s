@@ -270,7 +270,7 @@ class InvoiceController extends Controller
         // return $request->all();
     //   remember to convert template's parameters
       try{
-            Mail::raw($request->message, function ($message) use ($request) {
+            Mail::send([], [], function ($message) use ($request) {
                 $user = Auth::user();
                 //   $message->from($user->email, $user->name);
                 $message->sender($user->email, $user->name);
@@ -279,12 +279,15 @@ class InvoiceController extends Controller
                 //   $message->bcc('john@johndoe.com', 'John Doe');
                 //   $message->replyTo('john@johndoe.com', 'John Doe');
                 $message->subject($request->subject);
+                $message->setBody($request->message,'text/html');
                 //   $message->priority(3);
                 //   $message->attach('pathToFile');
             });
 
+            notify()->success("Message Sent");
+            return redirect()->back();
+
       }catch(\Exception $e){
-          return $e->getMessage();
           notify()->warning("Oops something went wrong :)");
           return redirect()->back();
       }
