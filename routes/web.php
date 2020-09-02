@@ -63,6 +63,19 @@ Route::get('invoice/{id}/show','InvoiceController@preview')->name('invoice.previ
 
 Route::get('invoice/{id}/download','InvoiceController@downloadPDF')->name('invoice.download');
 
+Route::post('invoice/send','InvoiceController@send')->name('invoice.send');
+
+// Portal routes
+Route::get('portal/contract/{id}')->name('portal.contract');
+
+Route::get('portal/invoice/{id}')->name('portal.invoice');
+
+Route::get('portal/questionnaire/{id}')->name('portal.questionnaire');
+
+Route::get('portal/quote/{id}')->name('portal.quote');
+
+
+
 // Calendar route
 Route::get('calendar','CalendarController@index')->name('calendar.index');
 

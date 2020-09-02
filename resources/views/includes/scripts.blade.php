@@ -2,7 +2,11 @@
 @include('includes.userTinymce')
     <script>
        $(document).ready(function(){
-        
+
+            tinymce.init({
+              selector: '#emailTemplate'
+            });
+
             // show company input form
             $('#display').click(function(){
                $('.company').toggleClass('hidden');
@@ -26,7 +30,21 @@
               }
             });
 
-
+            // get all email templates
+            $.get("{{route('template.all')}}",function(data, status){
+              var res = data.data;
+              // continue if request succeed
+              if(status == "success"){
+                $('#email_template_id').change(function(){
+                  let templateId = $(this).children("option:selected").val();
+                  let selectedTemplate = res.filter(template => template.id == templateId)[0];
+                  // set the subject
+                  $('input[name="subject"]').val(selectedTemplate.subject);
+                  // set the editor's body
+                  tinymce.get("emailTemplate").setContent(selectedTemplate.message); 
+                });
+              }
+            });
 
             // validate input client form input
             $("#client").validate({

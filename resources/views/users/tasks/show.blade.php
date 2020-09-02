@@ -83,7 +83,7 @@
 
                                 <div class="d-flex justify-content-start">
                                     <a  href="{{route('invoice.show',$invoice->id)}}" class="btn btn-light mr-2"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                                    <div class="btn btn-light"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</div>
+                                    <div class="btn btn-light" data-toggle="modal" data-target="#sendInvoice"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</div>
                                 </div>
 
                             </div>                                              
@@ -114,6 +114,8 @@
     </div>
   </div>
 </div>    
+
+<!-- Modal section starts here -->
 
 <!-- Edit Job Modal -->
 <div class="modal fade modal_1" id="editJob" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -363,6 +365,45 @@
   </div>
 </div>
 
+<!-- send Invoice modal -->
+<!-- Modal -->
+<div class="modal fade modal_1" id="sendInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Send Invoice</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['route'=>'invoice.send','id'=>"sendInvoiceForm"]) !!}
+        <div class="form-group">
+            {!! Form::label('email', 'To',['class'=>"font-weight-bold"]) !!}
+            {!! Form::text('email', $client->email, ['class' => 'form-control']) !!}
+        </div>
+        {!! Form::hidden('name', "$client->firstname &nbsp; $client->lastname") !!}
+        <div class="form-group">
+          {!! Form::label('email_template_id', 'Choose email template',['class'=>"font-weight-bold"]) !!}
+          {!! Form::select('email_template_id', $emailTemplates, null, ['class'=>'form-control','placeholder'=>'Choose an existing email template','id'=>'email_template_id']) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('subject', 'Subject',['class'=>"font-weight-bold"]) !!}
+          {!! Form::text('subject', null, ['class'=>"form-control"]) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('message', 'Message',['class'=>"font-weight-bold"]) !!}
+          {!! Form::textarea('message', null, ['class'=>'form-control','id'=>"emailTemplate"]) !!}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Send</button>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
 
 @endsection
 @include('includes.scripts')

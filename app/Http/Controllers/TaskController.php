@@ -89,13 +89,13 @@ class TaskController extends Controller
         $workflow = $task->workflow;
         //Get all invoices for the task
         $invoices = $task->invoices;
-//      Options
+        //Options
         $clients = $this->getUserClients();
         $jobs = $this->getJobs();
         $workflows = $this->getWorkflows();
-
+        $emailTemplates = $this->getEmailTemplates();
         // $product $task->product;
-        return view('users.tasks.show',compact('task','job','workflow','client','invoices','clients','jobs','workflows'));
+        return view('users.tasks.show',compact('task','job','workflow','client','invoices','clients','jobs','workflows','emailTemplates'));
 
     }
 

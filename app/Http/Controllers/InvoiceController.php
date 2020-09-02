@@ -22,6 +22,8 @@ use App;
 
 use PDF;
 
+use Mail;
+
 class InvoiceController extends Controller
 {
 
@@ -256,6 +258,38 @@ class InvoiceController extends Controller
         $pdf = PDF::loadHtml($view);
         $time = \Carbon\Carbon::now();
         return $pdf->download("invoice-$time.pdf");
+    }
+
+    /**
+     * Send the invoice
+     */
+    public function send(Request $request){
+
+        // return $user;
+        
+        // return $request->all();
+    //   remember to convert template's parameters
+      try{
+            Mail::raw($request->message, function ($message) use ($request) {
+                $user = Auth::user();
+                //   $message->from($user->email, $user->name);
+                $message->sender($user->email, $user->name);
+                $message->to($request->email, $request->name);
+                //   $message->cc('john@johndoe.com', 'John Doe');
+                //   $message->bcc('john@johndoe.com', 'John Doe');
+                //   $message->replyTo('john@johndoe.com', 'John Doe');
+                $message->subject($request->subject);
+                //   $message->priority(3);
+                //   $message->attach('pathToFile');
+            });
+
+      }catch(\Exception $e){
+          return $e->getMessage();
+          notify()->warning("Oops something went wrong :)");
+          return redirect()->back();
+      }
+
+
     }
 
     public function updateNote(){

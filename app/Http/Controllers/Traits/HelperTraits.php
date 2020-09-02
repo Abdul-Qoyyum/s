@@ -18,10 +18,12 @@ use App\Questionaire;
 
 use App\PaymentSchedule;
 
+use App\EmailTemplate;
+
 trait HelperTraits{
 
     /**
-     * Organise jobs for leads
+     * Get all jobs
      */
     public function getJobs(){
         //Get all job's collection
@@ -35,7 +37,7 @@ trait HelperTraits{
     }
 
     /**
-     * Organize workflows for lead
+     * Get all workflows
      */
     public function getWorkflows(){
         //Get all workflow's collection
@@ -49,7 +51,7 @@ trait HelperTraits{
     }
 
     /**
-     * Organize user's clients for leads
+     * Get all user's clients
      */
     public function getUserClients(){
         // get user's clients
@@ -63,7 +65,7 @@ trait HelperTraits{
 
 
     /**
-     * Organise all packages for invoice
+     * Get all packages
      */
     public function getAllPackages(){
        $packageCollection = Package::all();
@@ -75,7 +77,7 @@ trait HelperTraits{
     }
 
     /**
-     * Organise all tax options for invoice view
+     * Get all tax options
      */
     public function getTaxOptions(){
         $optionCollection = Option::all();
@@ -87,7 +89,7 @@ trait HelperTraits{
     }
 
     /**
-     * Organise Contracts options for invoice view
+     * Get all Contracts
      */
     public function getContracts(){
         $contractCollection = Contract::all();
@@ -99,7 +101,7 @@ trait HelperTraits{
     }
 
     /**
-     * Organise Questionaire options for invoice view
+     * Get all Questionnaires
      */
     public function getQuestionaires(){
         $questionaireCollection = Questionaire::all();
@@ -111,7 +113,7 @@ trait HelperTraits{
     }
 
     /**
-     * Get payment schedule for invoice view
+     * Get all payment schedule
      */
     public function getPaymentSchedules(){
         $paymentScheduleCollection = PaymentSchedule::all();
@@ -122,4 +124,15 @@ trait HelperTraits{
         return $paymentSchedules;
     }
 
+    /**
+     * Get all email templates
+     */
+    public function getEmailTemplates(){
+       $emailTemplateCollection = EmailTemplate::all();
+       $emailTemplates = [];
+       foreach($emailTemplateCollection as $emailTemplate){
+         $emailTemplates[$emailTemplate->id] = $emailTemplate->name;
+       }
+       return $emailTemplates;
+    }
 }
