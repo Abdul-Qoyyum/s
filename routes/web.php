@@ -42,6 +42,9 @@ Route::resource('jobs','TaskController');
 
 Route::post('jobs/client','TaskController@client')->name('jobs.client');
 
+Route::patch('jobs/notes/{id}','TaskController@updateNote')->name('jobs.notes');
+
+
 // Admin routes
 Route::resource('user/posts', 'Admin\PostController');
 

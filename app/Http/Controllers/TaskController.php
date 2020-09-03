@@ -178,6 +178,18 @@ class TaskController extends Controller
 
     }
 
+    /**
+     * Update task's notes
+     * @param  \Illuminate\Http\Request  $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateNote(Request $request, $id){
+      Task::findOrFail($id)->update(['notes'=>$request->notes]);
+      notify()->success("Updated Successfully");
+      return redirect()->back();  
+    }
+
 
 
 }

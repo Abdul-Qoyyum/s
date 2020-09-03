@@ -268,11 +268,24 @@ class InvoiceController extends Controller
         // return $user;
         
         // return $request->all();
+
+        $validator = Validator::make($request->all(),[
+           'email' => 'required|email:rfc,dns',
+           'name'=>'required',
+           'subject'=>'required',
+           'message'=> 'required',
+        ]); 
+        
+        if($validator->fails()){
+           notify()->warning("Oops something went wrong :)");
+           return redirect()->back();
+        }
+
     //   remember to convert template's parameters
       try{
             Mail::send([], [], function ($message) use ($request) {
                 $user = Auth::user();
-                //   $message->from($user->email, $user->name);
+                // $message->from($user->email, $user->name);
                 $message->sender($user->email, $user->name);
                 $message->to($request->email, $request->name);
                 //   $message->cc('john@johndoe.com', 'John Doe');
