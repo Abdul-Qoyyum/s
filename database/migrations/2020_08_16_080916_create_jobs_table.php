@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateJobsTable extends Migration
 {
@@ -19,18 +20,19 @@ class CreateJobsTable extends Migration
             $table->timestamps();
         });
         DB::table('jobs')->insert([
-            ['name'=>'Commercial / Advertising', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Event', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Family Portrait', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Fashion', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Headshots', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Maternity', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Model portfolio', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Newborn', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Other', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Pet', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Real Estate and Architecture', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name'=>'Wedding', 'created_at'=> \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Commercial / Advertising', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Event', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Family Portrait', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Fashion', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Headshots', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Maternity', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Model portfolio', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Newborn', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Other', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Pet', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Real Estate and Architecture', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Wedding', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+
         ]);
     }
 

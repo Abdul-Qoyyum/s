@@ -109,14 +109,14 @@
 
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('jobs.index') }}">
+        <a class="nav-link" href="{{ route('payment.index') }}">
           <i class="fas fa-file-invoice"></i>
           <span>Payments</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('jobs.index') }}">
+        <a class="nav-link" href="{{ route('settings.index') }}">
           <i class="fa fa-cog" aria-hidden="true"></i>
           <span>Settings</span>
         </a>
