@@ -36,7 +36,6 @@ Route::resource('lead','LeadController');
 
 Route::post('lead/client','LeadController@client')->name('lead.client');
 
-
 // Jobs route
 Route::resource('jobs','TaskController');
 
@@ -55,6 +54,7 @@ Route::resource('admin/leads', 'Admin\LeadController');
 Route::resource('admin/users','Admin\UserController');
 
 
+
 // Invoice route
 Route::resource('invoice', 'InvoiceController');
 
@@ -67,6 +67,20 @@ Route::get('invoice/{id}/show','InvoiceController@preview')->name('invoice.previ
 Route::get('invoice/{id}/download','InvoiceController@downloadPDF')->name('invoice.download');
 
 Route::post('invoice/send','InvoiceController@send')->name('invoice.send');
+
+// Quotes route
+Route::resource('quote', 'QuoteController');
+
+Route::get('quote/{id}/invoice', 'QuoteController@task')->name('quote.invoice');
+
+Route::patch('quote/job/{id}','QuoteController@updateTask')->name('quote.task');
+
+Route::get('quote/{id}/show','QuoteController@preview')->name('quote.preview');
+
+Route::get('quote/{id}/download','QuoteController@downloadPDF')->name('quote.download');
+
+Route::post('quote/send','QuoteController@send')->name('quote.send');
+
 
 // Portal routes
 Route::get('portal/contract/{id}')->name('portal.contract');

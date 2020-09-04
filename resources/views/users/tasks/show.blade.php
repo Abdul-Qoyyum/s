@@ -93,6 +93,38 @@
                 </div>
               </div>
               <!-- End invoice section -->
+              <!-- Quotes section -->
+              <div class="card shadow mb-4 w-100">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h2 class="text-left"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i><span class="job">Quotes</span></h2> 
+                    <a href="{{route('quote.invoice',$task->id)}}" class="btn btn-success">Add Quote</a>
+                </div>
+                <div class="card-body">
+                    @foreach ($quotes as $quote)
+                      <div class="row mt-2">
+                            <div class="col">
+                                <div class="d-flex justify-content-between mb-2 bg-light">
+                                    <div class="col">Invoice {{$quote->invoice_id}}</div>
+                                    <div class="col">Total: ${{ $quote->total }}</div>
+                                </div>               
+                                <div class="d-flex justify-content-between mb-2 bg-light">
+                                    <div class="col">Next Payment Due 10 August 2020 (12 days ago)</div>
+                                    <div class="col">Balance Due: ${{ $quote->total }}</div>
+                                </div>               
+
+                                <div class="d-flex justify-content-start">
+                                    <a  href="{{route('quote.show',$quote->id)}}" class="btn btn-light mr-2"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                                    <div class="btn btn-light" data-toggle="modal" data-target="#sendQuotes"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</div>
+                                </div>
+
+                            </div>                                              
+                      </div>       
+                      <hr>  
+                      @endforeach
+                </div>
+              </div>
+
+              <!-- End Quotes section -->
                     <!-- notes section -->
                     <div class="card shadow mb-4 w-100">
                         <div class="card-header py-3 d-flex justify-content-between">
@@ -114,6 +146,7 @@
     </div>
   </div>
 </div>    
+
 
 <!-- Modal section starts here -->
 
@@ -404,6 +437,48 @@
     </div>
   </div>
 </div>
+
+<!-- Send Quote Modal -->
+<!-- Modal -->
+<div class="modal fade modal_1" id="sendQuotes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Send Quote</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['route'=>'quote.send','id'=>"sendQuoteForm"]) !!}
+        <div class="form-group">
+            {!! Form::label('email', 'To',['class'=>"font-weight-bold"]) !!}
+            {!! Form::text('email', $client->email, ['class' => 'form-control']) !!}
+        </div>
+        {!! Form::hidden('name', "$client->firstname &nbsp; $client->lastname") !!}
+        <div class="form-group">
+          {!! Form::label('email_template_id', 'Choose email template',['class'=>"font-weight-bold"]) !!}
+          {!! Form::select('email_template_id', $emailTemplates, null, ['class'=>'form-control quote','placeholder'=>'Choose an existing email template','id'=>'email_template_id']) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('subject', 'Subject',['class'=>"font-weight-bold"]) !!}
+          {!! Form::text('subject', null, ['class'=>"form-control"]) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('message', 'Message',['class'=>"font-weight-bold"]) !!}
+          {!! Form::textarea('message', null, ['class'=>'form-control message']) !!}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Send</button>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+
+
 
 <!-- Add Notes Modal -->
 <!-- Modal -->

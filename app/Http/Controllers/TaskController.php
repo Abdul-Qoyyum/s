@@ -14,6 +14,8 @@ use App\Job;
 
 use App\Task;
 
+use App\Quotes;
+
 use App\Workflow;
 
 
@@ -83,19 +85,20 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
-        // $invoices = Task::findOrFail($id)->with('invoices.product')->get();
         $client = $task->client;
         $job = $task->job;
         $workflow = $task->workflow;
         //Get all invoices for the task
         $invoices = $task->invoices;
+        // Get all quotes for the task
+        $quotes = $task->quotes;
         //Options
         $clients = $this->getUserClients();
         $jobs = $this->getJobs();
         $workflows = $this->getWorkflows();
         $emailTemplates = $this->getEmailTemplates();
         // $product $task->product;
-        return view('users.tasks.show',compact('task','job','workflow','client','invoices','clients','jobs','workflows','emailTemplates'));
+        return view('users.tasks.show',compact('task','job','workflow','client','invoices','quotes','clients','jobs','workflows','emailTemplates'));
 
     }
 

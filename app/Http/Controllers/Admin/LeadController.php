@@ -51,7 +51,7 @@ class LeadController extends Controller
      */
     public function show($id)
     {
-        //
+        return  "This page is currently under maintainance";
     }
 
     /**
