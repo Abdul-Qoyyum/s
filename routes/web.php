@@ -110,4 +110,15 @@ Route::resource('settings', 'SettingController');
 
 Route::get('account', 'SettingController@account');
 
+Route::get('company', 'SettingController@company');
+
+// Route::get('editcompany/{id}', 'SettingController@editview');
+Route::get('editcompany', 'SettingController@editview');
+
+Route::post('edited/{id}', 'SettingController@editview');
+
 // Route::view('account', 'users.settings.accountsubscription');
+
+Route::get('user', 'SettingController@user');
+
+Route::get('referfriend', 'SettingController@referfriend');

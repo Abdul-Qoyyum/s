@@ -96,4 +96,49 @@ class SettingController extends Controller
     {
         return view('users.settings.accountsubscription');
     }
+
+    /**
+     *  Company 
+     */
+
+    public function company(Request $request)
+    {
+        return view('users.settings.companies');
+    }
+
+    /**
+     * Show Company
+     */
+    // public function editview($id)
+    public function editview()
+    {
+        return view('users.settings.editcompany');
+    }
+
+    /**
+     * Edit Company
+     */
+
+    public function editcompany($id)
+    {
+        # code...
+    }
+
+    /**
+     *  Company User
+     */
+
+    public function user()
+    {
+        return view('users.settings.user');
+    }
+
+    /**
+     *  Company User Refer Friend
+     */
+
+    public function referfriend()
+    {
+        return view('users.settings.referfriend');
+    }
 }
