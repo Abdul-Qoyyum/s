@@ -90,3 +90,7 @@ Route::resource('payment', 'PaymentController');
 
 //  Settings route
 Route::resource('settings', 'SettingController');
+
+Route::get('account', 'SettingController@account');
+
+// Route::view('account', 'users.settings.accountsubscription');
