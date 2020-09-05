@@ -136,3 +136,146 @@ ul {
 .subscription-section {
     border: 0.5px solid gray;
 }
+
+
+/* Companies */
+
+.bc-wrap {
+    color: #8e8e98;
+    border-bottom: 1px solid #ececec;
+}
+
+.settings-section-header-title[_ngcontent-c20] {
+    color: #4e5e6a;
+}
+
+[_nghost-c22] .description-text-styles[_ngcontent-c22] {
+    font-weight: 100 !important;
+    font-size: 10px;
+    line-height: 25px !important;
+}
+
+.company-item__img-bg[_ngcontent-c23] {
+    width: 100%;
+    height: 130px;
+    background-color: #d7d7d7;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.company-item__img[_ngcontent-c23] {
+    width: 130px;
+    height: 130px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.company-item__img-bg[_ngcontent-c23] i[_ngcontent-c23] {
+    font-size: 50px;
+}
+
+.company-item__main[_ngcontent-c23] {
+    width: 100%;
+}
+
+.company-item__main-header[_ngcontent-c23] {
+    padding-bottom: 15px;
+    padding-top: 5px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.company-item[_ngcontent-c23] {
+    background-color: #f9f9f9;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    min-height: 170px;
+    border: 1px solid #f9f9f9;
+    margin-bottom: 30px;
+}
+
+.company-item__main-block[_ngcontent-c23] {
+    padding-top: 10px;
+    padding-bottom: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.company-item__buttons[_ngcontent-c23] {
+    padding-top: 20px;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.btn .fa,
+.btn .fi {
+    color: #949494;
+    font-size: inherit;
+    padding-right: 7px;
+    line-height: normal;
+}
+
+.fi-edit:before,
+.ion-md-fi-edit:before,
+.ion-ios-fi-edit:before,
+.ion-ios-fi-edit-outline:before {
+    content: '\e924';
+}
+
+.drop-zone[_ngcontent-c12] {
+    background: #f9f9f9;
+    border: 1px solid #f3f3f3;
+    overflow: hidden;
+}
+
+[_nghost-c13] {
+    display: flex;
+    align-items: center;
+    height: 180px;
+    background: #fff;
+    cursor: pointer;
+    color: #717386;
+    border: 2px dashed #717386;
+    border-radius: 5px;
+    font-size: 16px;
+    overflow-x: auto;
+}
+
+[_nghost-c13] input[_ngcontent-c13] {
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.btn-import:before {
+    content: "\f0ee";
+    /* font-family: 'Font Awesome 5 Free'; */
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+}

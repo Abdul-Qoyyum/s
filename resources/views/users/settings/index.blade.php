@@ -39,16 +39,15 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="">
+                            <a href="{{ url('/company') }}">
                             <strong ><i class="fas fa-house-user mr-1  pr-1"></i>Companies</strong>
                             <p class="text-muted">
                                 Add more companies, edit details, branding and GDPR.
-
                             </p>
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="">
+                            <a href="{{ url('/user') }}">
                             <strong ><i class="fas fa-users mr-1  pr-1"></i>Users</strong>
                             <p class="text-muted">
                                 Add more users to your account.
@@ -56,7 +55,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="">
+                            <a href="{{ url('/referfriend') }}">
                             <strong ><i class="fas fa-user-plus mr-1  pr-1"></i>Refer a Friend</strong>
                             <p class="text-muted">
                                 Refer a friend and get AUD $5 off.

@@ -53,7 +53,7 @@ class PaymentController extends Controller
      * @param  \App\PaymentSchedule  $paymentSchedule
      * @return \Illuminate\Http\Response
      */
-    public function show(PaymentSchedule $paymentSchedule)
+    public function show(Payment $payment)
     {
         //
     }
@@ -64,7 +64,7 @@ class PaymentController extends Controller
      * @param  \App\PaymentSchedule  $paymentSchedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(PaymentSchedule $paymentSchedule)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -76,7 +76,7 @@ class PaymentController extends Controller
      * @param  \App\PaymentSchedule  $paymentSchedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PaymentSchedule $paymentSchedule)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -87,7 +87,7 @@ class PaymentController extends Controller
      * @param  \App\PaymentSchedule  $paymentSchedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaymentSchedule $paymentSchedule)
+    public function destroy(Payment $payment)
     {
         //
     }
