@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'company', 'fk_currency', 'fk_timezone', 'name', 'email', 'password', 'currency', 'timezone'
     ];
 
     /**
@@ -60,37 +60,40 @@ class User extends Authenticatable
     /**
      * Get user's posts
      */
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany('App\Post');
     }
 
     /**
      * Get user's photo
      */
-    public function photo(){
+    public function photo()
+    {
         return $this->morphOne('App\Photo', 'imageable');
     }
 
     /**
      * Get user's clients
      */
-    public function clients(){
-       return $this->hasMany('App\Client');
+    public function clients()
+    {
+        return $this->hasMany('App\Client');
     }
 
     /**
      * Get user's leads
      */
-    public function leads(){
+    public function leads()
+    {
         return $this->hasMany('App\Lead');
     }
 
     /**
      * Get user's tasks (Jobs)
      */
-    public function tasks(){
+    public function tasks()
+    {
         return $this->hasMany('App\Task');
     }
-
-    
 }

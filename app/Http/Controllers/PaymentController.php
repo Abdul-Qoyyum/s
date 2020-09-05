@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\PaymentSchedule;
+use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\HelperTraits;
 
@@ -33,6 +33,7 @@ class PaymentController extends Controller
     public function create()
     {
         //
+
     }
 
     /**

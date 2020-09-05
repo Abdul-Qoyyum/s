@@ -31,7 +31,7 @@
                             </div>
                         </li>
                         <li class="list-group-item">
-                            <a href="">
+                            <a href="{{ url('/account') }}">
                             <strong ><i class="fas fa-address-card mr-1  pr-1"></i>Account & Subscription</strong>
                             <p class="text-muted">
                                 Login, password, subscription and billing information
@@ -77,7 +77,7 @@
                                              <i class="fi fi-company"></i>
                                         </div>
                                         <h4 class="card-title ">Company Setting</h4>
-                                        <p class="text-muted">Applied to <strong>zainab</strong> only</p>
+                                        <p class="text-muted">Applied to <strong>{{auth()->user()->name}}</strong> only</p>
                                     </div>
                                 </div>
                                 <div class="text-right">

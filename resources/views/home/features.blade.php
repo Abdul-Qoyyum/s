@@ -65,11 +65,11 @@ Created just for you, Studio Ninja boasts a beautifully designed user interface 
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='rs-plugin-settings-css'  href='https://www.studioninja.co/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.2.15' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-plugin-settings-css'  href='{{ asset('css/features/slider.css') }}' type='text/css' media='all' />
     <style id='rs-plugin-settings-inline-css' type='text/css'>
         .tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}
     </style>
-    <link rel='stylesheet' id='avada-stylesheet-css'  href='https://www.studioninja.co/wp-content/themes/Avada/assets/css/style.min.css?ver=6.2.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='avada-stylesheet-css'  href='{{ asset('css/features/wpcontent') }}' type='text/css' media='all' />
     <!--[if IE]>
     <link rel='stylesheet' id='avada-IE-css'  href='https://www.studioninja.co/wp-content/themes/Avada/assets/css/ie.min.css?ver=6.2.3' type='text/css' media='all' />
     <style id='avada-IE-inline-css' type='text/css'>
@@ -77,7 +77,7 @@ Created just for you, Studio Ninja boasts a beautifully designed user interface 
         .select-arrow{background-color:#ffffff}
     </style>
     <![endif]-->
-    <link rel='stylesheet' id='slb_core-css'  href='https://www.studioninja.co/wp-content/plugins/simple-lightbox/client/css/app.css?ver=2.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='slb_core-css'  href='{{ asset('css/features/slb_core.css') }}' type='text/css' media='all' />
     <link rel='stylesheet' id='rpt-css'  href='https://www.studioninja.co/wp-content/plugins/dk-pricr-responsive-pricing-table/inc/css/rpt_style.min.css?ver=5.4.2' type='text/css' media='all' />
     <!-- <script>if (document.location.protocol != "https:") {document.location = document.URL.replace(/^http:/i, "https:");}</script><script type='text/javascript' src='https://www.studioninja.co/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script> -->
     <script type='text/javascript' src='https://www.studioninja.co/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>

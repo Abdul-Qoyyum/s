@@ -91,4 +91,9 @@ class SettingController extends Controller
     {
         //
     }
+
+    public function account(Request $request)
+    {
+        return view('users.settings.accountsubscription');
+    }
 }
