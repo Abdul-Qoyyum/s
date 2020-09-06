@@ -32,17 +32,21 @@ Route::resource('client', 'ClientController');
 
 
 // lead routes
+Route::get('lead/export','LeadController@export')->name('lead.export');
+
 Route::resource('lead', 'LeadController');
 
 Route::post('lead/client', 'LeadController@client')->name('lead.client');
 
 // Jobs route
+
+Route::get('jobs/export','TaskController@export')->name('jobs.export');
+
 Route::resource('jobs', 'TaskController');
 
 Route::post('jobs/client', 'TaskController@client')->name('jobs.client');
 
 Route::patch('jobs/notes/{id}','TaskController@updateNote')->name('jobs.notes');
-
 
 // Admin routes
 Route::resource('user/posts', 'Admin\PostController');

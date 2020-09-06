@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
+use App\Exports\LeadExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Job;
 
 use App\Lead;
@@ -158,5 +162,14 @@ class LeadController extends Controller
       ],200);
 
     }
+
+    
+    /**
+     * Export the leads
+     */
+    public function export(){
+      return Excel::download(new LeadExport, 'leads.xlsx');
+    }
+
 
 }

@@ -13,7 +13,7 @@
                   </div>
                   <div class="col-md-5 d-flex flex-row-reverse bd-highlight">
                     <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addLead">Add new Lead</button>
-                    <button type="button" class="btn btn-info mb-1 mr-1">Export Leads</button>
+                    <a href="{{route('lead.export')}}" class="btn btn-info mb-1 mr-1">Export Leads</a>
                   </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
                             <td>{{$lead->created_at->diffForHumans()}}</td>
                             <td>{{$lead->name}}</td>
                             <td>{{$lead->job->name}}</td>
-                            <td>{{$lead->start_time ? $lead->start_date : ''}}</td>
+                            <td>{{$lead->start_date ? $lead->start_date : ''}}</td>
                             <td>Pending</td>
                             <td></td>
                             <td>
@@ -66,25 +66,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
