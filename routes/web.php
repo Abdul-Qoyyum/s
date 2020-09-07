@@ -33,6 +33,8 @@ Route::get('client/users','ClientController@users')->name('clients.all');
 
 Route::post('client/send','ClientController@send')->name('client.send');
 
+Route::get('client/export','ClientController@export')->name('client.export');
+
 Route::resource('client', 'ClientController');
 
 
@@ -41,6 +43,7 @@ Route::resource('client', 'ClientController');
 Route::post('lead/send','LeadController@send')->name('lead.send');
 
 Route::get('lead/export','LeadController@export')->name('lead.export');
+
 // client's api route for lead
 Route::get('lead/users', 'LeadController@users')->name('lead.users');
 

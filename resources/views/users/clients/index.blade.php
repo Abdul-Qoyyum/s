@@ -13,8 +13,8 @@
                   </div>
                   <div class="col-md-6 d-flex flex-row-reverse bd-highlight">
                     <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addClient">Add new client</button>
-                    <button type="button" class="btn btn-info mb-1 mr-1">Export clients</button>
-                    <button type="button" class="btn btn-info mb-1 mr-1">Import clients</button>
+                    <a href="{{route('client.export')}}" class="btn btn-info mb-1 mr-1">Export clients</a>
+                    <button type="button" class="btn btn-info mb-1 mr-1" data-toggle="modal" data-target="#importClients">Import clients</button>
                   </div>
               </div>
             </div>
@@ -193,9 +193,31 @@
 </div>
 
 
+<!-- Import clients modal -->
+<!-- Modal -->
+<div class="modal fade modal_1" id="importClients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Import clients</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You can bulk import a large number of clients using CSV file. Please download and use our CSV file template below.</p>
+        <a href="#" class="btn btn-success mb-3">Download CSV template</a>
+        <p>Please make sure you do not reorder, delete or change the column titles within the original CSV file before uploading it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection
 @section('scripts')
 @include('includes.userTinymce')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js" integrity="sha512-9WciDs0XP20sojTJ9E7mChDXy6pcO0qHpwbEJID1YVavz2H6QBz5eLoDD8lseZOb2yGT8xDNIV7HIe1ZbuiDWg==" crossorigin="anonymous"></script>
     <script>
          $(document).ready( function () {
             $('#table_id').DataTable();

@@ -16,8 +16,9 @@ class ClientExport implements FromView
 
     public function view(): View
     {
-        return view('exports.invoices', [
-            'clients' => Invoice::all()
+        // remember to change user's clients to company clients 
+        return view('users.exports.clients', [
+            'clients' => Auth::user()->clients,
         ]);
     }
 }

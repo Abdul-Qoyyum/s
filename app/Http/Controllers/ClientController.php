@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Resources\ClientResource;
+
+use App\Exports\ClientExport;
 
 use App\Client;
 
@@ -179,6 +183,14 @@ class ClientController extends Controller
 
     }
 
+
+    /**
+     * Export clients to csv 
+     */
+    public function export() 
+    {
+        return Excel::download(new ClientExport, 'clients.xlsx');
+    }
 
     /**
      * Get client user's details
