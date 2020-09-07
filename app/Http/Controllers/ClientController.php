@@ -18,6 +18,8 @@ use App\Http\Resources\ClientResource;
 
 use App\Exports\ClientExport;
 
+use App\Exports\ClientSampleExport;
+
 use App\Client;
 
 class ClientController extends Controller
@@ -183,7 +185,7 @@ class ClientController extends Controller
 
     }
 
-
+    
     /**
      * Export clients to csv 
      */
@@ -192,6 +194,14 @@ class ClientController extends Controller
         return Excel::download(new ClientExport, 'clients.xlsx');
     }
 
+    /**
+     * Export sample CSV for client
+     */
+    public function exportClientSampleCSV(){
+        return Excel::download(new ClientSampleExport, 'clients_sample.xlsx');
+    }
+
+    
     /**
      * Get client user's details
      */

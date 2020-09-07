@@ -35,6 +35,9 @@ Route::post('client/send','ClientController@send')->name('client.send');
 
 Route::get('client/export','ClientController@export')->name('client.export');
 
+//client's csv route sample
+Route::get('client/sample/export','ClientController@exportClientSampleCSV')->name('client.sample');
+
 Route::resource('client', 'ClientController');
 
 

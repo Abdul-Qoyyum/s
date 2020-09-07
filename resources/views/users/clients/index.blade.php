@@ -24,7 +24,7 @@
                 <table id="table_id" class="table table-bordered display">
                     <thead>
                         <tr>
-                            <th>First name</th>
+                            <th>First Name</th>
                             <th>Last Name</th>
                             <th>Company</th>
                             <th>Phone</th>
@@ -206,7 +206,7 @@
       </div>
       <div class="modal-body">
         <p>You can bulk import a large number of clients using CSV file. Please download and use our CSV file template below.</p>
-        <a href="#" class="btn btn-success mb-3">Download CSV template</a>
+        <a href="{{route('client.sample')}}" class="btn btn-success mb-3">Download CSV template</a>
         <p>Please make sure you do not reorder, delete or change the column titles within the original CSV file before uploading it.</p>
       </div>
     </div>
