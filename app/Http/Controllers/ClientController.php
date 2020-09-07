@@ -18,6 +18,8 @@ use App\Http\Resources\ClientResource;
 
 use App\Exports\ClientExport;
 
+use App\Imports\ClientImport;
+
 use App\Exports\ClientSampleExport;
 
 use App\Client;
@@ -194,6 +196,31 @@ class ClientController extends Controller
         return Excel::download(new ClientExport, 'clients.xlsx');
     }
 
+
+    /**
+     * Import client's CSV file 
+     * @return \Illuminate\Http\Response
+     */
+    public function import() 
+    {
+
+        return request()->file('file');
+        
+        try {
+                $import->import(request()->file('file'));
+            } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+                $failures = $e->failures();     
+                // foreach ($failures as $failure) {
+                //     $failure->row(); // row that went wrong
+                //     $failure->attribute(); // either heading key (if using heading row concern) or column index
+                //     $failure->errors(); // Actual error messages from Laravel validator
+                //     $failure->values(); // The values of the row that has failed.
+                // }
+           }
+
+
+    }
+
     /**
      * Export sample CSV for client
      */
@@ -201,7 +228,7 @@ class ClientController extends Controller
         return Excel::download(new ClientSampleExport, 'clients_sample.xlsx');
     }
 
-    
+
     /**
      * Get client user's details
      */
