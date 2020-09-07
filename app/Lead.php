@@ -42,5 +42,11 @@ class Lead extends Model
     }
 
 
+     /**
+      * Get lead's client
+      */
+     public function client(){
+        return $this->belongsTo('App\Client');
+     }
 
 }

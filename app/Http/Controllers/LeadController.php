@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
+use Illuminate\Support\Str;
+
 use App\Exports\LeadExport;
+
+use App\Http\Resources\LeadResource;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -39,9 +43,11 @@ class LeadController extends Controller
     {
         $leads = Auth::user()->leads;
         $jobs = $this->getJobs();
+        
         $workflows = $this->getWorkflows();
         $clients = $this->getUserClients();
-        return view('users.leads.index',compact('leads','jobs','workflows','clients'));
+        $emailTemplates = $this->getEmailTemplates();
+        return view('users.leads.index',compact('leads','jobs','workflows','clients','emailTemplates'));
     }
 
     /**
@@ -163,6 +169,55 @@ class LeadController extends Controller
 
     }
 
+     /**
+     * Send the lead
+     */
+    public function send(Request $request){
+        
+        // return $request->all();
+
+        $validator = Validator::make($request->all(),[
+           'email' => 'required|email:rfc,dns',
+           'name'=>'required',
+           'subject'=>'required',
+           'message'=> 'required',
+        ]); 
+        
+        if($validator->fails()){
+           notify()->warning("Oops something went wrong :)");
+           return redirect()->back();
+        }
+
+        //Replace parameters placeholders
+        $body = Str::replaceArray('%client_name%', [$request->name], $request->message);
+
+
+      try{
+            Mail::send([], [], function ($message) use ($request, $body) {
+               // use company in place of users later
+                $user = Auth::user();
+                // $message->from($user->email, $user->name);
+                $message->sender($user->email, $user->name);
+                $message->to($request->email, $request->name);
+                $message->subject($request->subject);
+                $message->setBody($body,'text/html');
+            });
+
+            notify()->success("Message Sent");
+            return redirect()->back();
+
+      }catch(\Exception $e){
+          notify()->warning("Oops something went wrong :)");
+          return redirect()->back();
+      }
+
+
+    }
+
+
+
+
+
     
     /**
      * Export the leads
@@ -171,5 +226,13 @@ class LeadController extends Controller
       return Excel::download(new LeadExport, 'leads.xlsx');
     }
 
+    /**
+     * Get lead's users
+     */
+    public function users(){
+        // Replace with company leads later
+        $lead = Auth::user()->leads;
+        return LeadResource::collection($lead);
+    }
 
 }

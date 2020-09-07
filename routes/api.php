@@ -22,7 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Route::apiResources([
 //     'posts' => 'Api\PostController',
-// ]);    
+// ]);
+
 
 Route::get('/package','Api\PackageController@getAllPackage')->name('package.all');
 

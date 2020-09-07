@@ -37,6 +37,7 @@
             // get all email templates
             $.get("{{route('template.all')}}",function(data, status){
               var res = data.data;
+
               // continue if request succeed
               if(status == "success"){
                 $('#email_template_id').change(function(){

@@ -49,7 +49,7 @@
 
                                     <ul class="navbar-nav mx-4 w-60">
                                         <li class="nav-item active mb-2" style="cursor: pointer;">
-                                            <div  href="#exampleModalLong" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
+                                            <div class="text-primary client_id" id="{{$client->id}}" href="#sendClientMessage" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
                                         </li>
                                         <li class="nav-item" style="cursor: pointer;">
                                             <a href="{{route('client.edit',$client->id)}}"><i class="fas fa-edit"></i> Edit Client</a>
@@ -66,7 +66,7 @@
             </div>
           </div>
 
-
+<!-- Add client modal -->
 <div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-align" role="document">
     <div class="modal-content">
@@ -76,7 +76,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-         <form  action="/client" method="POST" class="client">
+         <form  action="{{route('client.store')}}" method="POST" class="client">
            <div class="modal-body">
 
           @csrf
@@ -145,10 +145,54 @@
           <input type="submit" class="btn btn-success" value="Save Client Profile">
         </div>
      </div>
-    <form>
+    </form>
   </div>
 
 </div>
+
+
+
+<!-- Send Email Modal -->
+<!-- Modal -->
+<div class="modal fade modal_1" id="sendClientMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Send Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['route'=>'client.send','id'=>"sendClientForm"]) !!}
+        <div class="form-group">
+            {!! Form::label('email', 'To',['class'=>"font-weight-bold"]) !!}
+            {!! Form::text('email', null, ['class' => 'form-control','id' => 'client_email']) !!}
+        </div>
+        {!! Form::hidden('name', null,['id' => 'client_name']) !!}
+        <div class="form-group">
+          {!! Form::label('email_template_id', 'Choose email template',['class'=>"font-weight-bold"]) !!}
+          {!! Form::select('email_template_id', $emailTemplates, null, ['class'=>'form-control clients','placeholder'=>'Choose an existing email template']) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('subject', 'Subject',['class'=>"font-weight-bold"]) !!}
+          {!! Form::text('subject', null, ['class'=>"form-control"]) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('message', 'Message',['class'=>"font-weight-bold"]) !!}
+          {!! Form::textarea('message', null, ['class'=>'form-control message']) !!}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Send</button>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+
+
 @endsection
 @section('scripts')
 @include('includes.userTinymce')
@@ -161,6 +205,44 @@
             $('.display').click(function(){
                $('.company').toggleClass('hidden');
             });
+
+            //  initialize tinymce
+              tinymce.init({
+                selector: '.message'
+              });
+
+
+            //client's message script
+            $.get("{{route('clients.all')}}",function(data, status){
+              if(status == "success"){
+                let res = data.data;
+                $('.client_id').click(function(){
+                  let client_id = $(this).prop("id");
+                  let selectedClient = res.filter(res => client_id == res.id)[0];
+                  // set client's email
+                   $('#client_email').val(selectedClient.email);
+                  //  set client's name
+                   $('#client_name').val(selectedClient.name);
+                });
+              }
+            }); 
+
+
+            // set client's message scripts
+            $.get("{{route('template.all')}}",function(data, status){
+              var res = data.data;
+                $('select.clients').change(function(){
+                  let templateId = $(this).children("option:selected").val();
+                  let selectedTemplate = res.filter(template => template.id == templateId)[0];
+                  // set the subject
+                  $('input[name="subject"]').val(selectedTemplate.subject);
+                  // set the editor's body
+                  tinymce.get("message").setContent(selectedTemplate.message);
+                });
+
+            });
+
+
 
             // validate input client form input
             $(".client").validate({

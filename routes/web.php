@@ -28,15 +28,26 @@ Route::get('/backend', 'DashboardController@index')->name('dashboard.index');
 
 Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user');
 
+// Client route
+Route::get('client/users','ClientController@users')->name('clients.all');
+
+Route::post('client/send','ClientController@send')->name('client.send');
+
 Route::resource('client', 'ClientController');
 
 
+
 // lead routes
+Route::post('lead/send','LeadController@send')->name('lead.send');
+
 Route::get('lead/export','LeadController@export')->name('lead.export');
+// client's api route for lead
+Route::get('lead/users', 'LeadController@users')->name('lead.users');
 
 Route::resource('lead', 'LeadController');
 
 Route::post('lead/client', 'LeadController@client')->name('lead.client');
+
 
 // Jobs route
 
@@ -47,6 +58,7 @@ Route::resource('jobs', 'TaskController');
 Route::post('jobs/client', 'TaskController@client')->name('jobs.client');
 
 Route::patch('jobs/notes/{id}','TaskController@updateNote')->name('jobs.notes');
+
 
 // Admin routes
 Route::resource('user/posts', 'Admin\PostController');
@@ -72,7 +84,10 @@ Route::get('invoice/{id}/download', 'InvoiceController@downloadPDF')->name('invo
 
 Route::post('invoice/send', 'InvoiceController@send')->name('invoice.send');
 
+
 // Quotes route
+Route::post('quote/send','QuoteController@send')->name('quote.send');
+
 Route::resource('quote', 'QuoteController');
 
 Route::get('quote/{id}/invoice', 'QuoteController@task')->name('quote.invoice');
@@ -83,7 +98,6 @@ Route::get('quote/{id}/show','QuoteController@preview')->name('quote.preview');
 
 Route::get('quote/{id}/download','QuoteController@downloadPDF')->name('quote.download');
 
-Route::post('quote/send','QuoteController@send')->name('quote.send');
 
 
 // Portal routes
