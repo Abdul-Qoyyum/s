@@ -13,105 +13,34 @@
     </ol>
   </nav>
 </div>
-  <div class=" col-sm-6 text-sm-right">
-    <div class="clearfix  hidden visible-xs"></div>
-    <button type="button" class="btn btn-success btn-add-new" data-toggle="modal" data-target="#invite-company-user-modal">
-        Invite company user
-    </button>
-    {{-- Invite user model --}}
-    <div class="modal fade bd-example-modal-lg" id="invite-company-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title " id="exampleModalLongTitle">testing user::::</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form class="m-5">
-                <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2  col-form-label col-form-label-sm">contact form</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control form-control-sm" id="colFormLabelSm" >
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2  col-form-label col-form-label-sm">Email</label>
-                    <div class="col-sm-8">
-                      <input type="email" class="form-control form-control-sm" id="colFormLabelSm" >
-                    </div>
-                  </div>
-              </form>
-            </div>
-            <div class="modal-footer ">
-                <button type="submit" class="btn btn-success btn-md ng-isolate-scope spinning-wheel spinning-wheel__display-before" ng-disabled="button_disable" spinning-wheel="" is-spinning-wheel-active="isSendInviteSpinnningWheelActive">Send invitation
-                </button>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
+  
 
 
 
 </div>
 <hr>
-<label class="col-sm-12 mt-3 mb-3" >Invite more users to your company account. The more the merrier!</label>
+<label class="col-sm-12 mt-3 mb-3" >If you have any query, please contact us!</label>
 
 <div class="Account-box mt-3 ">
     
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr style="border-top: 1px solid #eee;">
-                <th>contact form</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="user in users | orderBy" class="ng-scope">
-                <td class="ng-binding">Tanveer</td>
-                <td class="ng-binding">zari@gmail.com</td>
-                <td class="user-button text-right td-btn-group">
-                    <button style="margin-bottom: 0; margin-top: -7px"  type="submit" class="btn btn-default " data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
-                    <button style="margin-bottom: 0; margin-top: -7px"  ng-click="showDeleteModal($index)" class="btn btn-delete btn btn-delete btn-delete-empty  "><i class="fas fa-trash-alt"></i></button>
-                </td>
-            </tr>
-            {{-- Edit button model --}}
-            <div class="modal fade bd-example-modal-lg" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title " id="exampleModalLongTitle">Edit User</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body m-3">
-                      <form class="">
-                        <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-2  col-form-label col-form-label-sm">First Name</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control form-control-sm" id="colFormLabelSm" >
-                            </div>
-                          </div>
-                          
-                      </form>
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="submit" class="btn btn-success btn-md ng-isolate-scope spinning-wheel spinning-wheel__display-before" ng-disabled="button_disable" spinning-wheel="" is-spinning-wheel-active="isSendInviteSpinnningWheelActive">Save
-                        </button>
-                    </div>
-                  </div>
-                </div>
-            </tbody>
-        </table>
-    </div>
+      <div id="contact-form" class="contact-form">
+    <h1 class="contact-form_title">Contact Form</h1>
+    <div class="separator"></div>
 
-     
-    </div>
+    <div v-if="isSending" class="loading"></div>
+
+    <form class="form" @submit="onSubmit">
+      <input required name="name" v-model='contact.name' placeholder="Name" type="text" autocomplete="off">
+      <input required name="email" v-model="contact.email" placeholder="E-mail" type="email" autocomplete="off">
+      <textarea name="message" v-model="contact.message" rows="4" placeholder="Message"></textarea>
+       <button class="button">Send</button>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+  <script src="app.js"></script>    
+</div>
 
 
 
