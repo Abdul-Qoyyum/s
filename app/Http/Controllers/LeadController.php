@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Str;
 
 use App\Exports\LeadExport;
