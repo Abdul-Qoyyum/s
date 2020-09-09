@@ -13,7 +13,7 @@
     </ol>
   </nav>
 </div>
-  <div class=" col-sm-6 text-sm-right">
+  <!-- <div class=" col-sm-6 text-sm-right">
     <div class="clearfix  hidden visible-xs"></div>
     <button type="button" class="btn btn-success btn-add-new" data-toggle="modal" data-target="#invite-company-user-modal">
         Invite company user
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-</div>
+</div> -->
 
 
 
@@ -65,20 +65,22 @@
         <table class="table table-striped">
             <thead>
             <tr style="border-top: 1px solid #eee;">
-                <th>contact form</th>
-                <th>Email</th>
-                <th></th>
+                <th>ID</th>
+                <th>Name</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="user in users | orderBy" class="ng-scope">
-                <td class="ng-binding">Tanveer</td>
-                <td class="ng-binding">zari@gmail.com</td>
-                <td class="user-button text-right td-btn-group">
+             @foreach ($jobs as $job)
+                <tr>
+                    <td>{{$job->id}}</td>
+                    <td>{{$job->name}}</td>
+                    <td class="user-button text-right td-btn-group">
                     <button style="margin-bottom: 0; margin-top: -7px"  type="submit" class="btn btn-default " data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
                     <button style="margin-bottom: 0; margin-top: -7px"  ng-click="showDeleteModal($index)" class="btn btn-delete btn btn-delete btn-delete-empty  "><i class="fas fa-trash-alt"></i></button>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+              @endforeach
             {{-- Edit button model --}}
             <div class="modal fade bd-example-modal-lg" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -106,6 +108,7 @@
                     </div>
                   </div>
                 </div>
+                
             </tbody>
         </table>
     </div>

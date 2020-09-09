@@ -182,20 +182,9 @@ class SettingController extends Controller
     public function productpackages()
     {
         $user = Auth::user();
-        // $packages = $this->getPackages();
-        // var_dump($packages);
-        $packages = (object)[];;
-        $packages->id = '1';
-        $packages->name = 'my package';
-        $packages->description = 'abc';
-        $packages->price = '995';
-        $packages->quantity = '1';
         $packages = DB::table('packages')->get();
-
         // var_dump($packages);
         // die();
-        // return view('user.index', ['users' => $users]);
-        // return view('users.settings.productpackages',compact('packages'));
         return view('users.settings.productpackages', ['packages' => $packages]);
     }
     public function getPackages(){
@@ -225,7 +214,8 @@ class SettingController extends Controller
 
     public function jobtypes()
     {
-        return view('users.settings.jobtypes');
+        $jobs = DB::table('jobs')->get();
+        return view('users.settings.jobtypes', ['jobs' => $jobs]);
     }
     /**
      *  Company emailtemplates
@@ -233,7 +223,8 @@ class SettingController extends Controller
 
     public function emailtemplates()
     {
-        return view('users.settings.emailtemplates');
+        $emails = DB::table('email_templates')->get();
+        return view('users.settings.emailtemplates', ['emails' => $emails]);
     }
     /**
      *  Company labels
