@@ -200,24 +200,47 @@ class ClientController extends Controller
 
 
     /**
+     * Validates excel file
+     */
+     public function checkExcelFile($file_ext){
+        $valid=array(
+            'csv','xls','xlsx' // add your extensions here.
+        );        
+        return in_array($file_ext,$valid) ? true : false;
+    }
+
+
+
+
+    /**
      * Import client's CSV file 
      * @return \Illuminate\Http\Response
      */
-    public function import() 
+    public function import(Request $request) 
     {
 
-        return request()->file('file');
-        
+        $validator = Validator::make([
+            'file' => $request->file,
+            'extension' => $request->hasFile('file') ? strtolower($request->file->getClientOriginalExtension()) : '',
+        ],[
+            'file' => 'required',
+            'extension' => 'required|in:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp',
+        ]);
+
+        if($validator->fails()){
+                notify()->warning('Invalid file format :)'); 
+                return redirect()->back();
+        }
+    
         try {
-                $import->import(request()->file('file'));
+                $import = new ClientImport();
+                $import->import($request->file('file'));
+                // Excel::import(new ClientImport, $request->file('file'));
+                notify()->success("Imported successfully");
+                return redirect()->back();
             } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-                $failures = $e->failures();     
-                // foreach ($failures as $failure) {
-                //     $failure->row(); // row that went wrong
-                //     $failure->attribute(); // either heading key (if using heading row concern) or column index
-                //     $failure->errors(); // Actual error messages from Laravel validator
-                //     $failure->values(); // The values of the row that has failed.
-                // }
+                notify()->warning("Oops something went wrong :)");
+                return redirect()->back();
            }
 
 

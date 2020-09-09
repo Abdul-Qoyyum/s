@@ -208,31 +208,37 @@
         <p>You can bulk import a large number of clients using CSV file. Please download and use our CSV file template below.</p>
         <a href="{{route('client.sample')}}" class="btn btn-success mb-3">Download CSV template</a>
         <p>Please make sure you do not reorder, delete or change the column titles within the original CSV file before uploading it.</p>
-        <form action="{{route('client.import')}}" method="post" enctype="multipart/form-data" class="dropzone">
+        {{-- <form action="{{route('client.import')}}" method="post" enctype="multipart/form-data" class="dropzone">
           @csrf
           <div class="fallback">
             <input name="file" type="file"/>
           </div>
           <div>
-            {{-- <button type="submit" class="btn btn-success">Import</button> --}}
           </div>
+        </form> --}}
+
+        <form action="{{route('client.import')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <label for="spreadsheet">Choose File</label>
+            <input type="file" name="file" class="form-control-file" id="spreadsheet">
+          </div>
+          <button type="submit" class="btn btn-info">Import</button>
         </form>
+
       </div>
-      {{-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div> --}}
     </div>
   </div>
 </div>
 
 
 @endsection
-@section('styles')
+{{-- @section('styles')
  <link rel="stylesheet" href="{{asset('css/dist/dropzone.css')}}" type="text/css">
-@stop
+@stop --}}
 @section('scripts')
 @include('includes.userTinymce')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js" integrity="sha512-9WciDs0XP20sojTJ9E7mChDXy6pcO0qHpwbEJID1YVavz2H6QBz5eLoDD8lseZOb2yGT8xDNIV7HIe1ZbuiDWg==" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js" integrity="sha512-9WciDs0XP20sojTJ9E7mChDXy6pcO0qHpwbEJID1YVavz2H6QBz5eLoDD8lseZOb2yGT8xDNIV7HIe1ZbuiDWg==" crossorigin="anonymous"></script> --}}
     <script>
          $(document).ready( function () {
             $('#table_id').DataTable();
