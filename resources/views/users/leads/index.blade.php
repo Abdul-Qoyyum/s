@@ -13,7 +13,7 @@
                   </div>
                   <div class="col-md-5 d-flex flex-row-reverse bd-highlight">
                     <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addLead">Add new Lead</button>
-                    <a href="{{route('lead.export')}}" class="btn btn-info mb-1 mr-1">Export Leads</a>
+                    <button type="button" class="btn btn-info mb-1 mr-1">Export Leads</button>
                   </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
                             <td>{{$lead->created_at->diffForHumans()}}</td>
                             <td>{{$lead->name}}</td>
                             <td>{{$lead->job->name}}</td>
-                            <td>{{$lead->start_date ? \Carbon\Carbon::parse($lead->start_date)->toFormattedDateString() : ''}}</td>
+                            <td>{{$lead->start_time ? $lead->start_date : ''}}</td>
                             <td>Pending</td>
                             <td></td>
                             <td>
@@ -49,7 +49,7 @@
 
                                     <ul class="navbar-nav mx-4 w-60">
                                         <li class="nav-item active mb-2" style="cursor: pointer;">
-                                            <div class="text-primary lead_id" href="#sendLead" id="{{$lead->id}}" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
+                                            <div  href="#exampleModalLong" data-toggle="modal"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Email</div>
                                         </li>
                                         <li class="nav-item" style="cursor: pointer;">
                                             <a href="{{route('lead.edit',$lead->id)}}"><i class="fas fa-edit"></i> Edit Lead</a>
@@ -66,6 +66,25 @@
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -235,45 +254,6 @@
           </div>
         </div>
 
-<!-- Send Email Modal -->
-<!-- Modal -->
-<div class="modal fade modal_1" id="sendLead" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Send Email</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {!! Form::open(['route'=>'lead.send','id'=>"sendLeadForm"]) !!}
-        <div class="form-group">
-            {!! Form::label('email', 'To',['class'=>"font-weight-bold"]) !!}
-            {!! Form::text('email', null, ['class' => 'form-control','id' => 'client_email']) !!}
-        </div>
-        {!! Form::hidden('name', null,['id' => 'client_name']) !!}
-        <div class="form-group">
-          {!! Form::label('email_template_id', 'Choose email template',['class'=>"font-weight-bold"]) !!}
-          {!! Form::select('email_template_id', $emailTemplates, null, ['class'=>'form-control lead','placeholder'=>'Choose an existing email template']) !!}
-        </div>
-        <div class="form-group">
-          {!! Form::label('subject', 'Subject',['class'=>"font-weight-bold"]) !!}
-          {!! Form::text('subject', null, ['class'=>"form-control"]) !!}
-        </div>
-        <div class="form-group">
-          {!! Form::label('message', 'Message',['class'=>"font-weight-bold"]) !!}
-          {!! Form::textarea('message', null, ['class'=>'form-control message']) !!}
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success">Send</button>
-      </div>
-      {!! Form::close() !!}
-    </div>
-  </div>
-</div>
 
 
 @endsection
@@ -283,11 +263,6 @@
          $(document).ready( function () {
            //initialize data table
             $('#table_id').DataTable();
-
-          //  initialize tinymce
-            tinymce.init({
-              selector: '.message'
-            });
 
             // show company input form
             $('#display').click(function(){
@@ -306,37 +281,6 @@
                 form.submit();
               }
             });
-
-            //lead's clients script
-            $.get("{{route('lead.users')}}",function(data, status){
-              if(status == "success"){
-                let res = data.data;
-                $('.lead_id').click(function(){
-                  let lead_id = $(this).prop("id");
-                  let selectedLead = res.filter(res => lead_id == res.id)[0];
-                  // set client's email
-                   $('#client_email').val(selectedLead.client_email);
-                  //  set client's name
-                   $('#client_name').val(selectedLead.client_name);
-                });
-              }
-
-            }); 
-
-            // send invoice scripts
-            $.get("{{route('template.all')}}",function(data, status){
-              var res = data.data;
-                $('select.lead').change(function(){
-                  let templateId = $(this).children("option:selected").val();
-                  let selectedTemplate = res.filter(template => template.id == templateId)[0];
-                  // set the subject
-                  $('input[name="subject"]').val(selectedTemplate.subject);
-                  // set the editor's body
-                  tinymce.get("message").setContent(selectedTemplate.message);
-                });
-
-            });
-
 
             // validate input client form input
             $("#client").validate({

@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Traits\HelperTraits;
 
-use Maatwebsite\Excel\Facades\Excel;
-
-use App\Exports\TaskExport;
-
 use App\Job;
 
 use App\Task;
@@ -42,6 +38,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Auth::user()->tasks;
+        // return $tasks;
         $jobs = $this->getJobs();
         $workflows = $this->getWorkflows();
         $clients = $this->getUserClients();
@@ -196,11 +193,6 @@ class TaskController extends Controller
       return redirect()->back();  
     }
 
-    /**
-     * Export user's task
-     */
-    public function export(){
-       return Excel::download(new TaskExport, 'task.xlsx');
-    }
+
 
 }

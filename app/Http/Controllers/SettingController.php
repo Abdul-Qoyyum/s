@@ -134,6 +134,95 @@ class SettingController extends Controller
     }
 
     /**
+     *  Company currencytaxes
+     */
+
+    public function currencytaxes()
+    {
+        return view('users.settings.currencytaxes');
+    }
+    /**
+     *  Company emailsettings
+     */
+
+    public function emailsettings()
+    {
+        return view('users.settings.emailsettings');
+    }
+    /**
+     *  Company datetime
+     */
+
+    public function datetime()
+    {
+        return view('users.settings.datetime');
+    }
+    /**
+     *  Company paymentmethod
+     */
+
+    public function paymentmethod()
+    {
+        return view('users.settings.paymentmethod');
+    }
+    /**
+     *  Company paymentschedule
+     */
+
+    public function paymentschedule()
+    {
+        return view('users.settings.paymentschedule');
+    }
+    /**
+     *  Company productpackages
+     */
+
+    public function productpackages()
+    {
+        return view('users.settings.productpackages');
+    }
+    /**
+     *  Company User
+     */
+
+    public function contact()
+    {
+        return view('users.settings.contactform');
+    }
+    /**
+     *  Company workflows
+     */
+
+    public function workflows()
+    {
+        return view('users.settings.workflows');
+    }
+    /**
+     *  Company jobtypes
+     */
+
+    public function jobtypes()
+    {
+        return view('users.settings.jobtypes');
+    }
+    /**
+     *  Company emailtemplates
+     */
+
+    public function emailtemplates()
+    {
+        return view('users.settings.emailtemplates');
+    }
+    /**
+     *  Company labels
+     */
+
+    public function labels()
+    {
+        return view('users.settings.labels');
+    }
+
+    /**
      *  Company User Refer Friend
      */
 

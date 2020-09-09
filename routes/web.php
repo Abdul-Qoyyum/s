@@ -28,41 +28,15 @@ Route::get('/backend', 'DashboardController@index')->name('dashboard.index');
 
 Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user');
 
-// Client route
-Route::get('client/users','ClientController@users')->name('clients.all');
-
-Route::post('client/send','ClientController@send')->name('client.send');
-
-Route::get('client/export','ClientController@export')->name('client.export');
-
-//client's csv export route sample
-Route::get('client/sample/export','ClientController@exportClientSampleCSV')->name('client.sample');
-
-// client's csv import route
-
-Route::post('client/import','ClientController@import')->name('client.import');
-
 Route::resource('client', 'ClientController');
 
 
-
 // lead routes
-Route::post('lead/send','LeadController@send')->name('lead.send');
-
-Route::get('lead/export','LeadController@export')->name('lead.export');
-
-// client's api route for lead
-Route::get('lead/users', 'LeadController@users')->name('lead.users');
-
 Route::resource('lead', 'LeadController');
 
 Route::post('lead/client', 'LeadController@client')->name('lead.client');
 
-
 // Jobs route
-
-Route::get('jobs/export','TaskController@export')->name('jobs.export');
-
 Route::resource('jobs', 'TaskController');
 
 Route::post('jobs/client', 'TaskController@client')->name('jobs.client');
@@ -94,10 +68,7 @@ Route::get('invoice/{id}/download', 'InvoiceController@downloadPDF')->name('invo
 
 Route::post('invoice/send', 'InvoiceController@send')->name('invoice.send');
 
-
 // Quotes route
-Route::post('quote/send','QuoteController@send')->name('quote.send');
-
 Route::resource('quote', 'QuoteController');
 
 Route::get('quote/{id}/invoice', 'QuoteController@task')->name('quote.invoice');
@@ -108,6 +79,7 @@ Route::get('quote/{id}/show','QuoteController@preview')->name('quote.preview');
 
 Route::get('quote/{id}/download','QuoteController@downloadPDF')->name('quote.download');
 
+Route::post('quote/send','QuoteController@send')->name('quote.send');
 
 
 // Portal routes
@@ -148,5 +120,27 @@ Route::post('edited/{id}', 'SettingController@editview');
 // Route::view('account', 'users.settings.accountsubscription');
 
 Route::get('user', 'SettingController@user');
+
+Route::get('currencytaxes', 'SettingController@currencytaxes');
+
+Route::get('emailsettings', 'SettingController@emailsettings');
+
+Route::get('datetime', 'SettingController@datetime');
+
+Route::get('paymentmethod', 'SettingController@paymentmethod');
+
+Route::get('paymentschedule', 'SettingController@paymentschedule');
+
+Route::get('productpackages', 'SettingController@productpackages');
+
+Route::get('contact', 'SettingController@contact');
+
+Route::get('workflows', 'SettingController@workflows');
+
+Route::get('jobtypes', 'SettingController@jobtypes');
+
+Route::get('emailtemplates', 'SettingController@emailtemplates');
+
+Route::get('labels', 'SettingController@labels');
 
 Route::get('referfriend', 'SettingController@referfriend');

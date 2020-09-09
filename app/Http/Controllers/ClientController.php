@@ -4,32 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Traits\HelperTraits;
-
-use Maatwebsite\Excel\Facades\Excel;
-
-use Illuminate\Support\Str;
-
 use Illuminate\Support\Facades\Validator;
 
-use Illuminate\Support\Facades\Mail;
-
 use Illuminate\Support\Facades\Auth;
-
-use App\Http\Resources\ClientResource;
-
-use App\Exports\ClientExport;
-
-use App\Imports\ClientImport;
-
-use App\Exports\ClientSampleExport;
 
 use App\Client;
 
 class ClientController extends Controller
 {
-
-    use HelperTraits;
 
     public function __construct(){
         $this->middleware('auth');
@@ -44,10 +26,8 @@ class ClientController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-        $clients = $user->clients()->orderBy('id','DESC')->get();
-        $emailTemplates = $this->getEmailTemplates();
-        return view('users.clients.index',compact('clients','emailTemplates'));
+        $clients = $user->clients;
+        return view('users.clients.index',compact('clients'));
     }
 
     /**
@@ -144,7 +124,6 @@ class ClientController extends Controller
     {
         //
     }
-
 
 
     /**
