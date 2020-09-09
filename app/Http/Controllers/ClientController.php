@@ -215,7 +215,7 @@ class ClientController extends Controller
                 $import = new ClientImport();
                 $import->import($request->file('file'));
                 // Excel::import(new ClientImport, $request->file('file'));
-                notify()->success("Imported successfully");
+                notify()->success("Import successfull :) ");
                 return redirect()->back();
             } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
                 notify()->warning("Oops something went wrong :)");
