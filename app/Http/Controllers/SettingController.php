@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Settings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\HelperTraits;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -179,8 +181,28 @@ class SettingController extends Controller
 
     public function productpackages()
     {
-        return view('users.settings.productpackages');
+        $user = Auth::user();
+        // $packages = $this->getPackages();
+        // var_dump($packages);
+        $packages = (object)[];;
+        $packages->id = '1';
+        $packages->name = 'my package';
+        $packages->description = 'abc';
+        $packages->price = '995';
+        $packages->quantity = '1';
+        $packages = DB::table('packages')->get();
+
+        // var_dump($packages);
+        // die();
+        // return view('user.index', ['users' => $users]);
+        // return view('users.settings.productpackages',compact('packages'));
+        return view('users.settings.productpackages', ['packages' => $packages]);
     }
+    public function getPackages(){
+        // $leads = DB::package()->get();
+        // return $leads;
+    }
+
     /**
      *  Company User
      */

@@ -26,7 +26,7 @@
             <div class="modal-body">
               <form class="m-5">
                 <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2  col-form-label col-form-label-sm">contact form</label>
+                    <label for="colFormLabelSm" class="col-sm-2  col-form-label col-form-label-sm">Product Packages</label>
                     <div class="col-sm-8">
                       <input type="text" class="form-control form-control-sm" id="colFormLabelSm" >
                     </div>
@@ -52,7 +52,6 @@
 
 </div>
 <hr>
-<label class="col-sm-12 mt-3 mb-3" >Invite more users to your company account. The more the merrier!</label>
 
 <div class="Account-box mt-3 ">
     
@@ -69,7 +68,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="user in users | orderBy" class="ng-scope">
+              @foreach ($packages as $package)
+                        <tr>
+                            <td>{{$package->id}}</td>
+                            <td>{{$package->name}}</td>
+                            <td>{{$package->description}}</td>
+                            <td>{{$package->price}}</td>
+                            <td>{{$package->quantity}}</td>
+                        </tr>
+                     @endforeach
+            <!-- <tr ng-repeat="user in users | orderBy" class="ng-scope">
                 <td class="ng-binding">ID</td>
                 <td class="ng-binding">Bronze Family Portrait Package</td>
                 <td class="ng-binding"><p>The perfect starter package for families with high-resolution images.</p><ul>
@@ -82,7 +90,7 @@
                     <button style="margin-bottom: 0; margin-top: -7px"  type="submit" class="btn btn-default " data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
                     <button style="margin-bottom: 0; margin-top: -7px"  ng-click="showDeleteModal($index)" class="btn btn-delete btn btn-delete btn-delete-empty  "><i class="fas fa-trash-alt"></i></button>
                 </td>
-            </tr>
+            </tr>-->
             {{-- Edit button model --}}
             <div class="modal fade bd-example-modal-lg" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -116,7 +124,6 @@
 
      
     </div>
-
 
 
 
