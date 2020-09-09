@@ -12,6 +12,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use App\Exports\LeadExport;
 
+use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Support\Str;
+
 use App\Http\Controllers\Traits\HelperTraits;
 
 use App\Http\Resources\LeadResource;
@@ -180,8 +184,50 @@ class LeadController extends Controller
      */
     public function users(){
         // Replace with company later
-        // $clients = Auth::user()->clients;
+        // $clients = Auth::user()->leads;
         return LeadResource::collection(Auth::user()->leads);
+    }
+
+     /**
+     * Send the client's message
+     */
+    public function send(Request $request){
+        
+        $validator = Validator::make($request->all(),[
+           'email' => 'required|email:rfc,dns',
+           'name'=>'required',
+           'subject'=>'required',
+           'message'=> 'required',
+        ]); 
+        
+        if($validator->fails()){
+           notify()->warning("Oops something went wrong :)");
+           return redirect()->back();
+        }
+
+        //Replace parameters placeholders
+        $body = Str::replaceArray('%client_name%', [$request->name], $request->message);
+
+      try{
+            Mail::send([], [], function ($message) use ($request, $body) {
+               // use company in place of users later
+                $user = Auth::user();
+                // $message->from($user->email, $user->name);
+                $message->sender($user->email, $user->name);
+                $message->to($request->email, $request->name);
+                $message->subject($request->subject);
+                $message->setBody($body,'text/html');
+            });
+
+            notify()->success("Message Sent");
+            return redirect()->back();
+
+      }catch(\Exception $e){
+          notify()->warning("Oops something went wrong :)");
+          return redirect()->back();
+      }
+
+
     }
 
 }

@@ -41,6 +41,11 @@ class Lead extends Model
         return $this->belongsTo('App\Workflow');
     }
 
-
+    /**
+     * Get lead's client
+     */
+    public function client(){
+        return $this->belongsTo('App\Client');
+    }
 
 }
