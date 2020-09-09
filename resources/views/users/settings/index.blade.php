@@ -87,7 +87,7 @@
                           
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/currencytaxes') }}">
+                            <a href="">
                             <strong ><i class="fas fa-money-bill-alt mr-1  pr-1"></i>Currency & Taxes</strong>
                             <p class="text-muted">
                                 View currency, change tax name and tax rate.
@@ -95,7 +95,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/emailsettings') }}">
+                            <a href="">
                             <strong ><i class="fas fa-envelope-square mr-1  pr-1"></i>Email Settings</strong>
                             <p class="text-muted">
                                 Set up email, email signature and notifications.
@@ -103,7 +103,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/datetime') }}">
+                            <a href="">
                             <strong ><i class="fas fa-calendar-alt mr-1  pr-1"></i>Date, Time & Calendar</strong>
                             <p class="text-muted">
                                 Google Calendar integration, date and time format.
@@ -111,7 +111,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/paymentmethod') }}">
+                            <a href="">
                             <strong ><i class="fas fa-money-bill mr-1  pr-1"></i>Payment Methods</strong>
                             <p class="text-muted">
                                 Set up how your invoices are paid.
@@ -120,7 +120,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/paymentschedule') }}">
+                            <a href="">
                             <strong ><i class="fas fa-money-check-alt mr-1  pr-1"></i>Payment Schedule & Reminders</strong>
                             <p class="text-muted">
                                 Set up your invoice payment terms and reminders.
@@ -129,7 +129,7 @@
                         </li>
                         
                         <li class="list-group-item">
-                            <a href="{{ url('/productpackages') }}">
+                            <a href="">
                             <strong ><i class="fas fa-images mr-1  pr-1"></i>Products & Packages</strong>
                             <p class="text-muted">
                                 Create products and packages that you sell.
@@ -137,7 +137,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/contact') }}">
+                            <a href="">
                             <strong ><i class="fas fa-address-book mr-1  pr-1"></i>Contact Form</strong>
                             <p class="text-muted">
                                 Create and embed contact forms.
@@ -145,7 +145,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/workflows') }}">
+                            <a href="">
                             <strong ><i class="fas fa-sliders-h mr-1  pr-1"></i>Work Flows</strong>
                             <p class="text-muted">
                                 Create workflows and automation.
@@ -153,7 +153,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/jobtypes') }}">
+                            <a href="">
                             <strong ><i class="fas fa-laptop-house mr-1  pr-1"></i>Job Types</strong>
                             <p class="text-muted">
                                 Set up job types and link them to workflows.
@@ -161,7 +161,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/emailtemplates') }}">
+                            <a href="">
                             <strong ><i class="fas fa-envelope-open-text mr-1  pr-1"></i>Email Templates</strong>
                             <p class="text-muted">
                                 Customise your email templates.
@@ -169,7 +169,7 @@
                         </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ url('/labels') }}">
+                            <a href="">
                             <strong ><i class="fas fa-tags mr-1  pr-1"></i>labels</strong>
                             <p class="text-muted">
                                 Rename "Main Shoot" and "Business Number"

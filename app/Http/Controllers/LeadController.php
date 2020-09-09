@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Validator;
 
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\LeadExport;
+
 use App\Http\Controllers\Traits\HelperTraits;
+
+use App\Http\Resources\LeadResource;
 
 use App\Job;
 
@@ -35,9 +41,10 @@ class LeadController extends Controller
     {
         $leads = Auth::user()->leads;
         $jobs = $this->getJobs();
+        $emailTemplates = $this->getEmailTemplates();
         $workflows = $this->getWorkflows();
         $clients = $this->getUserClients();
-        return view('users.leads.index',compact('leads','jobs','workflows','clients'));
+        return view('users.leads.index',compact('leads','jobs','workflows','clients','emailTemplates'));
     }
 
     /**
@@ -157,6 +164,24 @@ class LeadController extends Controller
         'email' => $client->email,
       ],200);
 
+    }
+
+    /**
+     * Export clients to csv 
+     */
+    public function export() 
+    {
+        return Excel::download(new LeadExport, 'leads.xlsx');
+    }
+
+
+     /**
+     * Get lead's details
+     */
+    public function users(){
+        // Replace with company later
+        // $clients = Auth::user()->clients;
+        return LeadResource::collection(Auth::user()->leads);
     }
 
 }

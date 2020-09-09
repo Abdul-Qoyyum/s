@@ -13,7 +13,7 @@
                   </div>
                   <div class="col-md-5 d-flex flex-row-reverse bd-highlight">
                     <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#addTask">Add new Job</button>
-                    <button type="button" class="btn btn-info mb-1 mr-1">Export Jobs</button>
+                    <a href="{{route('jobs.export')}}"  class="btn btn-info mb-1 mr-1">Export Jobs</a>
                   </div>
               </div>
             </div>

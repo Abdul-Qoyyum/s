@@ -6,12 +6,29 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 
+use App\Http\Controllers\Traits\HelperTraits;
+
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Resources\ClientResource;
+
+use Maatwebsite\Excel\Facades\Excel;
+
+use Illuminate\Support\Facades\Mail;
+
+use App\Exports\ClientExport;
+
+use App\Exports\ClientSampleExport;
+
+use Illuminate\Support\Str;
+
+use App\Imports\ClientImport;
 
 use App\Client;
 
 class ClientController extends Controller
 {
+    use HelperTraits;
 
     public function __construct(){
         $this->middleware('auth');
@@ -27,7 +44,8 @@ class ClientController extends Controller
     {
         $user = Auth::user();
         $clients = $user->clients;
-        return view('users.clients.index',compact('clients'));
+        $emailTemplates = $this->getEmailTemplates();
+        return view('users.clients.index',compact('clients','emailTemplates'));
     }
 
     /**
@@ -176,18 +194,6 @@ class ClientController extends Controller
     {
         return Excel::download(new ClientExport, 'clients.xlsx');
     }
-
-
-    /**
-     * Validates excel file
-     */
-     public function checkExcelFile($file_ext){
-        $valid=array(
-            'csv','xls','xlsx' // add your extensions here.
-        );        
-        return in_array($file_ext,$valid) ? true : false;
-    }
-
 
 
 
