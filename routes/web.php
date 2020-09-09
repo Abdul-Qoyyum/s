@@ -28,6 +28,11 @@ Route::get('/backend', 'DashboardController@index')->name('dashboard.index');
 
 Route::get('user/dashboard', 'DashboardController@user')->name('dashboard.user');
 
+
+Route::get('client/sample','ClientController@exportClientSampleCSV')->name('client.sample');
+
+Route::post('client/import','ClientController@import')->name('client.import');
+
 Route::resource('client', 'ClientController');
 
 
