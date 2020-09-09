@@ -72,8 +72,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'fk_currency' => $data['currency'],
-            'fk_timezone' => $data['timezone']
+            'currency' => $data['currency'],
+            'timezone' => $data['timezone']
         ]);
     }
 }
