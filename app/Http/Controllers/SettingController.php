@@ -143,6 +143,27 @@ class SettingController extends Controller
     {
         return view('users.settings.currencytaxes');
     }
+    public function currentstore(Request $request)
+    {
+        var_dump('route running');
+        die();
+        // get currently authenticated in user
+        /*$user = Auth::user();
+        // validates incoming request
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required',
+            'email' => 'email:rfc,dns'
+        ]);
+        //redirect back if validation fails
+        if ($validator->fails()) {
+            notify()->warning('Oops something went wrong :)');
+            return redirect()->back();
+        }
+        // store user's client's data
+        $user->clients()->create($request->all());
+        notify()->success('Saved successfully');
+        return redirect()->back();*/
+    }
     /**
      *  Company emailsettings
      */
