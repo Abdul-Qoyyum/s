@@ -206,7 +206,8 @@ class SettingController extends Controller
 
     public function workflows()
     {
-        return view('users.settings.workflows');
+        $workflows = DB::table('workflows')->get();
+        return view('users.settings.workflows', ['workflows' => $workflows]);
     }
     /**
      *  Company jobtypes
