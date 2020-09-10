@@ -62,52 +62,9 @@
 <div class="Account-box mt-3 ">
     
     <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr style="border-top: 1px solid #eee;">
-                <th>contact form</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="user in users | orderBy" class="ng-scope">
-                <td class="ng-binding">Tanveer</td>
-                <td class="ng-binding">zari@gmail.com</td>
-                <td class="user-button text-right td-btn-group">
-                    <button style="margin-bottom: 0; margin-top: -7px"  type="submit" class="btn btn-default " data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
-                    <button style="margin-bottom: 0; margin-top: -7px"  ng-click="showDeleteModal($index)" class="btn btn-delete btn btn-delete btn-delete-empty  "><i class="fas fa-trash-alt"></i></button>
-                </td>
-            </tr>
-            {{-- Edit button model --}}
-            <div class="modal fade bd-example-modal-lg" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title " id="exampleModalLongTitle">Edit User</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body m-3">
-                      <form class="">
-                        <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-2  col-form-label col-form-label-sm">First Name</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control form-control-sm" id="colFormLabelSm" >
-                            </div>
-                          </div>
-                          
-                      </form>
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="submit" class="btn btn-success btn-md ng-isolate-scope spinning-wheel spinning-wheel__display-before" ng-disabled="button_disable" spinning-wheel="" is-spinning-wheel-active="isSendInviteSpinnningWheelActive">Save
-                        </button>
-                    </div>
-                  </div>
-                </div>
-            </tbody>
-        </table>
+        <p>Tell us the currency that you trade in and your tax rates. These are applied to your quotes and invoices. If you don't charge tax, put the word None in the name field and 0% in the percentage field. Your tax settings can be changed at any time.</p>
+<p style="color: red">WARNING: Once your currency has been saved, these settings cannot be changed. Don't stuff this up!</p>
+
     </div>
 
      
