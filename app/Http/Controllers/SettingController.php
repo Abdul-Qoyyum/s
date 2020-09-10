@@ -47,6 +47,9 @@ class SettingController extends Controller
     public function store(Request $request)
     {
         //
+        var_dump($request->title);
+        var_dump($request->body);
+        die();
     }
 
     /**
@@ -143,8 +146,11 @@ class SettingController extends Controller
     {
         return view('users.settings.currencytaxes');
     }
-    public function currentstore(Request $request)
+    public function currencystore(Request $request)
     {
+        var_dump($request->title);
+        var_dump($request->body);
+        die();
         var_dump('route running');
         die();
         // get currently authenticated in user
@@ -194,7 +200,8 @@ class SettingController extends Controller
 
     public function paymentschedule()
     {
-        return view('users.settings.paymentschedule');
+        $schedules = DB::table('payment_schedules')->get();
+        return view('users.settings.paymentschedule', ['schedules' => $schedules]);
     }
     /**
      *  Company productpackages
@@ -202,7 +209,6 @@ class SettingController extends Controller
 
     public function productpackages()
     {
-        $user = Auth::user();
         $packages = DB::table('packages')->get();
         // var_dump($packages);
         // die();

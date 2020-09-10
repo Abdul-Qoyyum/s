@@ -75,8 +75,10 @@
                             <td>{{$package->description}}</td>
                             <td>{{$package->price}}</td>
                             <td>{{$package->quantity}}</td>
+                            <td class="user-button text-right td-btn-group">
                             <button style="margin-bottom: 0; margin-top: -7px"  type="submit" class="btn btn-default " data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
                             <button style="margin-bottom: 0; margin-top: -7px"  ng-click="showDeleteModal($index)" class="btn btn-delete btn btn-delete btn-delete-empty  "><i class="fas fa-trash-alt"></i></button>
+                            </td>
                         </tr>
                      @endforeach
             <!-- <tr ng-repeat="user in users | orderBy" class="ng-scope">
